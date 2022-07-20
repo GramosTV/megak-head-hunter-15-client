@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './style/global.css';
+import './style/header.css';
 
 function App() {
   return (
