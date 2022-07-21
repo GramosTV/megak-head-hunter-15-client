@@ -1,11 +1,12 @@
 import React from 'react'
+import { AvailableStudents } from './AvailableStudents/AvailableStudents'
+import { Select } from './Select'
 
 export function HrPanel() {
   return (
-    <div className="HrPanel">
-        <div className="HrPanel__select">
-            
-        </div>
+    <div className="hrPanel">
+        <Select />
+        <AvailableStudents />
     </div>
   )
 }

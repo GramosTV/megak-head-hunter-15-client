@@ -1,0 +1,75 @@
+.availableStudents {
+  height: 60px;
+  border-bottom: 3px #222224 solid;
+  width: 95%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 5px;
+}
+
+.availableStudents__input {
+  width: 365px;
+  height: 38px;
+  background-color: #1e1e1f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.availableStudents__input svg {
+  color: #757575;
+  margin: 0 10px;
+}
+
+.availableStudents__input input {
+  background-color: #1e1e1f;
+  border: 0;
+  outline: 0;
+  color: #f7f7f7;
+  width: 90%;
+  height: 100%;
+  padding-right: 10px;
+}
+
+.availableStudents__input input:focus {
+  outline: none !important;
+}
+
+.availableStudents__filterBtn {
+  background-color: #1e1e1f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.availableStudents__filterBtn svg {
+  color: #757575;
+  margin-right: 6px;
+}
+
+.availableStudents__filterBtn span {
+  color: #f7f7f7;
+}
+/*# sourceMappingURL=AvailableStudents.css.map */
