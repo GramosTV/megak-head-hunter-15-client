@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACL,UAAU,EAAE,IAAI;EAChB,UAAU,EAAE,OAAO;CAItB;;AAHI,AAAD,gBAAS,CAAC;EACN,MAAM,EAAE,IAAI;CACf",
+    "sources": [
+        "HrPanel.scss"
+    ],
+    "names": [],
+    "file": "HrPanel.css"
+}
