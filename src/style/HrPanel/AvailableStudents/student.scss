@@ -1,0 +1,11 @@
+.studentList {
+    &__student {
+        height: 70px;
+        border-bottom: 5px solid #1e1e1f;
+        color: #F7F7F7;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+    }
+}
