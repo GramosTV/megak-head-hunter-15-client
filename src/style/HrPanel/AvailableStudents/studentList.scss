@@ -1,0 +1,75 @@
+.studentList {
+  width: 97%;
+  margin: 0 auto;
+  &__student {
+    min-height: 70px;
+    border-top: 12px solid #1e1e1f;
+    list-style: none;
+    box-sizing: content-box;
+    &:nth-child(1) {
+      border-top: none;
+    }
+  }
+  &__studentContainer {
+    padding: 0 15px;
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__panel {
+    display: flex;
+    align-items: center;
+    button {
+      background: #e02735;
+      padding: 10px 10px;
+      border: none;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+    svg {
+      font-size: 22px;
+      margin-right: 10px;
+      cursor: pointer;
+      path {
+        color: #cfcfcf;
+      }
+    }
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+    background: #222324;
+    div {
+      height: 110px;
+      min-width: 98px;
+      max-width: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+    }
+    span,
+    p {
+      color: #cfcfcf;
+      height: 50%;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+    }
+    p {
+      font-size: 12px;
+      text-align: left;
+      padding-bottom: 0;
+    }
+    span {
+      padding: 8px 0;
+      padding-top: 0;
+      font-size: 14px;
+      b {
+        margin-right: 5px;
+      }
+    }
+  }
+}

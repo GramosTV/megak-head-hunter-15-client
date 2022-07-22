@@ -1,7 +1,23 @@
+.studentList {
+  width: 96%;
+  margin: 0 auto;
+}
+
 .studentList__student {
+  padding: 0 15px;
   height: 70px;
-  border-bottom: 5px solid #1e1e1f;
-  color: #F7F7F7;
+  border-top: 12px solid #1e1e1f;
+  list-style: none;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.studentList__student:nth-child(1) {
+  border-top: none;
+}
+
+.studentList__studentContainer {
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,6 +27,32 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  list-style: none;
+}
+
+.studentList__panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.studentList__panel button {
+  background: #e02735;
+  padding: 10px 10px;
+  border: none;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.studentList__panel svg {
+  font-size: 22px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.studentList__panel svg path {
+  color: #757575;
 }
 /*# sourceMappingURL=student.css.map */

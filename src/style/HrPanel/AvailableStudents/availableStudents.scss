@@ -1,7 +1,7 @@
 .availableStudents {
   height: 60px;
   border-bottom: 3px #222224 solid;
-  width: 95%;
+  width: 97%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -15,8 +15,10 @@
     justify-content: flex-start;
     align-items: center;
     svg {
-      color: #757575;
       margin: 0 10px;
+      path {
+        color: #757575;
+      }
     }
     input {
       background-color: #1e1e1f;
@@ -39,11 +41,10 @@
     padding: 8px 15px;
     cursor: pointer;
     svg {
-      color: #757575;
       margin-right: 6px;
-    }
-    span {
-      color: #f7f7f7;
+      path {
+        color: #757575;
+      }
     }
   }
 }

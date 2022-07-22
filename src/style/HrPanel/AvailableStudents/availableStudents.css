@@ -1,7 +1,7 @@
 .availableStudents {
   height: 60px;
   border-bottom: 3px #222224 solid;
-  width: 95%;
+  width: 97%;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -31,8 +31,11 @@
 }
 
 .availableStudents__input svg {
-  color: #757575;
   margin: 0 10px;
+}
+
+.availableStudents__input svg path {
+  color: #757575;
 }
 
 .availableStudents__input input {
@@ -65,11 +68,10 @@
 }
 
 .availableStudents__filterBtn svg {
-  color: #757575;
   margin-right: 6px;
 }
 
-.availableStudents__filterBtn span {
-  color: #f7f7f7;
+.availableStudents__filterBtn svg path {
+  color: #757575;
 }
-/*# sourceMappingURL=availableStudents.css.map */
+/*# sourceMappingURL=AvailableStudents.css.map */
