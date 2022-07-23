@@ -1,0 +1,46 @@
+form {
+    width: 50%;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+input {
+    background-color: #292A2B;
+    border: none;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.loginButton {
+    border: none;
+    width: 80px;
+    height: 25px;
+    color: #f7f7f7;
+    background-color: #e02735;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+
+.lastLine, .forgotPassword {
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    background-color: #222224;
+    text-decoration: none;
+    color: white;
+    font-size: 8px;
+    justify-content: flex-end;
+}
+
+.lastLine a {
+    background-color: #222224;
+    text-decoration: none;
+    color: white;
+    font-size: 8px;
+}
+

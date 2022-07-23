@@ -1,0 +1,9 @@
+.LoginContainer {
+    width: 80%;
+    height: 50%;
+    background-color: #222224;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
