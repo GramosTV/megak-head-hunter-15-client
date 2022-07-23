@@ -14,14 +14,14 @@ export const LayoutNotLoggedIn = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("email")} type="email" placeholder="email"/>
-            <input {...register("password")} type="password" placeholder="password"/>
+            <input {...register("email")} type="email" placeholder="E-mail"/>
+            <input {...register("password")} type="password" placeholder="Hasło"/>
             <div className="forgotPassword">
                 <div/>
                 <a href="/">Zapomniałeś hasła?</a>
             </div>
             <div className="lastLine">
-                <a href="#">Nie masz konta? <strong>Zarejestruj się!</strong></a>
+                <a href="#">Nie masz konta? <strong>Zarejestruj się</strong></a>
                 <input className="loginButton" type="submit" value="Zaloguj się!"/>
             </div>
 
