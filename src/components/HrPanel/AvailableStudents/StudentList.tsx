@@ -4,15 +4,18 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 // any because waiting for student types
 interface StudentListProps {
-  students: any;
+  students: any[];
   itemsPerPage: number;
   page: number;
+  localStudents: any[];
+  setLocalStudents: Dispatch<SetStateAction<any[]>>;
+  filterFlag: boolean;
 }
-export function StudentList({ students, itemsPerPage, page }: StudentListProps) {
-  const [localStudents, setLocalStudents] = useState(students)
+export function StudentList({ students, itemsPerPage, page, localStudents, setLocalStudents, filterFlag }: StudentListProps) {
+  
   useEffect(() => {
     setLocalStudents(students)
-  }, [page, students])
+  }, [page, filterFlag])
   const handleExpandStudentInfo = (element: any) => {
     const id = element.currentTarget.id;
     setLocalStudents((previousState: any): any => {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AvailableStudents } from "./AvailableStudents/AvailableStudents";
+import { Filter } from "./AvailableStudents/Filter";
 import { ItemsControl } from "./AvailableStudents/ItemsControl";
 import { StudentList } from "./AvailableStudents/StudentList";
 import { Select } from "./Select";
@@ -202,13 +203,28 @@ export function HrPanel() {
   ]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
-
+  const [localStudents, setLocalStudents] = useState(students);
+  const [filterFlag, setFilterFlag] = useState<boolean>(true);
+  const [filterState, setFilterState] = useState<boolean>(false)
   return (
     <>
       <div className="hrPanel">
+        <Filter
+          setLocalStudents={setLocalStudents}
+          setFilterFlag={setFilterFlag}
+          filterState={filterState}
+          setFilterState={setFilterState} 
+        />
         <Select />
-        <AvailableStudents />
-        <StudentList students={students} itemsPerPage={itemsPerPage} page={page}/>
+        <AvailableStudents setFilterState={setFilterState} />
+        <StudentList
+          students={students}
+          itemsPerPage={itemsPerPage}
+          page={page}
+          localStudents={localStudents}
+          setLocalStudents={setLocalStudents}
+          filterFlag={filterFlag}
+        />
       </div>
       <ItemsControl
         itemsPerPage={itemsPerPage}
