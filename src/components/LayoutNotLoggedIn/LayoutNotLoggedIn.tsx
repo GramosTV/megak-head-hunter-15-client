@@ -1,16 +1,17 @@
 import React from "react";
+import {LoginContainer} from "../LoginContainer/LoginContainer";
 
 import './LayoutNotLoggedIn.css'
-import {Btn} from "../LoginButton/LoginButton";
+
 
 export const LayoutNotLoggedIn = () => {
 
     return (
         <>
-          <div className="LayoutNotLoggedIn">
-              <Btn/>
+            <div className="LayoutNotLoggedIn">
+                <LoginContainer/>
 
-          </div>
+            </div>
         </>
     );
 };
