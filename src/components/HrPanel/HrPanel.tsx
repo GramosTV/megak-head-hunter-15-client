@@ -28,7 +28,7 @@ export function HrPanel() {
       firstName: "Jan",
       lastName: "Kowalski",
       email: "1235@test.pl",
-      courseScore: 4,
+      courseScore: 5,
       courseEngagementScore: 3,
       ownProjectScore: 2,
       workInScrumTeamScore: 4,
@@ -204,26 +204,28 @@ export function HrPanel() {
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
   const [localStudents, setLocalStudents] = useState(students);
-  const [filterFlag, setFilterFlag] = useState<boolean>(true);
-  const [filterState, setFilterState] = useState<boolean>(false)
+  const [filterState, setFilterState] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
   return (
     <>
       <div className="hrPanel">
         <Filter
+        students={students}
           setLocalStudents={setLocalStudents}
-          setFilterFlag={setFilterFlag}
           filterState={filterState}
           setFilterState={setFilterState} 
+          page={page}
+          searchValue={searchValue}
         />
         <Select />
-        <AvailableStudents setFilterState={setFilterState} />
+        <AvailableStudents students={students}setFilterState={setFilterState} setLocalStudents={setLocalStudents} searchValue={searchValue}
+        setSearchValue={setSearchValue}/>
         <StudentList
           students={students}
           itemsPerPage={itemsPerPage}
           page={page}
           localStudents={localStudents}
           setLocalStudents={setLocalStudents}
-          filterFlag={filterFlag}
         />
       </div>
       <ItemsControl
@@ -231,7 +233,7 @@ export function HrPanel() {
         setItemsPerPage={setItemsPerPage}
         page={page}
         setPage={setPage}
-        studentsLength={students.length}
+        studentsLength={localStudents.length}
       />
     </>
   );

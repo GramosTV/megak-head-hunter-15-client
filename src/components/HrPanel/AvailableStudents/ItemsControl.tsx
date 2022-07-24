@@ -1,6 +1,6 @@
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 
 interface ItemsPerPageProps {
   itemsPerPage: number;
@@ -25,6 +25,15 @@ export function ItemsControl({
   const handlePageChange = (action: boolean) => {
     action ? setPage(page + 1) : setPage(page - 1);
   };
+  useEffect(() => {
+    if ((Math.floor(studentsLength / itemsPerPage)
+    ? Math.floor(studentsLength / itemsPerPage) + 1
+    : 1) < page) {
+      setPage((Math.floor(studentsLength / itemsPerPage)
+      ? Math.floor(studentsLength / itemsPerPage) + 1
+      : 1))
+    }
+  }, [studentsLength, itemsPerPage]);
   const options = [
     {
       value: 5,

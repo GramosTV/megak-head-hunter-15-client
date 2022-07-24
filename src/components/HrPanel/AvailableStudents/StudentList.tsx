@@ -9,13 +9,9 @@ interface StudentListProps {
   page: number;
   localStudents: any[];
   setLocalStudents: Dispatch<SetStateAction<any[]>>;
-  filterFlag: boolean;
 }
-export function StudentList({ students, itemsPerPage, page, localStudents, setLocalStudents, filterFlag }: StudentListProps) {
+export function StudentList({ students, itemsPerPage, page, localStudents, setLocalStudents }: StudentListProps) {
   
-  useEffect(() => {
-    setLocalStudents(students)
-  }, [page, filterFlag])
   const handleExpandStudentInfo = (element: any) => {
     const id = element.currentTarget.id;
     setLocalStudents((previousState: any): any => {
