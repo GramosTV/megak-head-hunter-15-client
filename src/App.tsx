@@ -1,12 +1,12 @@
 import React from 'react';
+import { LayoutNotLoggedIn } from './components/LayoutNotLoggedIn/LayoutNotLoggedIn';
 
 import './App.css';
 import './style/global.css';
 
-import {Btn} from "./components/LoginButton";
 
 export const App = () => {
     return <>
-        <Btn/>
+        <LayoutNotLoggedIn/>
          </>
 };
