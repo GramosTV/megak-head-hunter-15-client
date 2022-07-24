@@ -21,7 +21,7 @@ export const LayoutNotLoggedIn = () => {
                 <a href="/">Zapomniałeś hasła?</a>
             </div>
             <div className="lastLine">
-                <a href="#">Nie masz konta? <strong>Zarejestruj się</strong></a>
+                <div></div>
                 <input className="loginButton" type="submit" value="Zaloguj się!"/>
             </div>
 
