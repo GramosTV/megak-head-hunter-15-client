@@ -8,6 +8,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { StudentListEnum } from "src/types/enums/studentListEnum";
 
 // Waiting for shared types from the backend, this is not the final interface
 interface FilterSettings {
@@ -34,6 +35,7 @@ interface FilterProps {
   setFilterState: Dispatch<SetStateAction<boolean>>;
   page: number;
   searchValue: string;
+  studentListType: StudentListEnum;
 }
 
 export function Filter({
@@ -42,7 +44,8 @@ export function Filter({
   filterState,
   setFilterState,
   page,
-  searchValue
+  searchValue,
+  studentListType
 }: FilterProps) {
   const defaultSettings = {
     courseScore: null,
@@ -67,6 +70,13 @@ export function Filter({
     });
   };
 
+  useEffect(() => {
+      setFilterSettings(defaultSettings);
+      setMinSalary(0);
+      setMaxSalary(0);
+      setExperienceInMonths(0);
+      setLocalStudents(students);
+  }, [studentListType])
   const filterStudents = () => {
     if (searchValue) {
       setLocalStudents(() => {
@@ -280,9 +290,6 @@ export function Filter({
               setMinSalary(0);
               setMaxSalary(0);
               setExperienceInMonths(0);
-              Array.from(document.querySelectorAll(".selectedFilter")).forEach(
-                (el) => el.classList.remove("selectedFilter")
-              );
             }}
           >
             Wyczyść wszystkie

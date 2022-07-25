@@ -1,6 +1,7 @@
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Dispatch, SetStateAction, useEffect } from "react";
+import { StudentListEnum } from "src/types/enums/studentListEnum";
 
 interface ItemsPerPageProps {
   itemsPerPage: number;
@@ -8,6 +9,7 @@ interface ItemsPerPageProps {
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
   studentsLength: number;
+  studentListType: StudentListEnum;
 }
 export function ItemsControl({
   itemsPerPage,
@@ -15,7 +17,11 @@ export function ItemsControl({
   page,
   setPage,
   studentsLength,
+  studentListType
 }: ItemsPerPageProps) {
+  useEffect(() => {
+    setPage(1);
+  }, [studentListType])
   const handleChange = (
     value: number,
     selectOptionSetter: Dispatch<SetStateAction<number>>

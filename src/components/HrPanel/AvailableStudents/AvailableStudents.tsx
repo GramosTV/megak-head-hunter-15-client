@@ -1,21 +1,25 @@
 import { faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import fuzzysort from "fuzzysort";
+import React, { ChangeEvent, Dispatch, SetStateAction, useEffect } from "react";
+import { StudentListEnum } from '../../../types/enums/studentListEnum';
 interface AvailableStudentsProps {
   students: any[];
   setFilterState: Dispatch<SetStateAction<boolean>>;
-  setLocalStudents: Dispatch<SetStateAction<any[]>>;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
+  studentListType: StudentListEnum;
 }
 export function AvailableStudents({
   students,
   setFilterState,
-  setLocalStudents,
   searchValue,
-  setSearchValue
+  setSearchValue,
+  studentListType
+  
 }: AvailableStudentsProps) {
+  useEffect(() => {
+    setSearchValue('');
+  }, [studentListType])
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const searchVal = e.currentTarget.value;
     setSearchValue(searchVal);

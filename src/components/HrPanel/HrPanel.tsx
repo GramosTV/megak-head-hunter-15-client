@@ -4,6 +4,7 @@ import { Filter } from "./AvailableStudents/Filter";
 import { ItemsControl } from "./AvailableStudents/ItemsControl";
 import { StudentList } from "./AvailableStudents/StudentList";
 import { Select } from "./Select";
+import {StudentListEnum} from '../../types/enums/studentListEnum'
 
 // any because waiting for student types
 export function HrPanel() {
@@ -206,26 +207,36 @@ export function HrPanel() {
   const [localStudents, setLocalStudents] = useState(students);
   const [filterState, setFilterState] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [studentListType, setStudentListType] = useState<StudentListEnum>(
+    StudentListEnum.available
+  );
   return (
     <>
       <div className="hrPanel">
         <Filter
-        students={students}
+          students={students}
           setLocalStudents={setLocalStudents}
           filterState={filterState}
-          setFilterState={setFilterState} 
+          setFilterState={setFilterState}
           page={page}
           searchValue={searchValue}
+          studentListType={studentListType}
         />
-        <Select />
-        <AvailableStudents students={students}setFilterState={setFilterState} setLocalStudents={setLocalStudents} searchValue={searchValue}
-        setSearchValue={setSearchValue}/>
-        <StudentList
+        <Select studentListType={studentListType} setStudentListType={setStudentListType}/>
+        <AvailableStudents
           students={students}
+          setFilterState={setFilterState}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          studentListType={studentListType}
+        />
+        <StudentList
           itemsPerPage={itemsPerPage}
           page={page}
           localStudents={localStudents}
           setLocalStudents={setLocalStudents}
+          studentListType={studentListType}
+          
         />
       </div>
       <ItemsControl
@@ -234,6 +245,7 @@ export function HrPanel() {
         page={page}
         setPage={setPage}
         studentsLength={localStudents.length}
+        studentListType={studentListType}
       />
     </>
   );
