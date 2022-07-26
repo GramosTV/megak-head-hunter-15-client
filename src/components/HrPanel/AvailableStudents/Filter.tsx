@@ -290,6 +290,7 @@ export function Filter({
               setMinSalary(0);
               setMaxSalary(0);
               setExperienceInMonths(0);
+              setLocalStudents(students);
             }}
           >
             Wyczyść wszystkie
