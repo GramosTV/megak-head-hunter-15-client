@@ -1,0 +1,153 @@
+.studentList {
+  width: 97%;
+  margin: 0 auto;
+}
+
+.studentList__student {
+  min-height: 70px;
+  border-top: 12px solid #1e1e1f;
+  list-style: none;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.studentList__student:nth-child(1) {
+  border-top: none;
+}
+
+.studentList__studentContainer {
+  padding: 0 15px;
+  min-height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.studentList__panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.studentList__panel button {
+  background: #e02735;
+  padding: 10px 10px;
+  border: none;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.studentList__panel svg {
+  font-size: 22px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.studentList__panel svg path {
+  color: #cfcfcf;
+}
+
+.studentList__studentEntityContainer {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.studentList__reservation {
+  margin-right: 70px;
+}
+
+.studentList__userData {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.studentList__userData img {
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  margin-right: 15px;
+}
+
+.studentList__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #222324;
+}
+
+.studentList__info div {
+  height: 110px;
+  min-width: 98px;
+  max-width: 160px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.studentList__info span,
+.studentList__info p {
+  color: #cfcfcf;
+  height: 50%;
+  padding: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.studentList__info p {
+  font-size: 12px;
+  text-align: left;
+  padding-bottom: 0;
+}
+
+.studentList__info span {
+  padding: 8px 0;
+  padding-top: 0;
+  font-size: 14px;
+}
+
+.studentList__info span b {
+  margin-right: 5px;
+}
+/*# sourceMappingURL=studentList.css.map */

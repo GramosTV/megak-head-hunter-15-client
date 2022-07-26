@@ -1,0 +1,207 @@
+.filter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(0.6px);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  &.disabled {
+    display: none;
+  }
+  button {
+    cursor: pointer;
+    &.selectedFilter {
+      background-color: #676767;
+    }
+  }
+  &__container {
+    width: 520px;
+    height: 806px;
+    background: #0a0a0a;
+    padding: 20px;
+    div {
+      text-align: left;
+      margin-bottom: 12px;
+    }
+    div:nth-child(1) {
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      button {
+        background-color: #172a35;
+        padding: 8px 10px;
+      }
+    }
+  }
+
+  &__scores {
+    span {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    div {
+      span {
+        margin-right: 3px;
+      }
+      input {
+        background: #292a2b;
+        border: 0;
+        outline: 0;
+        padding: 6px 8px;
+        width: 125px;
+        margin-right: 15px;
+        &:focus {
+          outline: none !important;
+        }
+      }
+      button {
+        background: #292a2b;
+        padding: 8px 8px;
+        margin-right: 8px;
+        svg path {
+          color: #e02735;
+        }
+      }
+    }
+  }
+
+  &__radio {
+    label {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    div {
+      span {
+        margin-right: 3px;
+      }
+      input {
+        accent-color: #e02735;
+        border: 0;
+        outline: 0;
+        padding: 6px 8px;
+        margin-right: 15px;
+        &:focus {
+          outline: none !important;
+        }
+      }
+    }
+  }
+  &__months {
+    .title {
+      width: 100%;
+      display: inline-block;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    label {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    div {
+      span {
+        margin-right: 3px;
+      }
+      input {
+        background-color: #1e1e1f;
+        border: 0;
+        outline: 0;
+        padding: 8px 10px;
+        width: 105px;
+        &:focus {
+          outline: none !important;
+        }
+      }
+    }
+  }
+  &__cancelOrApply {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    button {
+      background-color: #e02735;
+      padding: 8px 10px;
+      border: none;
+      &:nth-child(1) {
+        background: transparent;
+        padding: 8px 20px;
+      }
+    }
+  }
+}
+
+.container {
+  display: inline-block;
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-top: 3px;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: calc(25px / 3);
+  left: 0;
+  height: calc(25px / 1.6);
+  width: calc(25px / 1.6);
+  border-radius: 50%;
+  outline: #292a2b 2px solid;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  border: 1px white solid;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  border: none;
+  background: #e02735;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+//   .container .checkmark:after {
+//     top: calc(9px / 1.6);
+//     left: calc(9px / 1.6);
+//     width: calc(8px / 1.6);
+//     height: calc(8px / 1.6);
+//     border-radius: 50%;
+//     background: #e02735;
+// }
