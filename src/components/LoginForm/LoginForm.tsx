@@ -8,7 +8,7 @@ type FormInputs = {
 };
 
 export const LoginForm = () => {
-  const {signIn, user} = useContext(AuthContext);
+  const {signIn} = useContext(AuthContext);
   const { register, handleSubmit } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async ({email, password}) => {
@@ -18,8 +18,6 @@ export const LoginForm = () => {
       console.log(e);
     }
   }
-
-  console.log(user);
 
   return (
     <>
