@@ -1,11 +1,14 @@
 import React from 'react';
-import {Navigate, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import {ProtectedRouteInterface} from "../../types/interfaces/Auth";
 
-export const ProtectedRoute = ({ isAllowed, redirectPath = '/', children }: ProtectedRouteInterface) => {
+export const ProtectedRoute = ({ isAllowed, children }: ProtectedRouteInterface) => {
   if (!isAllowed) {
-    return <Navigate to={redirectPath} replace />;
+    return null;
   }
 
-  return children ? children : <Outlet />;
+  return children ?
+    <>
+      {children}
+    </> : <Outlet />;
 };

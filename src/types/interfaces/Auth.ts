@@ -14,6 +14,5 @@ export interface AuthContextObj {
 
 export interface ProtectedRouteInterface {
   isAllowed: boolean;
-  redirectPath: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
