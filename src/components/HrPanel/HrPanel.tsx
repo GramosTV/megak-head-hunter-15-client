@@ -4,15 +4,17 @@ import { Filter } from "./AvailableStudents/Filter";
 import { ItemsControl } from "./AvailableStudents/ItemsControl";
 import { StudentList } from "./AvailableStudents/StudentList";
 import { Select } from "./Select";
-import {StudentListEnum} from '../../types/enums/studentListEnum'
+import { StudentListEnum } from "../../types/enums/studentListEnum";
+import { Cv } from "./AvailableStudents/Cv";
 
 // any because waiting for student types
 export function HrPanel() {
   const [students, setStudents] = useState<any[]>([
     {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1234@test.pl",
+      firstName: "Jan2",
+      lastName: "Kowalski2",
+      email: "123111236@test.pl",
+      phone: '+48123123123',
       courseScore: 4,
       courseEngagementScore: 3,
       ownProjectScore: 2,
@@ -24,171 +26,28 @@ export function HrPanel() {
       AgreementForInternship: false,
       CommercialProgrammingExperienceInMonths: 4,
       expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1235@test.pl",
-      courseScore: 5,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "112354516123234@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "124124512512535@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "123312512512126@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "124124155534@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "12415612341241445@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "123121567731236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1231236176772311236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1231212341245551232311236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
+      education:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      courses:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      professionalExperience:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      portfolio: ["https://Loremipsum/dolor/sit/amet"],
+      projectInScrumTeam: [
+        "https://github.com/Ami777/MegaKursTest/commits?author=Ami777",
+        "https://github.com/Ami777/MegaKursTest/pulls?q=is%3Apr+reviewed-by%3AAmi777",
+      ],
+      coursework: [
+        "https://Loremipsum/dolor/sit/amet",
+        "https://Loremipsum/dolor/sit/amet",
+      ],
+      github: 'https://github.com/Ami777'
     },
     {
       firstName: "Jan2",
       lastName: "Kowalski2",
-      email: "1231212331231232311236@test.pl",
+      email: "1231111236@test.pl",
+      phone: '+48123123123',
       courseScore: 4,
       courseEngagementScore: 3,
       ownProjectScore: 2,
@@ -200,6 +59,55 @@ export function HrPanel() {
       AgreementForInternship: false,
       CommercialProgrammingExperienceInMonths: 4,
       expandStudentInfo: false,
+      education:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      courses:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      professionalExperience:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      portfolio: ["https://Loremipsum/dolor/sit/amet"],
+      projectInScrumTeam: [
+        "https://github.com/Ami777/MegaKursTest/commits?author=Ami777",
+        "https://github.com/Ami777/MegaKursTest/pulls?q=is%3Apr+reviewed-by%3AAmi777",
+      ],
+      coursework: [
+        "https://Loremipsum/dolor/sit/amet",
+        "https://Loremipsum/dolor/sit/amet",
+      ],
+      github: 'https://github.com/Ami777'
+    },
+    {
+      firstName: "Jan2",
+      lastName: "Kowalski2",
+      email: "1234111236@test.pl",
+      phone: '+48123123123',
+      courseScore: 3,
+      courseEngagementScore: 3,
+      ownProjectScore: 2,
+      workInScrumTeamScore: 4,
+      preferredWorkPlace: "Biuro",
+      targetCity: "Warszawa",
+      expectedContractType: "Umowa o pracę",
+      expectedNetSalary: 9000,
+      AgreementForInternship: false,
+      CommercialProgrammingExperienceInMonths: 4,
+      expandStudentInfo: false,
+      education:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      courses:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      professionalExperience:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      portfolio: ["https://Loremipsum/dolor/sit/amet"],
+      projectInScrumTeam: [
+        "https://github.com/Ami777/MegaKursTest/commits?author=Ami777",
+        "https://github.com/Ami777/MegaKursTest/pulls?q=is%3Apr+reviewed-by%3AAmi777",
+      ],
+      coursework: [
+        "https://Loremipsum/dolor/sit/amet",
+        "https://Loremipsum/dolor/sit/amet",
+      ],
+      github: 'https://github.com/Ami777'
     },
   ]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
@@ -210,7 +118,10 @@ export function HrPanel() {
   const [studentListType, setStudentListType] = useState<StudentListEnum>(
     StudentListEnum.available
   );
-  return (
+  const [studentCv, setStudentCv] = useState<any>(null);
+  return studentCv ? (
+    <Cv student={studentCv} setStudentCv={setStudentCv} />
+  ) : (
     <>
       <div className="hrPanel">
         <Filter
@@ -222,7 +133,10 @@ export function HrPanel() {
           searchValue={searchValue}
           studentListType={studentListType}
         />
-        <Select studentListType={studentListType} setStudentListType={setStudentListType}/>
+        <Select
+          studentListType={studentListType}
+          setStudentListType={setStudentListType}
+        />
         <AvailableStudents
           students={students}
           setFilterState={setFilterState}
@@ -236,7 +150,7 @@ export function HrPanel() {
           localStudents={localStudents}
           setLocalStudents={setLocalStudents}
           studentListType={studentListType}
-          
+          setStudentCv={setStudentCv}
         />
       </div>
       <ItemsControl
