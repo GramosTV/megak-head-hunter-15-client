@@ -41,4 +41,13 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
       }
     })();
   }, []);
+
+  const signIn = () => {}
+  const signOut = () => {}
+
+  return (
+    <AuthContext.Provider value={{user, signIn, signOut}}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
