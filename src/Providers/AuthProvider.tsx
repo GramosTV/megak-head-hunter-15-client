@@ -67,7 +67,26 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     }
   }
 
-  const signOut = () => {}
+  const signOut = async () => {
+    setUser(null);
+    try {
+      const res = await fetch('http://localhost:3001/auth/logout', {
+        credentials: 'include',
+        mode: 'cors',
+        headers: {
+          "Access-Control-Allow-Origin":"true",
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.ok) {
+        console.log('Succesfully logout!')
+      } else {
+        console.log('You must be logged in first to log out!');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <AuthContext.Provider value={{user, signIn, signOut}}>
