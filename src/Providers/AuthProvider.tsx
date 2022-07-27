@@ -1,16 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AuthUser} from 'types';
-
-interface LoginData {
-  login: string;
-  password: string;
-}
-
-interface AuthContextObj {
-  user: AuthUser | null,
-  signIn: ({login, password}: LoginData) => void,
-  signOut: () => void,
-}
+import {AuthContextObj, LoginData} from "../types/interfaces/Auth";
 
 export const AuthContext = React.createContext<AuthContextObj>({
   user: null,
@@ -19,7 +8,7 @@ export const AuthContext = React.createContext<AuthContextObj>({
 });
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
-  const [user, setUser] = useState<AuthUser | null>(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     (async () => {
