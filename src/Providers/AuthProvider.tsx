@@ -13,11 +13,11 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('http://localhost:3001/auth/me', {
+        const res = await fetch('/auth/me', {
           credentials: 'include',
           mode: 'cors',
           headers: {
-            "Access-Control-Allow-Origin":"true",
+            'Access-Control-Allow-Origin':'true',
             "Content-Type": "application/json",
           }
         });
@@ -33,7 +33,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
   const signIn = async ({ login, password}: LoginData) => {
     try {
-      const res = await fetch('http://localhost:3001/auth/login', {
+      const res = await fetch('/auth/login', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -47,7 +47,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
       });
       const data = await res.json();
       if (data.ok) {
-        setUser(data);
+        console.log(data);
       } else {
         console.log(data.error);
       }
@@ -59,7 +59,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   const signOut = async () => {
     setUser(null);
     try {
-      const res = await fetch('http://localhost:3001/auth/logout', {
+      const res = await fetch('/auth/logout', {
         credentials: 'include',
         mode: 'cors',
         headers: {
