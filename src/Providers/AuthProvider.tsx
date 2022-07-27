@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {AuthContextObj, LoginData} from "../types/interfaces/Auth";
+import {useLocation, useNavigate} from "react-router-dom";
 
 export const AuthContext = React.createContext<AuthContextObj>({
   user: null,
@@ -9,6 +10,8 @@ export const AuthContext = React.createContext<AuthContextObj>({
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   const [user, setUser] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -29,7 +32,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         console.log(e);
       }
     })();
-  }, []);
+  }, [location]);
 
   const signIn = async ({ login, password}: LoginData) => {
     try {
@@ -48,6 +51,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
       const data = await res.json();
       if (data.ok) {
         setUser(data);
+        navigate('/');
       } else {
         console.log(data.error);
       }
