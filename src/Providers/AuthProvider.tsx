@@ -21,4 +21,24 @@ export const AuthContext = React.createContext<AuthContextObj>({
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   const [user, setUser] = useState<AuthUser | null>(null);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch('http://localhost:3001/auth/me', {
+          credentials: 'include',
+          mode: 'cors',
+          headers: {
+            "Access-Control-Allow-Origin":"true",
+            "Content-Type": "application/json",
+          }
+        });
+        if(res.ok) {
+          const data = await res.json();
+          setUser(data);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, []);
 }
