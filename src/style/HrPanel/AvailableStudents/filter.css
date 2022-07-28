@@ -33,14 +33,14 @@
 
 .filter__container {
   width: 520px;
-  height: 806px;
+  height: 830px;
   background: #0a0a0a;
   padding: 20px;
 }
 
 .filter__container div {
   text-align: left;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .filter__container div:nth-child(1) {
@@ -90,7 +90,7 @@
 
 .filter__scores div button {
   background: #292a2b;
-  padding: 8px 8px;
+  padding: 3px 6px;
   margin-right: 8px;
 }
 

@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import {AuthContext} from "../../Providers/AuthProvider";
 
 type FormInputs = {
   email: string;
@@ -7,8 +8,16 @@ type FormInputs = {
 };
 
 export const LoginForm = () => {
+  const {signIn} = useContext(AuthContext);
   const { register, handleSubmit } = useForm<FormInputs>();
-  const onSubmit: SubmitHandler<FormInputs> = (data: any) => console.log(data);
+
+  const onSubmit: SubmitHandler<FormInputs> = async ({email, password}) => {
+    try {
+      signIn({login: email, password});
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <>

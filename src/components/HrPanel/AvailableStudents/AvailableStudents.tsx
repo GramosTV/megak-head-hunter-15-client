@@ -1,9 +1,10 @@
 import { faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, Dispatch, SetStateAction, useEffect } from "react";
+import { UserFE } from "src/types/interfaces/UserFE";
 import { StudentListEnum } from '../../../types/enums/studentListEnum';
 interface AvailableStudentsProps {
-  students: any[];
+  students: UserFE[];
   setFilterState: Dispatch<SetStateAction<boolean>>;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;

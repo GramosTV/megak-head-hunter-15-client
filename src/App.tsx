@@ -1,5 +1,9 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
+import {AuthContext} from "./Providers/AuthProvider";
+import { HrPanel } from './components/HrPanel/HrPanel';
+import { LoginForm } from './components/LoginForm/LoginForm';
+import {Route, Routes} from "react-router-dom";
+import {ProtectedRoute} from "./components/ProtectedRoute/ProtectedRoute";
 import './App.css';
 import './style/global.css';
 import './style/HrPanel/hrPanel.css';
@@ -14,12 +18,28 @@ import './style/AdminPanel/Sections/addStudents.css';
 import { HrPanel } from './components/HrPanel/HrPanel';
 import { LoginForm } from './components/LoginForm/LoginForm';
 import { AdminPanel } from './components/AdminPanel/AdminPanel';
+import './style/HrPanel/AvailableStudents/cv.css';
 
+export const App = () => {
+  const { user } = useContext(AuthContext);
 
-export function App() {
   return (
     <div className="App">
-      <AdminPanel />
+      <ProtectedRoute isAllowed={!user}>
+        <Routes>
+          <Route path="*" element={<LoginForm />} />
+        </Routes>
+      </ProtectedRoute>
+      <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
+        <Routes>
+          <Route path="*" element={<HrPanel />} />
+        </Routes>
+      </ProtectedRoute>
+      <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
+        <Routes>
+          <Route path="*" element={<h1>Admin panel placeholder</h1>} />
+        </Routes>
+      </ProtectedRoute>
     </div>
   );
 }
