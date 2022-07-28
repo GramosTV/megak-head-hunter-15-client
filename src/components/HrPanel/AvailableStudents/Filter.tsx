@@ -9,28 +9,36 @@ import React, {
   useState,
 } from "react";
 import { StudentListEnum } from "src/types/enums/studentListEnum";
+import { UserFE } from "src/types/interfaces/UserFE";
+import { ExpectedTypeWork, Score } from "types";
 
 // Waiting for shared types from the backend, this is not the final interface
 interface FilterSettings {
-  courseScore: 1 | 2 | 3 | 4 | 5 | null;
-  courseEngagementScore: 1 | 2 | 3 | 4 | 5 | null;
-  ownProjectScore: 1 | 2 | 3 | 4 | 5 | null;
-  workInScrumTeamScore: 1 | 2 | 3 | 4 | 5 | null;
-  preferredWorkPlace: "Biuro" | "Zdalna" | null;
+  courseScore: Score | null;
+  courseEngagementScore: Score | null;
+  ownProjectScore: Score | null;
+  workInScrumTeamScore: Score | null;
+  expectedTypeWork:
+    | "Biuro"
+    | "Gotowy do przeprowadzki"
+    | "Zdalna"
+    | "Biuro i zdalna"
+    | "Dowolone"
+    | null;
   expectedContractType:
     | "Umowa o pracę"
     | "B2B"
-    | "Umowa zlecenie"
+    | "Zlecenie"
     | "Umowa o dzieło"
     | null;
   minNetSalary: number | null;
   maxNetSalary: number | null;
-  AgreementForInternship: boolean | null;
-  CommercialProgrammingExperienceInMonths: number | null;
+  canTakeApprenticeship: boolean | null;
+  monthsOfCommercialExp: number | null;
 }
 interface FilterProps {
-  students: any[];
-  setLocalStudents: Dispatch<SetStateAction<any[]>>;
+  students: UserFE[];
+  setLocalStudents: Dispatch<SetStateAction<UserFE[]>>;
   filterState: boolean;
   setFilterState: Dispatch<SetStateAction<boolean>>;
   page: number;
@@ -45,19 +53,19 @@ export function Filter({
   setFilterState,
   page,
   searchValue,
-  studentListType
+  studentListType,
 }: FilterProps) {
   const defaultSettings = {
     courseScore: null,
     courseEngagementScore: null,
     ownProjectScore: null,
     workInScrumTeamScore: null,
-    preferredWorkPlace: null,
+    expectedTypeWork: null,
     expectedContractType: null,
     minNetSalary: null,
     maxNetSalary: null,
-    AgreementForInternship: null,
-    CommercialProgrammingExperienceInMonths: null,
+    canTakeApprenticeship: null,
+    monthsOfCommercialExp: null,
   };
   useEffect(() => {
     filterStudents();
@@ -66,17 +74,17 @@ export function Filter({
     useState<FilterSettings>(defaultSettings);
   const handleFilterChange = (keyName: string, value: any) => {
     setFilterSettings((previousState) => {
-      return { ...previousState, [keyName]: value }
+      return { ...previousState, [keyName]: value };
     });
   };
 
   useEffect(() => {
-      setFilterSettings(defaultSettings);
-      setMinSalary(0);
-      setMaxSalary(0);
-      setExperienceInMonths(0);
-      setLocalStudents(students);
-  }, [studentListType])
+    setFilterSettings(defaultSettings);
+    setMinSalary(0);
+    setMaxSalary(0);
+    setExperienceInMonths(0);
+    setLocalStudents(students);
+  }, [studentListType]);
   const filterStudents = () => {
     if (searchValue) {
       setLocalStudents(() => {
@@ -174,40 +182,66 @@ export function Filter({
           return false;
         }
         if (
-          !(filterSettings.preferredWorkPlace === null) &&
-          student.preferredWorkPlace !== filterSettings.preferredWorkPlace
+          !(filterSettings.expectedTypeWork === null) &&
+          (() => {
+            switch(student.expectedTypeWork) {
+              case 0:
+              return 'Biuro'
+              case 1:
+              return 'Gotowy do przeprowadzki'
+              case 2:
+              return 'Zdalna'
+              case 3:
+              return 'Biuro i zdalna'
+              case 4:
+              return 'Dowolne'
+              default:
+              return 'Sam nie wiem'
+            }
+            })() !== filterSettings.expectedTypeWork
         ) {
           return false;
         }
         if (
           !(filterSettings.expectedContractType === null) &&
-          student.expectedContractType !== filterSettings.expectedContractType
+          (() => {
+            switch(student.expectedContractType) {
+              case 0:
+              return 'Umowa o pracę'
+              case 1:
+              return 'B2B'
+              case 2:
+              return 'Zlecenie'
+              case 3:
+              return 'Umowa o dzieło'
+              default:
+              return 'Sam nie wiem'
+            }
+            })() !== filterSettings.expectedContractType
         ) {
           return false;
         }
         if (
           !(filterSettings.minNetSalary === null) &&
-          student.expectedNetSalary <= Number(filterSettings.minNetSalary)
+          student.expectedSalary <= Number(filterSettings.minNetSalary)
         ) {
           return false;
         }
         if (
           !(filterSettings.maxNetSalary === null) &&
-          student.expectedNetSalary >= Number(filterSettings.maxNetSalary)
+          student.expectedSalary >= Number(filterSettings.maxNetSalary)
         ) {
           return false;
         }
         if (
-          !(filterSettings.AgreementForInternship === null) &&
-          student.AgreementForInternship !==
-            filterSettings.AgreementForInternship
+          !(filterSettings.canTakeApprenticeship === null) &&
+          student.canTakeApprenticeship !== filterSettings.canTakeApprenticeship
         ) {
           return false;
         }
         if (
-          !(filterSettings.CommercialProgrammingExperienceInMonths === null) &&
-          student.CommercialProgrammingExperienceInMonths !==
-            filterSettings.CommercialProgrammingExperienceInMonths
+          !(filterSettings.monthsOfCommercialExp === null) &&
+          student.monthsOfCommercialExp !== filterSettings.monthsOfCommercialExp
         ) {
           return false;
         }
@@ -224,12 +258,20 @@ export function Filter({
           <button
             key={keyName + "=" + custom[i - 1]}
             id={keyName + "=" + custom[i - 1]}
-            className={filterSettings[keyName as keyof typeof filterSettings] === custom[i - 1] ? 'selectedFilter' : ''}
+            className={
+              filterSettings[keyName as keyof typeof filterSettings] ===
+              custom[i - 1]
+                ? "selectedFilter"
+                : ""
+            }
             onClick={() => {
-              if (filterSettings[keyName as keyof typeof filterSettings] === custom[i - 1]) {
-                handleFilterChange(keyName, null)
+              if (
+                filterSettings[keyName as keyof typeof filterSettings] ===
+                custom[i - 1]
+              ) {
+                handleFilterChange(keyName, null);
               } else {
-                handleFilterChange(keyName, custom[i - 1])
+                handleFilterChange(keyName, custom[i - 1]);
               }
             }}
           >
@@ -244,12 +286,18 @@ export function Filter({
           <button
             key={keyName + "=" + i}
             id={keyName + "=" + i}
-            className={filterSettings[keyName as keyof typeof filterSettings] === i ? 'selectedFilter' : ''}
+            className={
+              filterSettings[keyName as keyof typeof filterSettings] === i
+                ? "selectedFilter"
+                : ""
+            }
             onClick={() => {
-              if (filterSettings[keyName as keyof typeof filterSettings] === i) {
-                handleFilterChange(keyName, null)
+              if (
+                filterSettings[keyName as keyof typeof filterSettings] === i
+              ) {
+                handleFilterChange(keyName, null);
               } else {
-                handleFilterChange(keyName, i)
+                handleFilterChange(keyName, i);
               }
             }}
           >
@@ -274,10 +322,7 @@ export function Filter({
   };
   const handleExperienceInMonthsChange = (e: ChangeEvent<HTMLInputElement>) => {
     setExperienceInMonths(Number(e.target.value));
-    handleFilterChange(
-      "CommercialProgrammingExperienceInMonths",
-      Number(e.target.value)
-    );
+    handleFilterChange("monthsOfCommercialExp", Number(e.target.value));
   };
   return (
     <div className={filterState ? "filter" : "filter disabled"}>
@@ -320,7 +365,13 @@ export function Filter({
         <div className="filter__scores">
           <span>Preferowane miejsce pracy</span>
           <div>
-            {generateBtns("preferredWorkPlace", 0, ["Zdalna", "Biuro"])}
+            {generateBtns("expectedTypeWork", 0, [
+              "Biuro",
+              "Gotowy do przeprowadzki",
+              "Zdalna",
+              "Biuro i zdalna",
+              "Dowolone",
+            ])}
           </div>
         </div>
 
@@ -330,7 +381,7 @@ export function Filter({
             {generateBtns("expectedContractType", 0, [
               "Umowa o pracę",
               "B2B",
-              "Umowa zlecenie",
+              "Zlecenie",
               "Umowa o dzieło",
             ])}
           </div>
@@ -363,21 +414,29 @@ export function Filter({
           <div>
             <label
               className="container"
-              onClick={() => handleFilterChange("AgreementForInternship", true)}
+              onClick={() => handleFilterChange("canTakeApprenticeship", true)}
             >
               Tak
-              <input type="radio" name="radio" checked={filterSettings.AgreementForInternship ? true : false}/>
+              <input
+                type="radio"
+                name="radio"
+                checked={filterSettings.canTakeApprenticeship ? true : false}
+              />
               <span className="checkmark" />
             </label>
             <br />
             <label
               className="container"
-              onClick={() =>
-                handleFilterChange("AgreementForInternship", false)
-              }
+              onClick={() => handleFilterChange("canTakeApprenticeship", false)}
             >
               Nie
-              <input type="radio" name="radio" checked={filterSettings.AgreementForInternship === false ? true : false}/>
+              <input
+                type="radio"
+                name="radio"
+                checked={
+                  filterSettings.canTakeApprenticeship === false ? true : false
+                }
+              />
               <span className="checkmark" />
             </label>
           </div>

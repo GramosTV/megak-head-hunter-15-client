@@ -1,17 +1,18 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
-    faAngleLeft,
+  faAngleLeft,
   faEnvelope,
   faPaperclip,
   faPhone,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Dispatch } from "react";
+import React, { Dispatch, SetStateAction } from "react";
+import { UserFE } from "src/types/interfaces/UserFE";
 
 interface CvProps {
-  student: any;
-  setStudentCv: Dispatch<any>;
+  student: UserFE;
+  setStudentCv: Dispatch<SetStateAction<UserFE | null>>;
 }
 
 export function Cv({ student, setStudentCv }: CvProps) {
@@ -35,22 +36,27 @@ export function Cv({ student, setStudentCv }: CvProps) {
   };
   return (
     <div className="cv">
-        <div className="cv__goBack" onClick={() => setStudentCv(null)}>
-            <FontAwesomeIcon icon={faAngleLeft} /> Wróć
-        </div>
+      <div className="cv__goBack" onClick={() => setStudentCv(null)}>
+        <FontAwesomeIcon icon={faAngleLeft} /> Wróć
+      </div>
       <div className="cv__profile">
-        <img src={`https://github.com/${student.github}.png`} alt="Github profile" />
+        <img
+          src={`https://github.com/${student.githubUsername}.png`}
+          alt="Github profile"
+        />
         <span>
           {student.firstName} {student.lastName}
         </span>
-        <a href={`https://github.com/${student.github}`}>
+        <a href={`https://github.com/${student.githubUsername}`}>
           <FontAwesomeIcon icon={faGithub} />
-          {`https://github.com/${student.github}`.split("/").pop()}
+          {`https://github.com/${student.githubUsername}`.split("/").pop()}
         </a>
         <div className="cv__contact">
           <span>
             <FontAwesomeIcon icon={faPhone} />
-            {student.phone.substring(0, 3) + " " + student.phone.substring(3, 12).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+            {`+${String(student.tel).substring(0, 2)} ${String(student.tel)
+              .substring(2, 11)
+              .replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}
           </span>
           <span>
             <FontAwesomeIcon icon={faEnvelope} />
@@ -58,8 +64,8 @@ export function Cv({ student, setStudentCv }: CvProps) {
           </span>
         </div>
         <div className="cv__about">
-            <span>O mnie</span>
-            <p>{student.bio}</p>
+          <span>O mnie</span>
+          <p>{student.bio}</p>
         </div>
         <button>Brak zainteresowania</button>
         <button>Zatrudniony</button>
@@ -103,41 +109,71 @@ export function Cv({ student, setStudentCv }: CvProps) {
           <div>
             <p>Preferowane miejsce pracy</p>
             <span>
-              <b>{student.preferredWorkPlace}</b>
+              <b>
+                {(() => {
+                  switch (student.expectedTypeWork) {
+                    case 0:
+                      return "Biuro";
+                    case 1:
+                      return "Gotowy do przeprowadzki";
+                    case 2:
+                      return "Zdalna";
+                    case 3:
+                      return "Biuro i zdalna";
+                    case 4:
+                      return "Dowolne";
+                    default:
+                      return "Sam nie wiem";
+                  }
+                })()}
+              </b>
             </span>
           </div>
           <div>
             <p>Docelowe miasto, gdzie chce pracować kandydat</p>
             <span>
-              <b>{student.targetCity}</b>
+              <b>{student.targetWorkCity}</b>
             </span>
           </div>
           <div>
             <p>Oczekiwany typ kontraktu</p>
             <span>
-              <b>{student.expectedContractType}</b>
+              <b>
+                {(() => {
+                  switch (student.expectedContractType) {
+                    case 0:
+                      return "Umowa o pracę";
+                    case 1:
+                      return "B2B";
+                    case 2:
+                      return "Zlecenie";
+                    case 3:
+                      return "Umowa o dzieło";
+                    default:
+                      return "Sam nie wiem";
+                  }
+                })()}
+              </b>
             </span>
           </div>
           <div>
             <p>Oczekiwane wynagrodzenie miesięczne netto</p>
             <span>
-              <b>{student.expectedNetSalary} zł</b>
+              <b>{student.expectedSalary} zł</b>
             </span>
           </div>
           <div>
             <p>Zgoda na odbycie bezpłatnych praktyk/stażu na początek</p>
             <span>
-              <b>{student.AgreementForInternship ? "TAK" : "NIE"}</b>
+              <b>{student.canTakeApprenticeship ? "TAK" : "NIE"}</b>
             </span>
           </div>
           <div>
             <p>Komercyjne doświadczenie w programowaniu</p>
             <span>
               <b>
-                {student.CommercialProgrammingExperienceInMonths + " "}
-                {student.CommercialProgrammingExperienceInMonths === 1
-                  ? "miesiąc"
-                  : "miesięcy"}
+                {student.monthsOfCommercialExp + " "}
+                {student.monthsOfCommercialExp === 1 ? "miesiąc" : "miesięcy"}
               </b>
             </span>
           </div>
@@ -152,20 +188,20 @@ export function Cv({ student, setStudentCv }: CvProps) {
         </section>
         <h2 className="cv__sectionTitle">Doświadczenie zawodowe</h2>
         <section>
-          <div className="paragraph">{student.professionalExperience}</div>
+          <div className="paragraph">{student.workExperience}</div>
         </section>
 
         <h2 className="cv__sectionTitle">Portfolio</h2>
         <section className="cv__links">
-          {generateLinks(student.portfolio)}
+          {generateLinks(student.portfolioUrls)}
         </section>
         <h2 className="cv__sectionTitle">Projekt w zespole Scrumowym</h2>
         <section className="cv__links">
-          {generateLinks(student.projectInScrumTeam)}
+          {generateLinks(student.projectUrls)}
         </section>
         <h2 className="cv__sectionTitle">Projekt na zaliczenie</h2>
         <section className="cv__links">
-          {generateLinks(student.coursework)}
+          {generateLinks(student.courseWork)}
         </section>
       </div>
     </div>
