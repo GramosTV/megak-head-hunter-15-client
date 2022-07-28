@@ -6,119 +6,46 @@ import { StudentList } from "./AvailableStudents/StudentList";
 import { Select } from "./Select";
 import { StudentListEnum } from "../../types/enums/studentListEnum";
 import { Cv } from "./AvailableStudents/Cv";
-
+import { ExpectedTypeWork, ExpectedContractType } from 'types'
+import { UserFE } from "src/types/interfaces/UserFE";
 // any because waiting for student types
 export function HrPanel() {
-  const [students, setStudents] = useState<any[]>([
+  const [students, setStudents] = useState<UserFE[]>([
     {
-      firstName: "Jan2",
-      lastName: "Kowalski2",
       email: "123111236@test.pl",
-      phone: '+48123123123',
+      firstName: "Jan2",
+      lastName: "Kowalski2",
+      tel: 48123123123,
+      githubUsername: "Lorem",
+      portfolioUrls: ["Lorem"],
+      projectUrls: ["Lorem"],
+      bio: "Lorem",
+      expectedTypeWork: ExpectedTypeWork.Local,
+      targetWorkCity: "Warszawa",
+      expectedContractType: ExpectedContractType.B2B,
+      expectedSalary: 9000,
+      canTakeApprenticeship: false,
+      monthsOfCommercialExp: 4,
+      education: "Lorem",
+      workExperience: "Lorem",
+      courses: "Lorem",
+      courseWork: ["Lorem"],
       courseScore: 4,
       courseEngagementScore: 3,
       ownProjectScore: 2,
       workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
       expandStudentInfo: false,
-      education:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      courses:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      professionalExperience:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      portfolio: ["https://Loremipsum/dolor/sit/amet"],
-      projectInScrumTeam: [
-        "https://github.com/Ami777/MegaKursTest/commits?author=Ami777",
-        "https://github.com/Ami777/MegaKursTest/pulls?q=is%3Apr+reviewed-by%3AAmi777",
-      ],
-      coursework: [
-        "https://Loremipsum/dolor/sit/amet",
-        "https://Loremipsum/dolor/sit/amet",
-      ],
-      github: 'https://github.com/Ami777'
-    },
-    {
-      firstName: "Jan2",
-      lastName: "Kowalski2",
-      email: "1231111236@test.pl",
-      phone: '+48123123123',
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-      education:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      courses:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      professionalExperience:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      portfolio: ["https://Loremipsum/dolor/sit/amet"],
-      projectInScrumTeam: [
-        "https://github.com/Ami777/MegaKursTest/commits?author=Ami777",
-        "https://github.com/Ami777/MegaKursTest/pulls?q=is%3Apr+reviewed-by%3AAmi777",
-      ],
-      coursework: [
-        "https://Loremipsum/dolor/sit/amet",
-        "https://Loremipsum/dolor/sit/amet",
-      ],
-      github: 'https://github.com/Ami777'
-    },
-    {
-      firstName: "Jan2",
-      lastName: "Kowalski2",
-      email: "1234111236@test.pl",
-      phone: '+48123123123',
-      courseScore: 3,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-      education:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      courses:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      professionalExperience:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      portfolio: ["https://Loremipsum/dolor/sit/amet"],
-      projectInScrumTeam: [
-        "https://github.com/Ami777/MegaKursTest/commits?author=Ami777",
-        "https://github.com/Ami777/MegaKursTest/pulls?q=is%3Apr+reviewed-by%3AAmi777",
-      ],
-      coursework: [
-        "https://Loremipsum/dolor/sit/amet",
-        "https://Loremipsum/dolor/sit/amet",
-      ],
-      github: 'https://github.com/Ami777'
     },
   ]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
-  const [localStudents, setLocalStudents] = useState(students);
+  const [localStudents, setLocalStudents] = useState<UserFE[]>(students);
   const [filterState, setFilterState] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [studentListType, setStudentListType] = useState<StudentListEnum>(
     StudentListEnum.available
   );
-  const [studentCv, setStudentCv] = useState<any>(null);
+  const [studentCv, setStudentCv] = useState<UserFE | null>(null);
   return studentCv ? (
     <Cv student={studentCv} setStudentCv={setStudentCv} />
   ) : (

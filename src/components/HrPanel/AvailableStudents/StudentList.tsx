@@ -1,16 +1,16 @@
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, MouseEvent, SetStateAction } from "react";
+import { UserFE } from "src/types/interfaces/UserFE";
 import { StudentListEnum } from "../../../types/enums/studentListEnum";
 
-// any because waiting for student types
 interface StudentListProps {
   itemsPerPage: number;
   page: number;
-  localStudents: any[];
-  setLocalStudents: Dispatch<SetStateAction<any[]>>;
+  localStudents: UserFE[];
+  setLocalStudents: Dispatch<SetStateAction<UserFE[]>>;
   studentListType: StudentListEnum;
-  setStudentCv: Dispatch<any>
+  setStudentCv: Dispatch<UserFE>
 }
 export function StudentList({
   itemsPerPage,
@@ -20,10 +20,10 @@ export function StudentList({
   studentListType,
   setStudentCv
 }: StudentListProps) {
-  const handleExpandStudentInfo = (element: any) => {
+  const handleExpandStudentInfo = (element: MouseEvent<SVGSVGElement>) => {
     const id = element.currentTarget.id;
-    setLocalStudents((previousState: any): any => {
-      return previousState.slice(page - 1, itemsPerPage).map((e: any) => {
+    setLocalStudents((previousState: UserFE[]): UserFE[] => {
+      return previousState.slice(page - 1, itemsPerPage).map((e: UserFE) => {
         if (e.email === id) {
           return { ...e, expandStudentInfo: !e.expandStudentInfo };
         }
@@ -41,7 +41,7 @@ export function StudentList({
             : itemsPerPage * (page - 1) - 1,
           page === 1 ? itemsPerPage * page : itemsPerPage * page - 1
         )
-        .map((e: any) => {
+        .map((e: UserFE) => {
           return (
             <li className="studentList__student" key={e.email}>
               {studentListType === StudentListEnum.available ? (
@@ -139,13 +139,28 @@ export function StudentList({
                   <div>
                     <p>Preferowane miejsce pracy</p>
                     <span>
-                      <b>{e.preferredWorkPlace}</b>
+                      <b>{(() => {
+                        switch(e.expectedTypeWork) {
+                          case 0:
+                          return 'Biuro'
+                          case 1:
+                          return 'Gotowy do przeprowadzki'
+                          case 2:
+                          return 'Zdalna'
+                          case 3:
+                          return 'Biuro i zdalna'
+                          case 4:
+                          return 'Dowolne'
+                          default:
+                          return 'Sam nie wiem'
+                        }
+                        })()}</b>
                     </span>
                   </div>
                   <div>
                     <p>Docelowe miasto, gdzie chce pracować kandydat</p>
                     <span>
-                      <b>{e.targetCity}</b>
+                      <b>{e.targetWorkCity}</b>
                     </span>
                   </div>
                   <div>
@@ -157,7 +172,7 @@ export function StudentList({
                   <div>
                     <p>Oczekiwane wynagrodzenie miesięczne netto</p>
                     <span>
-                      <b>{e.expectedNetSalary} zł</b>
+                      <b>{e.expectedSalary} zł</b>
                     </span>
                   </div>
                   <div>
@@ -165,15 +180,15 @@ export function StudentList({
                       Zgoda na odbycie bezpłatnych praktyk/stażu na początek
                     </p>
                     <span>
-                      <b>{e.AgreementForInternship ? "TAK" : "NIE"}</b>
+                      <b>{e.canTakeApprenticeship ? "TAK" : "NIE"}</b>
                     </span>
                   </div>
                   <div>
                     <p>Komercyjne doświadczenie w programowaniu</p>
                     <span>
                       <b>
-                        {e.CommercialProgrammingExperienceInMonths + " "}
-                        {e.CommercialProgrammingExperienceInMonths === 1
+                        {e.monthsOfCommercialExp + " "}
+                        {e.monthsOfCommercialExp === 1
                           ? "miesiąc"
                           : "miesięcy"}
                       </b>
