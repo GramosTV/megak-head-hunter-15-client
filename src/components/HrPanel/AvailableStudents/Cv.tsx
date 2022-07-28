@@ -39,13 +39,13 @@ export function Cv({ student, setStudentCv }: CvProps) {
             <FontAwesomeIcon icon={faAngleLeft} /> Wróć
         </div>
       <div className="cv__profile">
-        <img src={student.github + ".png"} alt="Github profile" />
+        <img src={`https://github.com/${student.github}.png`} alt="Github profile" />
         <span>
           {student.firstName} {student.lastName}
         </span>
-        <a href={student.github}>
+        <a href={`https://github.com/${student.github}`}>
           <FontAwesomeIcon icon={faGithub} />
-          {student.github.split("/").pop()}
+          {`https://github.com/${student.github}`.split("/").pop()}
         </a>
         <div className="cv__contact">
           <span>
