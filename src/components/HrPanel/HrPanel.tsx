@@ -4,213 +4,51 @@ import { Filter } from "./AvailableStudents/Filter";
 import { ItemsControl } from "./AvailableStudents/ItemsControl";
 import { StudentList } from "./AvailableStudents/StudentList";
 import { Select } from "./Select";
-import {StudentListEnum} from '../../types/enums/studentListEnum'
-
+import { StudentListEnum } from "../../types/enums/studentListEnum";
+import { Cv } from "./AvailableStudents/Cv";
+import { ExpectedTypeWork, ExpectedContractType } from 'types'
+import { UserFE } from "src/types/interfaces/UserFE";
 // any because waiting for student types
 export function HrPanel() {
-  const [students, setStudents] = useState<any[]>([
+  const [students, setStudents] = useState<UserFE[]>([
     {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1234@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1235@test.pl",
-      courseScore: 5,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "112354516123234@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "124124512512535@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "123312512512126@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "124124155534@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "12415612341241445@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "123121567731236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1231236176772311236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
-      firstName: "Jan",
-      lastName: "Kowalski",
-      email: "1231212341245551232311236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
-      expandStudentInfo: false,
-    },
-    {
+      email: "123111236@test.pl",
       firstName: "Jan2",
       lastName: "Kowalski2",
-      email: "1231212331231232311236@test.pl",
-      courseScore: 4,
-      courseEngagementScore: 3,
-      ownProjectScore: 2,
-      workInScrumTeamScore: 4,
-      preferredWorkPlace: "Biuro",
-      targetCity: "Warszawa",
-      expectedContractType: "Umowa o pracę",
-      expectedNetSalary: 9000,
-      AgreementForInternship: false,
-      CommercialProgrammingExperienceInMonths: 4,
+      tel: 48123123123,
+      githubUsername: "Lorem",
+      portfolioUrls: ["Lorem"],
+      bonusProjectUrls: ["Lorem"],
+      bio: "Lorem",
+      expectedTypeWork: ExpectedTypeWork.Local,
+      targetWorkCity: "Warszawa",
+      expectedContractType: ExpectedContractType.B2B,
+      expectedSalary: 9000,
+      canTakeApprenticeship: false,
+      monthsOfCommercialExp: 4,
+      education: "Lorem",
+      workExperience: "Lorem",
+      courses: "Lorem",
+      courseWork: ["Lorem"],
+      courseCompletion: 4,
+      courseEngagement: 3,
+      projectDegree: 2,
+      teamProjectDegree: 4,
       expandStudentInfo: false,
     },
   ]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
-  const [localStudents, setLocalStudents] = useState(students);
+  const [localStudents, setLocalStudents] = useState<UserFE[]>(students);
   const [filterState, setFilterState] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [studentListType, setStudentListType] = useState<StudentListEnum>(
     StudentListEnum.available
   );
-  return (
+  const [studentCv, setStudentCv] = useState<UserFE | null>(null);
+  return studentCv ? (
+    <Cv student={studentCv} setStudentCv={setStudentCv} />
+  ) : (
     <>
       <div className="hrPanel">
         <Filter
@@ -222,7 +60,10 @@ export function HrPanel() {
           searchValue={searchValue}
           studentListType={studentListType}
         />
-        <Select studentListType={studentListType} setStudentListType={setStudentListType}/>
+        <Select
+          studentListType={studentListType}
+          setStudentListType={setStudentListType}
+        />
         <AvailableStudents
           students={students}
           setFilterState={setFilterState}
@@ -236,7 +77,7 @@ export function HrPanel() {
           localStudents={localStudents}
           setLocalStudents={setLocalStudents}
           studentListType={studentListType}
-          
+          setStudentCv={setStudentCv}
         />
       </div>
       <ItemsControl
