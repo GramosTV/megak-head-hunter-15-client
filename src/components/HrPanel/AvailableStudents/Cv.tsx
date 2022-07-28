@@ -59,7 +59,7 @@ export function Cv({ student, setStudentCv }: CvProps) {
         </div>
         <div className="cv__about">
             <span>O mnie</span>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo</p>
+            <p>{student.bio}</p>
         </div>
         <button>Brak zainteresowania</button>
         <button>Zatrudniony</button>
