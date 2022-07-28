@@ -10,6 +10,7 @@ interface StudentListProps {
   localStudents: any[];
   setLocalStudents: Dispatch<SetStateAction<any[]>>;
   studentListType: StudentListEnum;
+  setStudentCv: Dispatch<any>
 }
 export function StudentList({
   itemsPerPage,
@@ -17,6 +18,7 @@ export function StudentList({
   localStudents,
   setLocalStudents,
   studentListType,
+  setStudentCv
 }: StudentListProps) {
   const handleExpandStudentInfo = (element: any) => {
     const id = element.currentTarget.id;
@@ -87,7 +89,9 @@ export function StudentList({
                     </div>
                   </div>
                   <div className="studentList__panel">
-                    <button>Pokaż CV</button>
+                    <button onClick={() => {
+                      setStudentCv(e)
+                    }}>Pokaż CV</button>
                     <button>Brak zainteresowania</button>
                     <button>Zatrudniony</button>
                     {e.expandStudentInfo ? (
