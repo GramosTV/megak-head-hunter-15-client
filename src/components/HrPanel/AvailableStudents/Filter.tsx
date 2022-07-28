@@ -14,10 +14,10 @@ import { ExpectedTypeWork, Score } from "types";
 
 // Waiting for shared types from the backend, this is not the final interface
 interface FilterSettings {
-  courseScore: Score | null;
-  courseEngagementScore: Score | null;
-  ownProjectScore: Score | null;
-  workInScrumTeamScore: Score | null;
+  courseCompletion: Score | null;
+  courseEngagement: Score | null;
+  projectDegree: Score | null;
+  teamProjectDegree: Score | null;
   expectedTypeWork:
     | "Biuro"
     | "Gotowy do przeprowadzki"
@@ -56,10 +56,10 @@ export function Filter({
   studentListType,
 }: FilterProps) {
   const defaultSettings = {
-    courseScore: null,
-    courseEngagementScore: null,
-    ownProjectScore: null,
-    workInScrumTeamScore: null,
+    courseCompletion: null,
+    courseEngagement: null,
+    projectDegree: null,
+    teamProjectDegree: null,
     expectedTypeWork: null,
     expectedContractType: null,
     minNetSalary: null,
@@ -158,26 +158,26 @@ export function Filter({
     setLocalStudents((previousState) => {
       return previousState.filter((student) => {
         if (
-          !(filterSettings.courseScore === null) &&
-          student.courseScore !== filterSettings.courseScore
+          !(filterSettings.courseCompletion === null) &&
+          student.courseCompletion !== filterSettings.courseCompletion
         ) {
           return false;
         }
         if (
-          !(filterSettings.courseEngagementScore === null) &&
-          student.courseEngagementScore !== filterSettings.courseEngagementScore
+          !(filterSettings.courseEngagement === null) &&
+          student.courseEngagement !== filterSettings.courseEngagement
         ) {
           return false;
         }
         if (
-          !(filterSettings.ownProjectScore === null) &&
-          student.ownProjectScore !== filterSettings.ownProjectScore
+          !(filterSettings.projectDegree === null) &&
+          student.projectDegree !== filterSettings.projectDegree
         ) {
           return false;
         }
         if (
-          !(filterSettings.workInScrumTeamScore === null) &&
-          student.workInScrumTeamScore !== filterSettings.workInScrumTeamScore
+          !(filterSettings.teamProjectDegree === null) &&
+          student.teamProjectDegree !== filterSettings.teamProjectDegree
         ) {
           return false;
         }
@@ -344,22 +344,22 @@ export function Filter({
 
         <div className="filter__scores">
           <span>Ocena przejścia kursu</span>
-          <div>{generateBtns("courseScore", 5)}</div>
+          <div>{generateBtns("courseCompletion", 5)}</div>
         </div>
 
         <div className="filter__scores">
           <span>Ocena aktywności i zaangażowania na kursie</span>
-          <div>{generateBtns("courseEngagementScore", 5)}</div>
+          <div>{generateBtns("courseEngagement", 5)}</div>
         </div>
 
         <div className="filter__scores">
           <span>Ocena kodu w projekcie własnym</span>
-          <div>{generateBtns("ownProjectScore", 5)}</div>
+          <div>{generateBtns("projectDegree", 5)}</div>
         </div>
 
         <div className="filter__scores">
           <span>Ocena pracy w zespole w Scrum</span>
-          <div>{generateBtns("workInScrumTeamScore", 5)}</div>
+          <div>{generateBtns("teamProjectDegree", 5)}</div>
         </div>
 
         <div className="filter__scores">

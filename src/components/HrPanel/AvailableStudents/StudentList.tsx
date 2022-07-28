@@ -115,25 +115,25 @@ export function StudentList({
                   <div>
                     <p>Ocena przejścia kursu</p>
                     <span>
-                      <b>{e.courseScore}</b>/5
+                      <b>{e.courseCompletion}</b>/5
                     </span>
                   </div>
                   <div>
                     <p>Ocena aktywności i zaangażowania na kursie</p>
                     <span>
-                      <b>{e.courseEngagementScore}</b>/5
+                      <b>{e.courseEngagement}</b>/5
                     </span>
                   </div>
                   <div>
                     <p>Ocena kodu w projekcie własnym</p>
                     <span>
-                      <b>{e.ownProjectScore}</b>/5
+                      <b>{e.projectDegree}</b>/5
                     </span>
                   </div>
                   <div>
                     <p>Ocena pracy w zespole w Scrum</p>
                     <span>
-                      <b>{e.workInScrumTeamScore}</b>/5
+                      <b>{e.teamProjectDegree}</b>/5
                     </span>
                   </div>
                   <div>

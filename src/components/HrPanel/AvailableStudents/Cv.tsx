@@ -76,29 +76,29 @@ export function Cv({ student, setStudentCv }: CvProps) {
           <div>
             <p>Ocena przejścia kursu</p>
             <span className="score">
-              <b>{student.courseScore}</b>/5
-              {generateStars(student.courseScore)}
+              <b>{student.courseCompletion}</b>/5
+              {generateStars(student.courseCompletion)}
             </span>
           </div>
           <div>
             <p>Ocena aktywności i zaangażowania na kursie</p>
             <span className="score">
-              <b>{student.courseEngagementScore}</b>/5
-              {generateStars(student.courseEngagementScore)}
+              <b>{student.courseEngagement}</b>/5
+              {generateStars(student.courseEngagement)}
             </span>
           </div>
           <div>
             <p>Ocena kodu w projekcie własnym</p>
             <span className="score">
-              <b>{student.ownProjectScore}</b>/5
-              {generateStars(student.ownProjectScore)}
+              <b>{student.projectDegree}</b>/5
+              {generateStars(student.projectDegree)}
             </span>
           </div>
           <div>
             <p>Ocena pracy w zespole w Scrum</p>
             <span className="score">
-              <b>{student.workInScrumTeamScore}</b>/5
-              {generateStars(student.workInScrumTeamScore)}
+              <b>{student.teamProjectDegree}</b>/5
+              {generateStars(student.teamProjectDegree)}
             </span>
           </div>
         </section>
@@ -197,7 +197,7 @@ export function Cv({ student, setStudentCv }: CvProps) {
         </section>
         <h2 className="cv__sectionTitle">Projekt w zespole Scrumowym</h2>
         <section className="cv__links">
-          {generateLinks(student.projectUrls)}
+          {generateLinks(student.bonusProjectUrls)}
         </section>
         <h2 className="cv__sectionTitle">Projekt na zaliczenie</h2>
         <section className="cv__links">
