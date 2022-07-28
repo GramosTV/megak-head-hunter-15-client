@@ -1,0 +1,130 @@
+.addStudents {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: calc(92vh - 72px);
+}
+
+.addStudents__CSV {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 400px;
+}
+
+.addStudents__CSV table {
+  margin: 15px 0;
+  font-family: sans-serif;
+}
+
+.addStudents__CSV table th,
+.addStudents__CSV table td {
+  padding: 0.25em 0.5em;
+  text-align: left;
+  font-size: 14px;
+}
+
+.addStudents__CSV table td {
+  background-color: #222224;
+}
+
+.addStudents__CSV table th {
+  background-color: #e02735;
+}
+
+.addStudents__CSV .zigzag {
+  border-collapse: separate;
+  border-spacing: 0.25em 1em;
+}
+
+.addStudents__CSV .zigzag tbody tr:nth-child(odd) {
+  -webkit-transform: rotate(2deg);
+          transform: rotate(2deg);
+}
+
+.addStudents__CSV .zigzag thead tr,
+.addStudents__CSV .zigzag tbody tr:nth-child(even) {
+  -webkit-transform: rotate(-2deg);
+          transform: rotate(-2deg);
+}
+
+.addStudents__JSON {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 400px;
+  width: 25%;
+}
+
+.addStudents__JSON div {
+  text-align: left;
+  margin: 15px 0;
+}
+
+.addStudents__JSON div pre {
+  max-height: 240px;
+}
+
+.addStudents div {
+  padding: 10px;
+}
+
+.addStudents div .file-input__input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.addStudents div .file-input__label {
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 12px;
+  background-color: #e02735;
+  -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.addStudents div .file-input__label svg {
+  height: 16px;
+  margin-right: 4px;
+}
+/*# sourceMappingURL=addStudents.css.map */
