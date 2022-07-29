@@ -35,7 +35,7 @@ export function Cv({ student, setStudentCv }: CvProps) {
     ));
   };
   return (
-    <div className="cv">
+    <div className="cv animate__animated animate__fadeInRight">
       <div className="cv__goBack" onClick={() => setStudentCv(null)}>
         <FontAwesomeIcon icon={faAngleLeft} /> Wróć
       </div>

@@ -5,6 +5,7 @@ import { LoginForm } from './components/LoginForm/LoginForm';
 import {Route, Routes} from "react-router-dom";
 import {ProtectedRoute} from "./components/ProtectedRoute/ProtectedRoute";
 import './App.css';
+import 'animate.css';
 import './style/global.css';
 import './style/HrPanel/hrPanel.css';
 import './style/HrPanel/AvailableStudents/availableStudents.css';
