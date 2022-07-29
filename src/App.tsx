@@ -24,7 +24,7 @@ export const App = () => {
 
   return (
     <div className="App">
-      {/* <ProtectedRoute isAllowed={!user}>
+      <ProtectedRoute isAllowed={!user}>
         <Routes>
           <Route path="*" element={<LoginForm />} />
         </Routes>
@@ -36,10 +36,9 @@ export const App = () => {
       </ProtectedRoute>
       <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
         <Routes>
-          <Route path="*" element={<h1>Admin panel placeholder</h1>} />
+          <Route path="*" element={<AdminPanel />} />
         </Routes>
-      </ProtectedRoute> */}
-      <HrPanel />
+      </ProtectedRoute>
     </div>
   );
 }
