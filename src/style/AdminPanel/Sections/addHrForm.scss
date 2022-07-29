@@ -1,0 +1,39 @@
+.addHrFormContainer {
+    min-height: calc(90vh - 92px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  &__form {
+    box-sizing: content-box;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #222224;
+    padding: 20px;
+    input {
+      width: 350px;
+      height: 40px;
+      background-color: #292a2b;
+      border: none;
+      line-height: 2rem;
+      text-align: left;
+      padding-left: 10px;
+      margin-top: 15px;
+    }
+    button {
+      border: none;
+      color: #f7f7f7;
+      background-color: #e02735;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 6px 10px;
+      width: 100px;
+      margin: 0 auto;
+      margin-top: 15px;
+    }
+  }
+  form &__maxReservedStudentsInput {
+    width: 175px;
+  }
+}
