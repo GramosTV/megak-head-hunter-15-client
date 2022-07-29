@@ -1,6 +1,6 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import {AuthContext} from "../../Providers/AuthProvider";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 type FormInputs = {
   email: string;
@@ -8,39 +8,48 @@ type FormInputs = {
 };
 
 export const LoginForm = () => {
-  const {signIn} = useContext(AuthContext);
-  const { register, handleSubmit } = useForm<FormInputs>();
+  const { signIn } = useContext(AuthContext);
+  const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs> = async ({email, password}) => {
+  const onSubmit: SubmitHandler<FormInputs> = async ({ email, password }) => {
     try {
-      signIn({login: email, password});
+      signIn({ login: email, password });
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   return (
     <>
       <div className="loginContainer">
         <div className="loginContainer__layoutLoginForm">
-        <img className="loginContainer__logo" src="/assets/images/megak_logo.webp" alt="MegaK logo" />
+          <img
+            className="loginContainer__logo"
+            src="/assets/images/megak_logo.webp"
+            alt="MegaK logo"
+          />
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("email")} type="email" placeholder="E-mail" />
+            <input {...register("email", { required: true, minLength: 3, maxLength: 255 })} type="email" placeholder="E-mail" />
+            {errors.email?.type === "required" && "To pole jest wymagane"}
+            {errors.email?.type === "maxLength" && "Za długie"}
+            {errors.email?.type === "minLength" && "Za krótkie"}
             <input
-              {...register("password")}
+              {...register("password", { required: true, minLength: 6, maxLength: 255 })}
               type="password"
               placeholder="Hasło"
             />
+            {errors.password?.type === "required" && "To pole jest wymagane"}
+            {errors.password?.type === "maxLength" && "Za długie"}
+            {errors.password?.type === "minLength" && "Za krótkie"}
             <div className="forgotPassword">
               <div />
               <a href="/">Zapomniałeś hasła?</a>
             </div>
             <div className="lastLine">
               <div></div>
-              <button className="loginButton"
-                type="submit">
+              <button className="loginButton" type="submit">
                 Zaloguj się!
-                </button>
+              </button>
             </div>
           </form>
         </div>

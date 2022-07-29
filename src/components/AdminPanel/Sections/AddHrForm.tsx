@@ -34,7 +34,7 @@ export function AddHrForm() {
         <input
         className="addHrFormContainer__maxReservedStudentsInput"
           type="number"
-          {...register("maxReservedStudents", { required: true, max: 999 })}
+          {...register("maxReservedStudents", { valueAsNumber: true, required: true, max: 999 })}
           placeholder="Limit rezerwacji kursantów"
         />
         {errors.maxReservedStudents?.type === "required" &&
