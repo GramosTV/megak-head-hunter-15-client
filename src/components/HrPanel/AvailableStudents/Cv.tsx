@@ -13,9 +13,10 @@ import { UserFE } from "src/types/interfaces/UserFE";
 interface CvProps {
   student: UserFE;
   setStudentCv: Dispatch<SetStateAction<UserFE | null>>;
+  setFilterFlag: Dispatch<SetStateAction<boolean>>;
 }
 
-export function Cv({ student, setStudentCv }: CvProps) {
+export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
   const generateStars = (score: number) => {
     const arr = [];
     for (let i = 0; i < 5; i++) {
@@ -36,7 +37,13 @@ export function Cv({ student, setStudentCv }: CvProps) {
   };
   return (
     <div className="cv animate__animated animate__fadeInRight">
-      <div className="cv__goBack" onClick={() => setStudentCv(null)}>
+      <div
+        className="cv__goBack"
+        onClick={() => {
+          setStudentCv(null);
+          setFilterFlag(previousState => !previousState)
+        }}
+      >
         <FontAwesomeIcon icon={faAngleLeft} /> Wróć
       </div>
       <div className="cv__profile">
