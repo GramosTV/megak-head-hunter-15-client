@@ -14,7 +14,33 @@ export function AddHrForm() {
     watch,
     formState: { errors },
   } = useForm<FormInputs>();
-  const onSubmit: SubmitHandler<FormInputs> = (data: any) => console.log(data);
+
+  const onSubmit: SubmitHandler<FormInputs> = async ({email, fullName, company, maxReservedStudents}) => {
+    try {
+      const res = await fetch('/hr', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          "Access-Control-Allow-Origin":"true",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          fullName,
+          company,
+          maxReservedStudents: Number(maxReservedStudents),
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        console.log(data);
+      } else {
+        console.log(data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <div className="addHrFormContainer">
