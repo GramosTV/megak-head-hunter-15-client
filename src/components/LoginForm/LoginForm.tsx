@@ -31,16 +31,16 @@ export const LoginForm = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <input {...register("email", { required: true, minLength: 3, maxLength: 255 })} type="email" placeholder="E-mail" />
             {errors.email?.type === "required" && "To pole jest wymagane"}
-            {errors.email?.type === "maxLength" && "Za długie"}
-            {errors.email?.type === "minLength" && "Za krótkie"}
+            {errors.email?.type === "minLength" && "Email musi zawierać min. 3 znaki"}
+            {errors.email?.type === "maxLength" && "Email może zawierać maks. 255 znaków"}
             <input
               {...register("password", { required: true, minLength: 6, maxLength: 255 })}
               type="password"
               placeholder="Hasło"
             />
             {errors.password?.type === "required" && "To pole jest wymagane"}
-            {errors.password?.type === "maxLength" && "Za długie"}
-            {errors.password?.type === "minLength" && "Za krótkie"}
+            {errors.password?.type === "minLength" && "Hasło musi zawierać min. 6 znaków"}
+            {errors.password?.type === "maxLength" && "Hasło może zawierać maks. 255 znaków"}
             <div className="forgotPassword">
               <div />
               <a href="/">Zapomniałeś hasła?</a>
