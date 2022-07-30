@@ -15,8 +15,6 @@ import './style/LoginForm/loginForm.css';
 import './style/AdminPanel/adminPanel.css';
 import './style/AdminPanel/Sections/addHrForm.css';
 import './style/AdminPanel/Sections/addStudents.css';
-import { HrPanel } from './components/HrPanel/HrPanel';
-import { LoginForm } from './components/LoginForm/LoginForm';
 import { AdminPanel } from './components/AdminPanel/AdminPanel';
 import './style/HrPanel/AvailableStudents/cv.css';
 
@@ -25,7 +23,7 @@ export const App = () => {
 
   return (
     <div className="App">
-      <ProtectedRoute isAllowed={!user}>
+      {/* <ProtectedRoute isAllowed={!user}>
         <Routes>
           <Route path="*" element={<LoginForm />} />
         </Routes>
@@ -39,7 +37,8 @@ export const App = () => {
         <Routes>
           <Route path="*" element={<h1>Admin panel placeholder</h1>} />
         </Routes>
-      </ProtectedRoute>
+      </ProtectedRoute> */}
+      <AdminPanel />
     </div>
   );
 }
