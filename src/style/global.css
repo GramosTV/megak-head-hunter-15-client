@@ -12,4 +12,9 @@ body {
   background: #222224;
   overflow-x: hidden;
 }
+
+form {
+  color: #e02735;
+  font-size: 14px;
+}
 /*# sourceMappingURL=global.css.map */
