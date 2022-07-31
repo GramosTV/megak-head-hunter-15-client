@@ -11,6 +11,8 @@
       -ms-flex-align: start;
           align-items: start;
   max-width: 1545px;
+  -webkit-animation-duration: .6s;
+          animation-duration: .6s;
 }
 
 .cv__profile {

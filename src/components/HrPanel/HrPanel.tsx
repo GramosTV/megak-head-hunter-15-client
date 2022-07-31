@@ -8,8 +8,22 @@ import { StudentListEnum } from "../../types/enums/studentListEnum";
 import { Cv } from "./AvailableStudents/Cv";
 import { ExpectedTypeWork, ExpectedContractType } from 'types'
 import { UserFE } from "src/types/interfaces/UserFE";
+import { FilterSettings } from "src/types/interfaces/FilterSettings";
 // any because waiting for student types
 export function HrPanel() {
+  const defaultFilterSettings = {
+    courseCompletion: null,
+    courseEngagement: null,
+    projectDegree: null,
+    teamProjectDegree: null,
+    expectedTypeWork: null,
+    expectedContractType: null,
+    minNetSalary: null,
+    maxNetSalary: null,
+    canTakeApprenticeship: null,
+    monthsOfCommercialExp: null,
+  };
+
   const [students, setStudents] = useState<UserFE[]>([
     {
       email: "123111236@test.pl",
@@ -36,6 +50,31 @@ export function HrPanel() {
       teamProjectDegree: 4,
       expandStudentInfo: false,
     },
+    {
+      email: "123111236@test.pl",
+      firstName: "Jan2",
+      lastName: "Kowalski2",
+      tel: 48123123123,
+      githubUsername: "Lorem",
+      portfolioUrls: ["Lorem"],
+      bonusProjectUrls: ["Lorem"],
+      bio: "Lorem",
+      expectedTypeWork: ExpectedTypeWork.Local,
+      targetWorkCity: "Warszawa",
+      expectedContractType: ExpectedContractType.B2B,
+      expectedSalary: 9000,
+      canTakeApprenticeship: false,
+      monthsOfCommercialExp: 5,
+      education: "Lorem",
+      workExperience: "Lorem",
+      courses: "Lorem",
+      courseWork: ["Lorem"],
+      courseCompletion: 4,
+      courseEngagement: 3,
+      projectDegree: 2,
+      teamProjectDegree: 4,
+      expandStudentInfo: false,
+    },
   ]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
@@ -46,12 +85,19 @@ export function HrPanel() {
     StudentListEnum.available
   );
   const [studentCv, setStudentCv] = useState<UserFE | null>(null);
+  const [filterSettings, setFilterSettings] =
+    useState<FilterSettings>(defaultFilterSettings);
+  const [filterFlag, setFilterFlag] = useState<boolean>(false)
   return studentCv ? (
-    <Cv student={studentCv} setStudentCv={setStudentCv} />
+    <Cv student={studentCv} setStudentCv={setStudentCv} setFilterFlag={setFilterFlag} />
   ) : (
     <>
       <div className="hrPanel">
         <Filter
+          filterSettings={filterSettings}
+          setFilterSettings={setFilterSettings}
+          defaultFilterSettings={defaultFilterSettings}
+          filterFlag={filterFlag}
           students={students}
           setLocalStudents={setLocalStudents}
           filterState={filterState}
