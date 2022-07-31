@@ -77,7 +77,7 @@ export function AddStudents() {
                     });
                   return e
                   })
-                  fetch("http://localhost:3001/admin/addStudents", {
+                  fetch("http://localhost:3000/admin/addStudents", {
                     method: "POST",
                     headers: {
                       Accept: "application/json",
@@ -149,7 +149,7 @@ export function AddStudents() {
                 const obj = {
                   students: parsed,
                 };
-                fetch("http://localhost:3001/admin/addStudents", {
+                fetch("http://localhost:3000/admin/addStudents", {
                   method: "POST",
                   headers: {
                     Accept: "application/json",
