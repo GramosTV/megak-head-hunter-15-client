@@ -1,6 +1,7 @@
 import React from "react";
 import Papa from "papaparse";
 import JSONPretty from "react-json-pretty";
+import { CreateUserDto } from "types";
 var JSONPrettyMon = require("react-json-pretty/dist/monikai");
 
 export function AddStudents() {
@@ -59,13 +60,23 @@ export function AddStudents() {
                   myRows.push(row.data as any);
                 },
                 complete: function (results) {
-                  console.log("Finished:", results.data);
                   myRows.splice(-1);
                   const obj = { students: [] };
                   myRows.map((e) => {
                     obj.students.push(e as never)
                   })
-                  console.log(obj);
+                  obj.students.map((e: any) => {
+                    e.bonusProjectUrls = [];
+                    Object.keys(e).map((key: string, index: number) => {
+                      if (!(key === 'email') && !(key.startsWith('bonusProjectUrls'))) {
+                        (e[key as keyof CreateUserDto] as any) = Number((e[key as keyof CreateUserDto] as any))
+                      } else if (key.startsWith('bonusProjectUrls/')) {
+                        (e['bonusProjectUrls' as keyof CreateUserDto] as any).push((e[key as keyof CreateUserDto] as any))  
+                        if(key !== 'bonusProjectUrls') delete e[key as keyof CreateUserDto]
+                      }
+                    });
+                  return e
+                  })
                   fetch("http://localhost:3001/admin/addStudents", {
                     method: "POST",
                     headers: {
@@ -130,16 +141,14 @@ export function AddStudents() {
           accept=".json"
           onChange={(e) => {
             const files = e.target.files;
-            console.log(files);
             if (files) {
               const fileReader = new FileReader();
               fileReader.readAsText(files[0], "UTF-8");
               fileReader.onload = (e) => {
-                const parsed = JSON.parse(e.target?.result as string);
+                const parsed: CreateUserDto[] = JSON.parse(e.target?.result as string);
                 const obj = {
                   students: parsed,
                 };
-                console.log(obj);
                 fetch("http://localhost:3001/admin/addStudents", {
                   method: "POST",
                   headers: {
