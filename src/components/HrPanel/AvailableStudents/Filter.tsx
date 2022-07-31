@@ -9,34 +9,15 @@ import React, {
   useState,
 } from "react";
 import { StudentListEnum } from "src/types/enums/studentListEnum";
+import { FilterSettings } from "src/types/interfaces/FilterSettings";
 import { UserFE } from "src/types/interfaces/UserFE";
 import { ExpectedTypeWork, Score } from "types";
 
-// Waiting for shared types from the backend, this is not the final interface
-interface FilterSettings {
-  courseCompletion: Score | null;
-  courseEngagement: Score | null;
-  projectDegree: Score | null;
-  teamProjectDegree: Score | null;
-  expectedTypeWork:
-    | "Biuro"
-    | "Gotowy do przeprowadzki"
-    | "Zdalna"
-    | "Biuro i zdalna"
-    | "Dowolone"
-    | null;
-  expectedContractType:
-    | "Umowa o pracę"
-    | "B2B"
-    | "Zlecenie"
-    | "Umowa o dzieło"
-    | null;
-  minNetSalary: number | null;
-  maxNetSalary: number | null;
-  canTakeApprenticeship: boolean | null;
-  monthsOfCommercialExp: number | null;
-}
 interface FilterProps {
+  filterSettings: FilterSettings;
+  setFilterSettings: Dispatch<SetStateAction<FilterSettings>>;
+  defaultFilterSettings: FilterSettings;
+  filterFlag: boolean;
   students: UserFE[];
   setLocalStudents: Dispatch<SetStateAction<UserFE[]>>;
   filterState: boolean;
@@ -47,6 +28,10 @@ interface FilterProps {
 }
 
 export function Filter({
+  filterSettings,
+  setFilterSettings,
+  defaultFilterSettings,
+  filterFlag,
   students,
   setLocalStudents,
   filterState,
@@ -55,35 +40,25 @@ export function Filter({
   searchValue,
   studentListType,
 }: FilterProps) {
-  const defaultSettings = {
-    courseCompletion: null,
-    courseEngagement: null,
-    projectDegree: null,
-    teamProjectDegree: null,
-    expectedTypeWork: null,
-    expectedContractType: null,
-    minNetSalary: null,
-    maxNetSalary: null,
-    canTakeApprenticeship: null,
-    monthsOfCommercialExp: null,
-  };
   useEffect(() => {
     filterStudents();
-  }, [page, searchValue]);
-  const [filterSettings, setFilterSettings] =
-    useState<FilterSettings>(defaultSettings);
-  const handleFilterChange = (keyName: string, value: any) => {
+  }, [page, searchValue, filterFlag]);
+
+  const handleFilterChange = (
+    keyName: string,
+    value: Score | number | boolean | string | null
+  ) => {
     setFilterSettings((previousState) => {
       return { ...previousState, [keyName]: value };
     });
   };
 
   useEffect(() => {
-    setFilterSettings(defaultSettings);
-    setMinSalary(0);
-    setMaxSalary(0);
-    setExperienceInMonths(0);
-    setLocalStudents(students);
+    // setFilterSettings(defaultFilterSettings);
+    // setMinSalary(0);
+    // setMaxSalary(0);
+    // setExperienceInMonths(0);
+    // setLocalStudents(students);
   }, [studentListType]);
   const filterStudents = () => {
     if (searchValue) {
@@ -110,7 +85,7 @@ export function Filter({
           }
         });
 
-        const arr: any[] = [];
+        const arr: UserFE[] = [];
         usersMap.forEach((user) => arr.push(user));
 
         const search3 = fuzzysort.go(searchValue.split(" ")[1], students, {
@@ -135,7 +110,7 @@ export function Filter({
           }
         });
 
-        const arr2: any[] = [];
+        const arr2: UserFE[] = [];
         usersMap2.forEach((user) => arr2.push(user));
 
         const usersMap3 = new Map();
@@ -147,7 +122,7 @@ export function Filter({
           }
         });
 
-        const arr3: any[] = [];
+        const arr3: UserFE[] = [];
         usersMap3.forEach((user) => arr3.push(user));
 
         return arr3;
@@ -184,40 +159,40 @@ export function Filter({
         if (
           !(filterSettings.expectedTypeWork === null) &&
           (() => {
-            switch(student.expectedTypeWork) {
+            switch (student.expectedTypeWork) {
               case 0:
-              return 'Biuro'
+                return "Biuro";
               case 1:
-              return 'Gotowy do przeprowadzki'
+                return "Gotowy do przeprowadzki";
               case 2:
-              return 'Zdalna'
+                return "Zdalna";
               case 3:
-              return 'Biuro i zdalna'
+                return "Biuro i zdalna";
               case 4:
-              return 'Dowolne'
+                return "Dowolne";
               default:
-              return 'Sam nie wiem'
+                return "Sam nie wiem";
             }
-            })() !== filterSettings.expectedTypeWork
+          })() !== filterSettings.expectedTypeWork
         ) {
           return false;
         }
         if (
           !(filterSettings.expectedContractType === null) &&
           (() => {
-            switch(student.expectedContractType) {
+            switch (student.expectedContractType) {
               case 0:
-              return 'Umowa o pracę'
+                return "Umowa o pracę";
               case 1:
-              return 'B2B'
+                return "B2B";
               case 2:
-              return 'Zlecenie'
+                return "Zlecenie";
               case 3:
-              return 'Umowa o dzieło'
+                return "Umowa o dzieło";
               default:
-              return 'Sam nie wiem'
+                return "Sam nie wiem";
             }
-            })() !== filterSettings.expectedContractType
+          })() !== filterSettings.expectedContractType
         ) {
           return false;
         }
@@ -308,9 +283,15 @@ export function Filter({
       return btnArr.reverse();
     }
   };
-  const [minNetSalary, setMinSalary] = useState<number>(0);
-  const [maxNetSalary, setMaxSalary] = useState<number>(0);
-  const [experienceInMonths, setExperienceInMonths] = useState<number>(0);
+  const [minNetSalary, setMinSalary] = useState<number>(
+    filterSettings.minNetSalary ? filterSettings.minNetSalary : 0
+  );
+  const [maxNetSalary, setMaxSalary] = useState<number>(
+    filterSettings.maxNetSalary ? filterSettings.maxNetSalary : 0
+  );
+  const [experienceInMonths, setExperienceInMonths] = useState<number>(
+    filterSettings.monthsOfCommercialExp ? filterSettings.monthsOfCommercialExp : 0
+  );
 
   const handleMinNetSalaryChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMinSalary(Number(e.target.value));
@@ -331,7 +312,7 @@ export function Filter({
           <span>Filtrowanie</span>
           <button
             onClick={() => {
-              setFilterSettings(defaultSettings);
+              setFilterSettings(defaultFilterSettings);
               setMinSalary(0);
               setMaxSalary(0);
               setExperienceInMonths(0);
