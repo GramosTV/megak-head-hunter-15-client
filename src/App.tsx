@@ -55,7 +55,6 @@ export const App = () => {
           <Route path="*" element={<h1>Admin panel placeholder</h1>} />
         </Routes>
       </ProtectedRoute> */}
-      <HrPanel />
     </div>
   );
 };
