@@ -1,6 +1,7 @@
 import React from "react";
 import Papa from "papaparse";
 import JSONPretty from "react-json-pretty";
+import { CreateUserDto } from "types";
 var JSONPrettyMon = require("react-json-pretty/dist/monikai");
 
 export function AddStudents() {
@@ -47,13 +48,43 @@ export function AddStudents() {
           className="file-input__input"
           accept=".csv,.xlsx,.xls"
           onChange={(e) => {
+            const myRows: string[] = [];
             const files = e.target.files;
             console.log(files);
             if (files) {
               console.log(files[0]);
               Papa.parse(files[0], {
+                download: true,
+                header: true,
+                step: function (row) {
+                  myRows.push(row.data as any);
+                },
                 complete: function (results) {
-                  console.log("Finished:", results.data);
+                  myRows.splice(-1);
+                  const obj = { students: [] };
+                  myRows.map((e) => {
+                    obj.students.push(e as never)
+                  })
+                  obj.students.map((e: any) => {
+                    e.bonusProjectUrls = [];
+                    Object.keys(e).map((key: string, index: number) => {
+                      if (!(key === 'email') && !(key.startsWith('bonusProjectUrls'))) {
+                        (e[key as keyof CreateUserDto] as any) = Number((e[key as keyof CreateUserDto] as any))
+                      } else if (key.startsWith('bonusProjectUrls/')) {
+                        (e['bonusProjectUrls' as keyof CreateUserDto] as any).push((e[key as keyof CreateUserDto] as any))  
+                        if(key !== 'bonusProjectUrls') delete e[key as keyof CreateUserDto]
+                      }
+                    });
+                  return e
+                  })
+                  fetch("http://localhost:3000/admin/addStudents", {
+                    method: "POST",
+                    headers: {
+                      Accept: "application/json",
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(obj),
+                  });
                 },
               });
             }
@@ -82,39 +113,55 @@ export function AddStudents() {
       <div className="addStudents__JSON">
         <h2>Przykład</h2>
         <JSONPretty
-          data={JSON.stringify([{
-            email: "emaple@example.com",
-            courseCompletion: 4,
-            courseEngagement: 5,
-            projectDegree: 0,
-            teamProjectDegree: 1,
-            bonusProjectUrls: ["test.com", "test.com"],
-          }, 
-          {
-            email: "emaple@example2.com",
-            courseCompletion: 4,
-            courseEngagement: 5,
-            projectDegree: 0,
-            teamProjectDegree: 1,
-            bonusProjectUrls: ["test.com"],
-          }])}
+          data={JSON.stringify([
+            {
+              email: "emaple@example.com",
+              courseCompletion: 4,
+              courseEngagement: 5,
+              projectDegree: 0,
+              teamProjectDegree: 1,
+              bonusProjectUrls: ["test.com", "test.com"],
+            },
+            {
+              email: "emaple@example2.com",
+              courseCompletion: 4,
+              courseEngagement: 5,
+              projectDegree: 0,
+              teamProjectDegree: 1,
+              bonusProjectUrls: ["test.com"],
+            },
+          ])}
           theme={JSONPrettyMon}
         ></JSONPretty>
         <input
           type="file"
-          name="file-input"
-          id="file-input"
+          name="file-input2"
+          id="file-input2"
           className="file-input__input"
           accept=".json"
           onChange={(e) => {
             const files = e.target.files;
-            console.log(files);
             if (files) {
-              console.log(files[0]);
+              const fileReader = new FileReader();
+              fileReader.readAsText(files[0], "UTF-8");
+              fileReader.onload = (e) => {
+                const parsed: CreateUserDto[] = JSON.parse(e.target?.result as string);
+                const obj = {
+                  students: parsed,
+                };
+                fetch("http://localhost:3000/admin/addStudents", {
+                  method: "POST",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(obj),
+                });
+              };
             }
           }}
         />
-        <label className="file-input__label" htmlFor="file-input">
+        <label className="file-input__label" htmlFor="file-input2">
           <svg
             aria-hidden="true"
             focusable="false"
