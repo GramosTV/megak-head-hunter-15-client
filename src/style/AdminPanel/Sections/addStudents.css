@@ -2,7 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(92vh - 72px);
+  min-height: calc(92vh - 72px);
+}
+@media (max-width: 1430px) {
+  .addStudents {
+    flex-direction: column;
+  }
 }
 .addStudents__CSV {
   display: flex;
@@ -11,9 +16,16 @@
   flex-direction: column;
   min-height: 400px;
 }
+@media (max-width: 1430px) {
+  .addStudents__CSV {
+    min-height: 250px;
+    margin-bottom: 25px;
+  }
+}
 .addStudents__CSV table {
   margin: 15px 0;
   font-family: sans-serif;
+  overflow-x: auto;
 }
 .addStudents__CSV table th,
 .addStudents__CSV table td {
@@ -21,11 +33,22 @@
   text-align: left;
   font-size: 14px;
 }
+@media (max-width: 992px) {
+  .addStudents__CSV table th,
+.addStudents__CSV table td {
+    font-size: 11px;
+  }
+}
 .addStudents__CSV table td {
   background-color: #222224;
 }
 .addStudents__CSV table th {
   background-color: #e02735;
+}
+@media (max-width: 768px) {
+  .addStudents__CSV table th {
+    border-bottom: #222224 2px solid;
+  }
 }
 .addStudents__CSV .zigzag {
   border-collapse: separate;
@@ -38,6 +61,15 @@
 .addStudents__CSV .zigzag tbody tr:nth-child(even) {
   transform: rotate(-2deg);
 }
+@media (max-width: 768px) {
+  .addStudents__CSV table, .addStudents__CSV thead, .addStudents__CSV tbody, .addStudents__CSV tr {
+    display: grid;
+    min-width: 300px;
+  }
+  .addStudents__CSV .table tr {
+    grid-template-columns: auto auto auto;
+  }
+}
 .addStudents__JSON {
   display: flex;
   justify-content: space-between;
@@ -45,6 +77,11 @@
   flex-direction: column;
   min-height: 400px;
   width: 25%;
+}
+@media (max-width: 1430px) {
+  .addStudents__JSON {
+    width: auto;
+  }
 }
 .addStudents__JSON div {
   text-align: left;

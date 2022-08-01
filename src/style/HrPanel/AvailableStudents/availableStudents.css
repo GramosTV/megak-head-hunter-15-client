@@ -16,6 +16,11 @@
   justify-content: flex-start;
   align-items: center;
 }
+@media (max-width: 576px) {
+  .availableStudents__input {
+    width: 200px;
+  }
+}
 .availableStudents__input svg {
   margin: 0 10px;
 }

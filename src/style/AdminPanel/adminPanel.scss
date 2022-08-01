@@ -1,3 +1,4 @@
+@import '../breakpoints';
 .adminPanel {
   margin: 0 auto;
   margin-top: 30px;
@@ -24,6 +25,9 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    @media (max-width: $phone) {
+      font-size: 14px;
+    }
     &.active {
       color: #f7f7f7;
       &::after {

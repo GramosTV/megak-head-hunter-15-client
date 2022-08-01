@@ -18,9 +18,19 @@
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 768px) {
+  .studentList__studentContainer {
+    flex-direction: column;
+  }
+}
 .studentList__panel {
   display: flex;
   align-items: center;
+}
+@media (max-width: 768px) {
+  .studentList__panel {
+    margin-bottom: 10px;
+  }
 }
 .studentList__panel button {
   background: #e02735;
@@ -28,6 +38,19 @@
   border: none;
   margin-right: 20px;
   cursor: pointer;
+}
+@media (max-width: 768px) {
+  .studentList__panel button {
+    margin-right: 10px;
+    padding: 5px 5px;
+  }
+}
+@media (max-width: 576px) {
+  .studentList__panel button {
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 5px 3px;
+  }
 }
 .studentList__panel svg {
   font-size: 22px;
@@ -46,6 +69,11 @@
 .studentList__reservation {
   margin-right: 70px;
 }
+@media (max-width: 768px) {
+  .studentList__reservation {
+    margin-right: 10px;
+  }
+}
 .studentList__userData {
   display: flex;
   justify-content: center;
@@ -61,6 +89,11 @@
   display: flex;
   align-items: center;
   background: #222324;
+}
+@media (max-width: 1200px) {
+  .studentList__info {
+    flex-direction: column;
+  }
 }
 .studentList__info div {
   height: 110px;

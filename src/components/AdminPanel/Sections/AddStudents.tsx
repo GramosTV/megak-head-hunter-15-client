@@ -7,7 +7,7 @@ export function AddStudents() {
   return (
     <div className="addStudents">
       <div className="addStudents__CSV">
-        <h2>Przykład</h2>
+        <h2>Przykład - CSV</h2>
         <table>
           <thead>
             <tr>
@@ -80,7 +80,7 @@ export function AddStudents() {
       </div>
 
       <div className="addStudents__JSON">
-        <h2>Przykład</h2>
+        <h2>Przykład - JSON</h2>
         <JSONPretty
           data={JSON.stringify([{
             email: "emaple@example.com",

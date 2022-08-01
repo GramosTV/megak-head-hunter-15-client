@@ -26,6 +26,11 @@
   align-items: center;
   cursor: pointer;
 }
+@media (max-width: 576px) {
+  .adminPanel__option {
+    font-size: 14px;
+  }
+}
 .adminPanel__option.active {
   color: #f7f7f7;
 }
