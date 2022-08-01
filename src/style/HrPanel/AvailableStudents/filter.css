@@ -22,10 +22,11 @@
   background-color: #676767;
 }
 .filter__container {
-  width: 520px;
-  height: 830px;
+  max-width: 520px;
+  max-height: 95vh;
   background: #0a0a0a;
   padding: 20px;
+  overflow-y: scroll;
 }
 .filter__container div {
   text-align: left;
