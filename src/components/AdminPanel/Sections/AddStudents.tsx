@@ -2,6 +2,7 @@ import React from "react";
 import Papa from "papaparse";
 import JSONPretty from "react-json-pretty";
 import { CreateUserDto } from "types";
+import {toast} from "react-toastify";
 var JSONPrettyMon = require("react-json-pretty/dist/monikai");
 
 export function AddStudents() {
@@ -59,7 +60,7 @@ export function AddStudents() {
                 step: function (row) {
                   myRows.push(row.data as any);
                 },
-                complete: function (results) {
+                complete: async function (results) {
                   myRows.splice(-1);
                   const obj = { students: [] };
                   myRows.map((e) => {
@@ -77,7 +78,7 @@ export function AddStudents() {
                     });
                   return e
                   })
-                  fetch("http://localhost:3000/admin/addStudents", {
+                  const res = await fetch("http://localhost:3000/admin/addStudents", {
                     method: "POST",
                     headers: {
                       Accept: "application/json",
@@ -85,6 +86,8 @@ export function AddStudents() {
                     },
                     body: JSON.stringify(obj),
                   });
+                  const data = await res.json();
+                  data.message.forEach((mess: string) => toast.info(mess));
                 },
               });
             }
