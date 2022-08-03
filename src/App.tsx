@@ -52,7 +52,7 @@ export const App = () => {
       </ProtectedRoute>
       <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
         <Routes>
-          <Route path="*" element={<h1>Admin panel placeholder</h1>} />
+          <Route path="*" element={<AdminPanel />} />
         </Routes>
       </ProtectedRoute> */}
     </div>
