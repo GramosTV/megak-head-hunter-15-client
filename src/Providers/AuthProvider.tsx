@@ -49,6 +49,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         }),
       });
       const data = await res.json();
+      console.log(data);
       if (data.ok) {
         setUser(data);
         navigate('/');
