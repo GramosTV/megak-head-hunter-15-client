@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {AuthContextObj, LoginData} from "../types/interfaces/Auth";
 import {useLocation, useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 export const AuthContext = React.createContext<AuthContextObj>({
   user: null,
@@ -24,12 +25,12 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
             "Content-Type": "application/json",
           }
         });
-        if(res.ok) {
-          const data = await res.json();
+        const data = await res.json();
+        if(data.ok) {
           setUser(data);
         }
       } catch (e) {
-        console.log(e);
+        toast.error('Coś poszło nie tak, spróbuj później!');
       }
     })();
   }, [location]);
@@ -52,11 +53,12 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
       if (data.ok) {
         setUser(data);
         navigate('/');
+        toast.success('Zalogowano!');
       } else {
-        console.log(data.error);
+        toast.error(data.message);
       }
     } catch (e) {
-      console.log(e);
+      toast.error('Coś poszło nie tak, spróbuj później!');
     }
   }
 
@@ -71,13 +73,14 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
           "Content-Type": "application/json",
         },
       });
-      if (res.ok) {
-        console.log('Succesfully logout!')
+      const data = await res.json();
+      if (data.ok) {
+        toast.success(data.message);
       } else {
-        console.log('You must be logged in first to log out!');
+        toast.error('Coś poszło nie tak, spróbuj później!');
       }
     } catch (e) {
-      console.log(e);
+      toast.error('Coś poszło nie tak, spróbuj później!');
     }
   }
 
