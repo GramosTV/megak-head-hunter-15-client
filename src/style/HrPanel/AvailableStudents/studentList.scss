@@ -1,3 +1,4 @@
+@import '../../breakpoints';
 .studentList {
   width: 97%;
   margin: 0 auto;
@@ -16,17 +17,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: $tablet) {
+      flex-direction: column;
+    }
   }
 
   &__panel {
     display: flex;
     align-items: center;
+    @media (max-width: $tablet) {
+      margin-bottom: 10px;
+    }
     button {
       background: #e02735;
       padding: 10px 10px;
       border: none;
       margin-right: 20px;
       cursor: pointer;
+      @media (max-width: $tablet) {
+        margin-right: 10px;
+        padding: 5px 5px;
+      }
+      @media (max-width: $phone) {
+        font-size: 12px;
+        margin-right: 5px;
+        padding: 5px 3px;
+      }
     }
     svg {
       font-size: 22px;
@@ -45,6 +61,9 @@
   }
   &__reservation {
     margin-right: 70px;
+    @media (max-width: $tablet) {
+      margin-right: 10px;
+    }
   }
   &__userData {
     display: flex;
@@ -62,6 +81,9 @@
     display: flex;
     align-items: center;
     background: #222324;
+    @media (max-width: $large) {
+      flex-direction: column;
+    }
     div {
       height: 110px;
       min-width: 98px;

@@ -7,74 +7,52 @@
           backdrop-filter: blur(0.6px);
   width: 100vw;
   height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   z-index: 999;
 }
-
 .filter.disabled {
   display: none;
 }
-
 .filter button {
   cursor: pointer;
 }
-
 .filter button.selectedFilter {
   background-color: #676767;
 }
-
 .filter__container {
-  width: 520px;
-  height: 830px;
+  max-width: 520px;
+  max-height: 95vh;
   background: #0a0a0a;
   padding: 20px;
+  overflow-y: scroll;
 }
-
 .filter__container div {
   text-align: left;
   margin-bottom: 6px;
 }
-
 .filter__container div:nth-child(1) {
   margin: 10px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
-
 .filter__container div:nth-child(1) span {
   font-size: 28px;
   font-weight: bold;
 }
-
 .filter__container div:nth-child(1) button {
   background-color: #172a35;
   padding: 8px 10px;
 }
-
 .filter__scores span {
   display: inline-block;
   margin-bottom: 5px;
 }
-
 .filter__scores div span {
   margin-right: 3px;
 }
-
 .filter__scores div input {
   background: #292a2b;
   border: 0;
@@ -83,30 +61,24 @@
   width: 125px;
   margin-right: 15px;
 }
-
 .filter__scores div input:focus {
   outline: none !important;
 }
-
 .filter__scores div button {
   background: #292a2b;
   padding: 3px 6px;
   margin-right: 8px;
 }
-
 .filter__scores div button svg path {
   color: #e02735;
 }
-
 .filter__radio label {
   display: inline-block;
   margin-bottom: 5px;
 }
-
 .filter__radio div span {
   margin-right: 3px;
 }
-
 .filter__radio div input {
   accent-color: #e02735;
   border: 0;
@@ -114,27 +86,22 @@
   padding: 6px 8px;
   margin-right: 15px;
 }
-
 .filter__radio div input:focus {
   outline: none !important;
 }
-
 .filter__months .title {
   width: 100%;
   display: inline-block;
   font-size: 14px;
   margin-bottom: 8px;
 }
-
 .filter__months label {
   display: inline-block;
   margin-bottom: 5px;
 }
-
 .filter__months div span {
   margin-right: 3px;
 }
-
 .filter__months div input {
   background-color: #1e1e1f;
   border: 0;
@@ -142,29 +109,19 @@
   padding: 8px 10px;
   width: 105px;
 }
-
 .filter__months div input:focus {
   outline: none !important;
 }
-
 .filter__cancelOrApply {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: flex-end;
+  align-items: center;
 }
-
 .filter__cancelOrApply button {
   background-color: #e02735;
   padding: 8px 10px;
   border: none;
 }
-
 .filter__cancelOrApply button:nth-child(1) {
   background: transparent;
   padding: 8px 20px;
@@ -196,10 +153,10 @@
 /* Create a custom radio button */
 .checkmark {
   position: absolute;
-  top: calc(25px / 3);
+  top: 8.3333333333px;
   left: 0;
-  height: calc(25px / 1.6);
-  width: calc(25px / 1.6);
+  height: 15.625px;
+  width: 15.625px;
   border-radius: 50%;
   outline: #292a2b 2px solid;
 }
@@ -227,5 +184,4 @@
   display: block;
 }
 
-/* Style the indicator (dot/circle) */
-/*# sourceMappingURL=filter.css.map */
+/* Style the indicator (dot/circle) *//*# sourceMappingURL=filter.css.map */

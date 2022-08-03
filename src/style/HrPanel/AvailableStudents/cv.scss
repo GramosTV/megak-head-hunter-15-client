@@ -1,25 +1,35 @@
+@import '../../breakpoints';
 .cv {
   margin: 0 auto;
   margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: start;
+  @media(max-width: $laptop) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  width: 96%;
   max-width: 1545px;
   animation-duration: .6s;
   &__profile {
     width: 250px !important;
-    height: 718px;
+    // max-height: 718px;
+    padding: 20px 0;
     background: #292a2b;
     margin-right: 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    @media(max-width: $laptop) {
+      margin: 20px 0;
+    }
     img {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      margin-top: 25px;
     }
     span {
       margin-top: 10px;
@@ -87,13 +97,21 @@
   }
 
   &__sectionTitle {
-    width: 1176px;
     height: 60px;
     background: #292a2b;
     text-align: left;
     line-height: 60px;
     padding: 0 25px;
     font-size: 20px;
+    @media (max-width: $laptop) {
+      text-align: center;
+    }
+    @media (max-width: $phone) {
+      height: 40px;
+      line-height: 40px;
+      padding: 0 10px;
+      font-size: 16px;
+    }
   }
   &__links {
     flex-direction: column;
@@ -104,7 +122,6 @@
     justify-content: flex-start;
     flex-direction: column;
     background: #222324;
-    width: 1176px;
     margin: 0 auto;
     section {
       display: flex;
@@ -112,6 +129,9 @@
       align-items: center;
       width: 100%;
       padding: 0 25px;
+      @media (max-width: $tablet) {
+        flex-direction: column;
+      }
     }
     section div {
       height: 110px;
@@ -138,6 +158,12 @@
       font-size: 12px;
       text-align: left;
       padding-bottom: 0;
+      @media(max-width: $large) {
+        font-size: 10px;
+      }
+      @media(max-width: $laptop) {
+        font-size: 12px;
+      }
     }
     span {
       padding: 8px 0;
@@ -164,6 +190,9 @@
       display: inline-block;
       margin: 3px 0;
       text-decoration: none;
+      @media (max-width: $phone) {
+        font-size: 14px;
+      }
       &:nth-child(1) {
         margin-top: 15px;
       }

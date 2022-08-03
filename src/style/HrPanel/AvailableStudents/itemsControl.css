@@ -5,60 +5,42 @@
   margin-bottom: 20px;
   text-align: right;
 }
-
 .itemsControl__itemsPerPage {
   display: inline-block;
   padding: 5px;
 }
-
 .itemsControl__itemsPerPage select {
   color: #333333;
   padding: 5px 2px;
 }
-
 .itemsControl__itemsPerPage select option {
   color: #333333;
 }
-
 .itemsControl__page {
   display: inline-block;
 }
-
 .itemsControl__page div {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 .itemsControl__page div span {
   margin-left: 10px;
 }
-
 .itemsControl__page div button {
   padding: 5px 8px;
   margin-right: 5px;
 }
-
 .itemsControl__page div button:nth-child(2) {
   margin-left: 5px;
 }
-
 .itemsControl__page div button.disabled {
   pointer-events: none;
   cursor: not-allowed;
   opacity: 0.65;
   filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
   box-shadow: none;
 }
-
 .itemsControl__page div button svg path {
   color: #333333;
-}
-/*# sourceMappingURL=itemsControl.css.map */
+}/*# sourceMappingURL=itemsControl.css.map */
