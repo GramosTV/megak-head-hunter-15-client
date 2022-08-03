@@ -7,22 +7,22 @@ import { StudentListEnum } from "../../../types/enums/studentListEnum";
 interface StudentListProps {
   itemsPerPage: number;
   page: number;
-  localStudents: UserFE[];
-  setLocalStudents: Dispatch<SetStateAction<UserFE[]>>;
+  students: UserFE[];
+  setStudents: Dispatch<SetStateAction<UserFE[]>>;
   studentListType: StudentListEnum;
   setStudentCv: Dispatch<UserFE>
 }
 export function StudentList({
   itemsPerPage,
   page,
-  localStudents,
-  setLocalStudents,
+  students,
+  setStudents,
   studentListType,
   setStudentCv
 }: StudentListProps) {
   const handleExpandStudentInfo = (element: MouseEvent<SVGSVGElement>) => {
     const id = element.currentTarget.id;
-    setLocalStudents((previousState: UserFE[]): UserFE[] => {
+    setStudents((previousState: UserFE[]): UserFE[] => {
       return previousState.slice(page - 1, itemsPerPage).map((e: UserFE) => {
         if (e.email === id) {
           return { ...e, expandStudentInfo: !e.expandStudentInfo };
@@ -34,13 +34,7 @@ export function StudentList({
 
   return (
     <ul className="studentList">
-      {localStudents
-        .slice(
-          itemsPerPage * (page - 1) - 1 <= 0
-            ? 0
-            : itemsPerPage * (page - 1) - 1,
-          page === 1 ? itemsPerPage * page : itemsPerPage * page - 1
-        )
+      {students
         .map((e: UserFE) => {
           return (
             <li className="studentList__student" key={e.email}>
@@ -187,7 +181,7 @@ export function StudentList({
                     <p>Komercyjne doświadczenie w programowaniu</p>
                     <span>
                       <b>
-                        {e.monthsOfCommercialExp + " "}
+                        {e.monthsOfCommercialExp ?? 0 + " "}
                         {e.monthsOfCommercialExp === 1
                           ? "miesiąc"
                           : "miesięcy"}

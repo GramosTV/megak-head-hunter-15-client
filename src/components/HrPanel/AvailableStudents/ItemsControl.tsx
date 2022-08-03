@@ -10,18 +10,20 @@ interface ItemsPerPageProps {
   setPage: Dispatch<SetStateAction<number>>;
   studentsLength: number;
   studentListType: StudentListEnum;
+  pagesCount: number;
 }
 export function ItemsControl({
   itemsPerPage,
   setItemsPerPage,
   page,
   setPage,
-  studentsLength,
-  studentListType
+  studentListType,
+  pagesCount,
 }: ItemsPerPageProps) {
+
   useEffect(() => {
     setPage(1);
-  }, [studentListType])
+  }, [studentListType, itemsPerPage]);
   const handleChange = (
     value: number,
     selectOptionSetter: Dispatch<SetStateAction<number>>
@@ -31,15 +33,6 @@ export function ItemsControl({
   const handlePageChange = (action: boolean) => {
     action ? setPage(page + 1) : setPage(page - 1);
   };
-  useEffect(() => {
-    if ((Math.floor(studentsLength / itemsPerPage)
-    ? Math.floor(studentsLength / itemsPerPage) + 1
-    : 1) < page) {
-      setPage((Math.floor(studentsLength / itemsPerPage)
-      ? Math.floor(studentsLength / itemsPerPage) + 1
-      : 1))
-    }
-  }, [studentsLength, itemsPerPage]);
   const options = [
     {
       value: 5,
@@ -80,10 +73,7 @@ export function ItemsControl({
       <div className="itemsControl__page">
         <div>
           <span>
-            {page} z{" "}
-            {Math.floor(studentsLength / itemsPerPage)
-              ? Math.floor(studentsLength / itemsPerPage) + 1
-              : 1}
+            {page} z {pagesCount}
           </span>
           <button
             className={page === 1 ? "disabled" : ""}
@@ -93,18 +83,12 @@ export function ItemsControl({
           </button>
           <button
             className={
-              page ===
-              (Math.floor(studentsLength / itemsPerPage)
-                ? Math.floor(studentsLength / itemsPerPage) + 1
-                : 1)
+              page === pagesCount
                 ? "disabled"
                 : ""
             }
             onClick={() =>
-              page ===
-              (Math.floor(studentsLength / itemsPerPage)
-                ? Math.floor(studentsLength / itemsPerPage) + 1
-                : 1)
+              page === pagesCount
                 ? null
                 : handlePageChange(true)
             }
