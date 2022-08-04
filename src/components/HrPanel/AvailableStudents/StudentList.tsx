@@ -38,7 +38,8 @@ export function StudentList({
         .map((e: UserFE) => {
           return (
             <li className="studentList__student" key={e.email}>
-              {studentListType === StudentListEnum.available ? (
+              {studentListType === StudentListEnum.available ?
+              (
                 <div className="studentList__studentContainer">
                   <span>{`${
                     e.firstName
@@ -67,19 +68,20 @@ export function StudentList({
                       Rezerwacja do
                       <br />
                       <strong>
-                        {new Date()
-                          .toISOString()
-                          .replace(/T.*/, "")
-                          .split("-")
-                          .reverse()
-                          .join(".") + " r."}
+                        {new Date().toLocaleDateString()} r.
                       </strong>
                     </div>
                     <div className="studentList__userData">
-                      <img src="/assets/images/example_user.jpg" alt="" />
-                      <span>{`${
-                        e.firstName
-                      } ${e.lastName[0].toUpperCase()}.`}</span>
+                      <img
+                          src={e.githubUsername
+                            ? `https://github.com/${e.githubUsername}.png`
+                            : '/assets/images/example_user.png'
+                          }
+                          alt=""
+                      />
+                      <span>
+                        {`${e.firstName} ${e.lastName}`}
+                      </span>
                     </div>
                   </div>
                   <div className="studentList__panel">
