@@ -29,35 +29,34 @@ export const App = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <MainHeader />
-    // <div className="App">
-    //   <ToastContainer
-    //     position="top-right"
-    //     autoClose={5000}
-    //     hideProgressBar={false}
-    //     newestOnTop={false}
-    //     closeOnClick
-    //     rtl={false}
-    //     pauseOnFocusLoss
-    //     draggable
-    //     pauseOnHover
-    //     theme='dark'
-    //   />
-    //   <ProtectedRoute isAllowed={!user}>
-    //     <Routes>
-    //       <Route path="*" element={<LoginForm />} />
-    //     </Routes>
-    //   </ProtectedRoute>
-    //   <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
-    //     <Routes>
-    //       <Route path="*" element={<HrPanel />} />
-    //     </Routes>
-    //   </ProtectedRoute>
-    //   <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
-    //     <Routes>
-    //       <Route path="*" element={<AdminPanel />} />
-    //     </Routes>
-    //   </ProtectedRoute>
-    // </div>
+    <div className="App">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='dark'
+      />
+      <ProtectedRoute isAllowed={!user}>
+        <Routes>
+          <Route path="*" element={<LoginForm />} />
+        </Routes>
+      </ProtectedRoute>
+      <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
+        <Routes>
+          <Route path="*" element={<HrPanel />} />
+        </Routes>
+      </ProtectedRoute>
+      <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
+        <Routes>
+          <Route path="*" element={<AdminPanel />} />
+        </Routes>
+      </ProtectedRoute>
+    </div>
   );
 };
