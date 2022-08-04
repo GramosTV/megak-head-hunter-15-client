@@ -18,7 +18,7 @@ export function MainHeader() {
         <div className="mainHeader__userMenuContainer">
           <div className="mainHeader__userMenu">
             <img
-              src="assets/images/example_user.jpg"
+              src="assets/images/example_user.png"
               alt="Przykładowy użytkownik"
               className="mainHeader__userImage"
             />

@@ -18,43 +18,46 @@ import "./style/AdminPanel/Sections/addHrForm.css";
 import "./style/AdminPanel/Sections/addStudents.css";
 import 'react-toastify/dist/ReactToastify.css';
 import "./style/HrPanel/AvailableStudents/cv.css";
+import "./style/header.css";
 import { AdminPanel } from "./components/AdminPanel/AdminPanel";
 import { errorNotif } from "./utils/notifications/errorNotif";
 import { ToastContainer } from "react-toastify";
+import { MainHeader } from "./components/MainHeader";
 
 
 export const App = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <div className="App">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='dark'
-      />
-      <ProtectedRoute isAllowed={!user}>
-        <Routes>
-          <Route path="*" element={<LoginForm />} />
-        </Routes>
-      </ProtectedRoute>
-      <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
-        <Routes>
-          <Route path="*" element={<HrPanel />} />
-        </Routes>
-      </ProtectedRoute>
-      <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
-        <Routes>
-          <Route path="*" element={<AdminPanel />} />
-        </Routes>
-      </ProtectedRoute>
-    </div>
+    <MainHeader />
+    // <div className="App">
+    //   <ToastContainer
+    //     position="top-right"
+    //     autoClose={5000}
+    //     hideProgressBar={false}
+    //     newestOnTop={false}
+    //     closeOnClick
+    //     rtl={false}
+    //     pauseOnFocusLoss
+    //     draggable
+    //     pauseOnHover
+    //     theme='dark'
+    //   />
+    //   <ProtectedRoute isAllowed={!user}>
+    //     <Routes>
+    //       <Route path="*" element={<LoginForm />} />
+    //     </Routes>
+    //   </ProtectedRoute>
+    //   <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
+    //     <Routes>
+    //       <Route path="*" element={<HrPanel />} />
+    //     </Routes>
+    //   </ProtectedRoute>
+    //   <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
+    //     <Routes>
+    //       <Route path="*" element={<AdminPanel />} />
+    //     </Routes>
+    //   </ProtectedRoute>
+    // </div>
   );
 };
