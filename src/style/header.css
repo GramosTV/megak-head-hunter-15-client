@@ -1,0 +1,105 @@
+.mainHeader {
+  background: #1E1E1F 0% 0% no-repeat padding-box;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mainHeader__container {
+  max-width: 1430px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 15px;
+  height: 100%;
+}
+
+.mainHeader__logo {
+  width: 89px;
+  height: 55px;
+}
+
+.mainHeader__userMenuContainer {
+  height: 100%;
+  width: 260px;
+}
+
+.mainHeader__userMenu {
+  height: 100%;
+  width: 260px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.mainHeader__userImage {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.mainHeader__userName {
+  color: #f7f7f7;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 12px;
+  padding-right: 24px;
+}
+
+.mainHeader__arrowDown {
+  color: #9e9e9e;
+  cursor: pointer;
+}
+
+.mainHeader__userMenuDropdown {
+  width: 220px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  display: none;
+}
+
+.mainHeader__userMenuDropdown.active {
+  display: block;
+}
+
+.mainHeader__userMenuDropdown div {
+  height: 40px;
+  color: #f7f7f7;
+  background: #1E1E1F;
+  text-align: left;
+  padding: 0 15px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=header.css.map */
