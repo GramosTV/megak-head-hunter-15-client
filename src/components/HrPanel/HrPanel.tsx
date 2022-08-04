@@ -8,7 +8,7 @@ import { StudentListEnum } from "../../types/enums/studentListEnum";
 import { Cv } from "./AvailableStudents/Cv";
 import { User, GetPaginatedListOfUser } from 'types'
 import { UserFE } from "src/types/interfaces/UserFE";
-import { FilterSettings } from "src/types/interfaces/FilterSettings";
+import { FilterSettings } from "types";
 // any because waiting for student types
 export function HrPanel() {
   const defaultFilterSettings = {

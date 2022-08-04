@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import { StudentListEnum } from "src/types/enums/studentListEnum";
-import { FilterSettings } from "src/types/interfaces/FilterSettings";
+import { FilterSettings } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
 import { ExpectedTypeWork, Score } from "types";
 
