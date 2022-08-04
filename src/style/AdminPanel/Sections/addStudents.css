@@ -1,0 +1,121 @@
+.addStudents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(92vh - 72px);
+}
+@media (max-width: 1430px) {
+  .addStudents {
+    flex-direction: column;
+  }
+}
+.addStudents__CSV {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  min-height: 400px;
+}
+@media (max-width: 1430px) {
+  .addStudents__CSV {
+    min-height: 250px;
+    margin-bottom: 25px;
+  }
+}
+.addStudents__CSV table {
+  margin: 15px 0;
+  font-family: sans-serif;
+  overflow-x: auto;
+}
+.addStudents__CSV table th,
+.addStudents__CSV table td {
+  padding: 0.25em 0.5em;
+  text-align: left;
+  font-size: 14px;
+}
+@media (max-width: 992px) {
+  .addStudents__CSV table th,
+.addStudents__CSV table td {
+    font-size: 11px;
+  }
+}
+.addStudents__CSV table td {
+  background-color: #222224;
+}
+.addStudents__CSV table th {
+  background-color: #e02735;
+}
+@media (max-width: 768px) {
+  .addStudents__CSV table th {
+    border-bottom: #222224 2px solid;
+  }
+}
+.addStudents__CSV .zigzag {
+  border-collapse: separate;
+  border-spacing: 0.25em 1em;
+}
+.addStudents__CSV .zigzag tbody tr:nth-child(odd) {
+  transform: rotate(2deg);
+}
+.addStudents__CSV .zigzag thead tr,
+.addStudents__CSV .zigzag tbody tr:nth-child(even) {
+  transform: rotate(-2deg);
+}
+@media (max-width: 768px) {
+  .addStudents__CSV table, .addStudents__CSV thead, .addStudents__CSV tbody, .addStudents__CSV tr {
+    display: grid;
+    min-width: 300px;
+  }
+  .addStudents__CSV .table tr {
+    grid-template-columns: auto auto auto;
+  }
+}
+.addStudents__JSON {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  min-height: 400px;
+  width: 25%;
+}
+@media (max-width: 1430px) {
+  .addStudents__JSON {
+    width: auto;
+  }
+}
+.addStudents__JSON div {
+  text-align: left;
+  margin: 15px 0;
+}
+.addStudents__JSON div pre {
+  max-height: 240px;
+  background-color: #222224 !important;
+}
+.addStudents div {
+  padding: 10px;
+}
+.addStudents div .file-input__input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.addStudents div .file-input__label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 12px;
+  background-color: #e02735;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+.addStudents div .file-input__label svg {
+  height: 16px;
+  margin-right: 4px;
+}/*# sourceMappingURL=addStudents.css.map */

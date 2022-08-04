@@ -1,0 +1,127 @@
+.studentList {
+  width: 97%;
+  margin: 0 auto;
+}
+.studentList__student {
+  min-height: 70px;
+  border-top: 12px solid #1e1e1f;
+  list-style: none;
+  box-sizing: content-box;
+}
+.studentList__student:nth-child(1) {
+  border-top: none;
+}
+.studentList__studentContainer {
+  padding: 0 15px;
+  min-height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .studentList__studentContainer {
+    flex-direction: column;
+  }
+}
+.studentList__panel {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .studentList__panel {
+    margin-bottom: 10px;
+  }
+}
+.studentList__panel button {
+  background: #e02735;
+  padding: 10px 10px;
+  border: none;
+  margin-right: 20px;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .studentList__panel button {
+    margin-right: 10px;
+    padding: 5px 5px;
+  }
+}
+@media (max-width: 576px) {
+  .studentList__panel button {
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 5px 3px;
+  }
+}
+.studentList__panel svg {
+  font-size: 22px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.studentList__panel svg path {
+  color: #cfcfcf;
+}
+.studentList__studentEntityContainer {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.studentList__reservation {
+  margin-right: 70px;
+}
+@media (max-width: 768px) {
+  .studentList__reservation {
+    margin-right: 10px;
+  }
+}
+.studentList__userData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.studentList__userData img {
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  margin-right: 15px;
+}
+.studentList__info {
+  display: flex;
+  align-items: center;
+  background: #222324;
+}
+@media (max-width: 1200px) {
+  .studentList__info {
+    flex-direction: column;
+  }
+}
+.studentList__info div {
+  height: 110px;
+  min-width: 98px;
+  max-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.studentList__info span,
+.studentList__info p {
+  color: #cfcfcf;
+  height: 50%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+.studentList__info p {
+  font-size: 12px;
+  text-align: left;
+  padding-bottom: 0;
+}
+.studentList__info span {
+  padding: 8px 0;
+  padding-top: 0;
+  font-size: 14px;
+}
+.studentList__info span b {
+  margin-right: 5px;
+}/*# sourceMappingURL=studentList.css.map */

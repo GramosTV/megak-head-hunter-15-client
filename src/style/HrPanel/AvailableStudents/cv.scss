@@ -1,0 +1,227 @@
+@import '../../breakpoints';
+.cv {
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  @media(max-width: $laptop) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  width: 96%;
+  max-width: 1545px;
+  animation-duration: .6s;
+  &__profile {
+    width: 250px !important;
+    // max-height: 718px;
+    padding: 20px 0;
+    background: #292a2b;
+    margin-right: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    @media(max-width: $laptop) {
+      margin: 20px 0;
+    }
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    span {
+      margin-top: 10px;
+      font-size: 22px;
+    }
+    a {
+      color: #0b8bd4;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        margin-right: 6px;
+        font-size: 30px;
+        path {
+          color: #0b8bd4;
+        }
+      }
+    }
+    button {
+        width: calc(100% - 40px);
+        border: none;
+        margin-top: 10px;
+        padding: 8px 8px;
+        background: #e02735;
+        font-size: 17px;
+        cursor: pointer;
+    }
+  }
+  &__contact {
+    width: 100%;
+    padding: 0 20px;
+    span {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 18px;
+      svg {
+        margin-right: 8px;
+        font-size: 18px;
+        path {
+          color: #4d4d4d;
+        }
+      }
+    }
+  }
+
+  &__about {
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 5px;
+    span {
+        color: #4d4d4d;
+        font-weight: bold;
+        text-align: left;
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+        font-size: 16px;
+    }
+    p {
+        font-size: 16px;
+        text-align: left;
+    }
+  }
+
+  &__sectionTitle {
+    height: 60px;
+    background: #292a2b;
+    text-align: left;
+    line-height: 60px;
+    padding: 0 25px;
+    font-size: 20px;
+    @media (max-width: $laptop) {
+      text-align: center;
+    }
+    @media (max-width: $phone) {
+      height: 40px;
+      line-height: 40px;
+      padding: 0 10px;
+      font-size: 16px;
+    }
+  }
+  &__links {
+    flex-direction: column;
+    align-items: start !important;
+  }
+  &__info {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: #222324;
+    margin: 0 auto;
+    section {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      padding: 0 25px;
+      @media (max-width: $tablet) {
+        flex-direction: column;
+      }
+    }
+    section div {
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+      font-size: 16px;
+      text-align: left;
+      &.paragraph {
+        padding: 15px 25px;
+        height: auto;
+      }
+    }
+    span,
+    p {
+      color: #cfcfcf;
+      height: 50%;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+    }
+    p {
+      font-size: 12px;
+      text-align: left;
+      padding-bottom: 0;
+      @media(max-width: $large) {
+        font-size: 10px;
+      }
+      @media(max-width: $laptop) {
+        font-size: 12px;
+      }
+    }
+    span {
+      padding: 8px 0;
+      padding-top: 0;
+      font-size: 14px;
+      &.score {
+        font-size: 18px;
+      }
+      b {
+        margin-right: 5px;
+      }
+      svg:nth-child(2) {
+        margin-left: 10px;
+      }
+      svg path {
+        color: #4d4d4d;
+      }
+      svg.filled path {
+        color: #e02735;
+      }
+    }
+    a {
+      color: #0b8bd4;
+      display: inline-block;
+      margin: 3px 0;
+      text-decoration: none;
+      @media (max-width: $phone) {
+        font-size: 14px;
+      }
+      &:nth-child(1) {
+        margin-top: 15px;
+      }
+      &:nth-last-child(1) {
+        margin-bottom: 15px;
+      }
+      svg {
+        margin-right: 10px;
+        transform: rotate(315deg);
+        path {
+          color: #0b8bd4;
+        }
+      }
+    }
+  }
+  &__goBack {
+    width: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    svg {
+        margin-right: 5px;
+        font-size: 26px;
+        path {
+            color: #606060;
+        }
+    }
+  }
+}

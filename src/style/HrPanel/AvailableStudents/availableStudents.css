@@ -1,0 +1,56 @@
+.availableStudents {
+  height: 60px;
+  border-bottom: 3px #222224 solid;
+  width: 97%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+.availableStudents__input {
+  width: 365px;
+  height: 38px;
+  background-color: #1e1e1f;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+@media (max-width: 576px) {
+  .availableStudents__input {
+    width: 200px;
+  }
+}
+.availableStudents__input svg {
+  margin: 0 10px;
+}
+.availableStudents__input svg path {
+  color: #757575;
+}
+.availableStudents__input input {
+  background-color: #1e1e1f;
+  border: 0;
+  outline: 0;
+  color: #f7f7f7;
+  width: 90%;
+  height: 100%;
+  padding-right: 10px;
+}
+.availableStudents__input input:focus {
+  outline: none !important;
+}
+.availableStudents__filterBtn {
+  background-color: #1e1e1f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+}
+.availableStudents__filterBtn svg {
+  margin-right: 6px;
+}
+.availableStudents__filterBtn svg path {
+  color: #757575;
+}/*# sourceMappingURL=availableStudents.css.map */
