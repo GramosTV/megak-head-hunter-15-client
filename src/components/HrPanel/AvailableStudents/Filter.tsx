@@ -158,41 +158,13 @@ export function Filter({
         }
         if (
           !(filterSettings.expectedTypeWork === null) &&
-          (() => {
-            switch (student.expectedTypeWork) {
-              case 0:
-                return "Biuro";
-              case 1:
-                return "Gotowy do przeprowadzki";
-              case 2:
-                return "Zdalna";
-              case 3:
-                return "Biuro i zdalna";
-              case 4:
-                return "Dowolne";
-              default:
-                return "Sam nie wiem";
-            }
-          })() !== filterSettings.expectedTypeWork
+           student.expectedTypeWork !== filterSettings.expectedTypeWork
         ) {
           return false;
         }
         if (
           !(filterSettings.expectedContractType === null) &&
-          (() => {
-            switch (student.expectedContractType) {
-              case 0:
-                return "Umowa o pracę";
-              case 1:
-                return "B2B";
-              case 2:
-                return "Zlecenie";
-              case 3:
-                return "Umowa o dzieło";
-              default:
-                return "Sam nie wiem";
-            }
-          })() !== filterSettings.expectedContractType
+          student.expectedContractType !== filterSettings.expectedContractType
         ) {
           return false;
         }

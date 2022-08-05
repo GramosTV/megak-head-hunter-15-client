@@ -117,22 +117,7 @@ export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
             <p>Preferowane miejsce pracy</p>
             <span>
               <b>
-                {(() => {
-                  switch (student.expectedTypeWork) {
-                    case 0:
-                      return "Biuro";
-                    case 1:
-                      return "Gotowy do przeprowadzki";
-                    case 2:
-                      return "Zdalna";
-                    case 3:
-                      return "Biuro i zdalna";
-                    case 4:
-                      return "Dowolne";
-                    default:
-                      return "Sam nie wiem";
-                  }
-                })()}
+                {student.expectedTypeWork}
               </b>
             </span>
           </div>
@@ -146,20 +131,7 @@ export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
             <p>Oczekiwany typ kontraktu</p>
             <span>
               <b>
-                {(() => {
-                  switch (student.expectedContractType) {
-                    case 0:
-                      return "Umowa o pracę";
-                    case 1:
-                      return "B2B";
-                    case 2:
-                      return "Zlecenie";
-                    case 3:
-                      return "Umowa o dzieło";
-                    default:
-                      return "Sam nie wiem";
-                  }
-                })()}
+                {student.expectedContractType}
               </b>
             </span>
           </div>

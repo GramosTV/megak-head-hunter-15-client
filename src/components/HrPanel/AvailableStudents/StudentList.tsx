@@ -135,22 +135,7 @@ export function StudentList({
                   <div>
                     <p>Preferowane miejsce pracy</p>
                     <span>
-                      <b>{(() => {
-                        switch(e.expectedTypeWork) {
-                          case 0:
-                          return 'Biuro'
-                          case 1:
-                          return 'Gotowy do przeprowadzki'
-                          case 2:
-                          return 'Zdalna'
-                          case 3:
-                          return 'Biuro i zdalna'
-                          case 4:
-                          return 'Dowolne'
-                          default:
-                          return 'Sam nie wiem'
-                        }
-                        })()}</b>
+                      <b>{e.expectedTypeWork}</b>
                     </span>
                   </div>
                   <div>
