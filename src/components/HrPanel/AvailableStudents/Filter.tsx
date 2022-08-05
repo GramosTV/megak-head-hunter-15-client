@@ -60,7 +60,7 @@ export function Filter({
     // setExperienceInMonths(0);
     // setLocalStudents(students);
   }, [studentListType]);
-  const filterStudents = () => {
+  const filterStudents = async () => {
     if (searchValue) {
       setLocalStudents(() => {
         const search = fuzzysort.go(searchValue.split(" ")[0], students, {
@@ -130,71 +130,75 @@ export function Filter({
     } else {
       setLocalStudents(students);
     }
-    setLocalStudents((previousState) => {
-      return previousState.filter((student) => {
-        if (
-          !(filterSettings.courseCompletion === null) &&
-          student.courseCompletion !== filterSettings.courseCompletion
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.courseEngagement === null) &&
-          student.courseEngagement !== filterSettings.courseEngagement
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.projectDegree === null) &&
-          student.projectDegree !== filterSettings.projectDegree
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.teamProjectDegree === null) &&
-          student.teamProjectDegree !== filterSettings.teamProjectDegree
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.expectedTypeWork === null) &&
-           student.expectedTypeWork !== filterSettings.expectedTypeWork
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.expectedContractType === null) &&
-          student.expectedContractType !== filterSettings.expectedContractType
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.minNetSalary === null) &&
-          student.expectedSalary <= Number(filterSettings.minNetSalary)
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.maxNetSalary === null) &&
-          student.expectedSalary >= Number(filterSettings.maxNetSalary)
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.canTakeApprenticeship === null) &&
-          student.canTakeApprenticeship !== filterSettings.canTakeApprenticeship
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.monthsOfCommercialExp === null) &&
-          student.monthsOfCommercialExp !== filterSettings.monthsOfCommercialExp
-        ) {
-          return false;
-        }
-        return true;
-      });
-    });
+    const filteredStudents = await (await fetch(
+      `http://localhost:3000/hr/filteredStudents/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
+      )).json()
+    setLocalStudents(filteredStudents);
+    // setLocalStudents((previousState) => {
+    //   return previousState.filter((student) => {
+    //     if (
+    //       !(filterSettings.courseCompletion === null) &&
+    //       student.courseCompletion !== filterSettings.courseCompletion
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.courseEngagement === null) &&
+    //       student.courseEngagement !== filterSettings.courseEngagement
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.projectDegree === null) &&
+    //       student.projectDegree !== filterSettings.projectDegree
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.teamProjectDegree === null) &&
+    //       student.teamProjectDegree !== filterSettings.teamProjectDegree
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.expectedTypeWork === null) &&
+    //        student.expectedTypeWork !== filterSettings.expectedTypeWork
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.expectedContractType === null) &&
+    //       student.expectedContractType !== filterSettings.expectedContractType
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.minNetSalary === null) &&
+    //       student.expectedSalary <= Number(filterSettings.minNetSalary)
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.maxNetSalary === null) &&
+    //       student.expectedSalary >= Number(filterSettings.maxNetSalary)
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.canTakeApprenticeship === null) &&
+    //       student.canTakeApprenticeship !== filterSettings.canTakeApprenticeship
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.monthsOfCommercialExp === null) &&
+    //       student.monthsOfCommercialExp !== filterSettings.monthsOfCommercialExp
+    //     ) {
+    //       return false;
+    //     }
+    //     return true;
+    //   });
+    // });
   };
 
   const generateBtns = (keyName: string, amount: number, custom?: string[]) => {
