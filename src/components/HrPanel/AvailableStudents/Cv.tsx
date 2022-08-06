@@ -61,9 +61,7 @@ export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
         <div className="cv__contact">
           <span>
             <FontAwesomeIcon icon={faPhone} />
-            {`+${String(student.tel).substring(0, 2)} ${String(student.tel)
-              .substring(2, 11)
-              .replace(/\B(?=(\d{3})+(?!\d))/g, " ")}`}
+            {student.tel}
           </span>
           <span>
             <FontAwesomeIcon icon={faEnvelope} />
