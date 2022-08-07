@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import { StudentListEnum } from "src/types/enums/studentListEnum";
-import { FilterSettings } from "src/types/interfaces/FilterSettings";
+import { FilterSettings } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
 import { ExpectedTypeWork, Score } from "types";
 
@@ -60,7 +60,7 @@ export function Filter({
     // setExperienceInMonths(0);
     // setLocalStudents(students);
   }, [studentListType]);
-  const filterStudents = () => {
+  const filterStudents = async () => {
     if (searchValue) {
       setLocalStudents(() => {
         const search = fuzzysort.go(searchValue.split(" ")[0], students, {
@@ -130,99 +130,75 @@ export function Filter({
     } else {
       setLocalStudents(students);
     }
-    setLocalStudents((previousState) => {
-      return previousState.filter((student) => {
-        if (
-          !(filterSettings.courseCompletion === null) &&
-          student.courseCompletion !== filterSettings.courseCompletion
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.courseEngagement === null) &&
-          student.courseEngagement !== filterSettings.courseEngagement
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.projectDegree === null) &&
-          student.projectDegree !== filterSettings.projectDegree
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.teamProjectDegree === null) &&
-          student.teamProjectDegree !== filterSettings.teamProjectDegree
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.expectedTypeWork === null) &&
-          (() => {
-            switch (student.expectedTypeWork) {
-              case 0:
-                return "Biuro";
-              case 1:
-                return "Gotowy do przeprowadzki";
-              case 2:
-                return "Zdalna";
-              case 3:
-                return "Biuro i zdalna";
-              case 4:
-                return "Dowolne";
-              default:
-                return "Sam nie wiem";
-            }
-          })() !== filterSettings.expectedTypeWork
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.expectedContractType === null) &&
-          (() => {
-            switch (student.expectedContractType) {
-              case 0:
-                return "Umowa o pracę";
-              case 1:
-                return "B2B";
-              case 2:
-                return "Zlecenie";
-              case 3:
-                return "Umowa o dzieło";
-              default:
-                return "Sam nie wiem";
-            }
-          })() !== filterSettings.expectedContractType
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.minNetSalary === null) &&
-          student.expectedSalary <= Number(filterSettings.minNetSalary)
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.maxNetSalary === null) &&
-          student.expectedSalary >= Number(filterSettings.maxNetSalary)
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.canTakeApprenticeship === null) &&
-          student.canTakeApprenticeship !== filterSettings.canTakeApprenticeship
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.monthsOfCommercialExp === null) &&
-          student.monthsOfCommercialExp !== filterSettings.monthsOfCommercialExp
-        ) {
-          return false;
-        }
-        return true;
-      });
-    });
+    const filteredStudents = await (await fetch(
+      `http://localhost:3000/student/filtered/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
+      )).json()
+    setLocalStudents(filteredStudents);
+    // setLocalStudents((previousState) => {
+    //   return previousState.filter((student) => {
+    //     if (
+    //       !(filterSettings.courseCompletion === null) &&
+    //       student.courseCompletion !== filterSettings.courseCompletion
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.courseEngagement === null) &&
+    //       student.courseEngagement !== filterSettings.courseEngagement
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.projectDegree === null) &&
+    //       student.projectDegree !== filterSettings.projectDegree
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.teamProjectDegree === null) &&
+    //       student.teamProjectDegree !== filterSettings.teamProjectDegree
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.expectedTypeWork === null) &&
+    //        student.expectedTypeWork !== filterSettings.expectedTypeWork
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.expectedContractType === null) &&
+    //       student.expectedContractType !== filterSettings.expectedContractType
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.minNetSalary === null) &&
+    //       student.expectedSalary <= Number(filterSettings.minNetSalary)
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.maxNetSalary === null) &&
+    //       student.expectedSalary >= Number(filterSettings.maxNetSalary)
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.canTakeApprenticeship === null) &&
+    //       student.canTakeApprenticeship !== filterSettings.canTakeApprenticeship
+    //     ) {
+    //       return false;
+    //     }
+    //     if (
+    //       !(filterSettings.monthsOfCommercialExp === null) &&
+    //       student.monthsOfCommercialExp !== filterSettings.monthsOfCommercialExp
+    //     ) {
+    //       return false;
+    //     }
+    //     return true;
+    //   });
+    // });
   };
 
   const generateBtns = (keyName: string, amount: number, custom?: string[]) => {
