@@ -10,6 +10,7 @@ export interface AuthContextObj {
   user: AuthUser | null,
   signIn: ({login, password}: LoginData) => void,
   signOut: () => void,
+  activateAccount: (userId: string, activationToken: string, password: string) => void,
 }
 
 export interface ProtectedRouteInterface {
