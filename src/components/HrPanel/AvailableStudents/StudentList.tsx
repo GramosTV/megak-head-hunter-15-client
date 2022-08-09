@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Dispatch, MouseEvent, SetStateAction } from "react";
 import { UserFE } from "src/types/interfaces/UserFE";
 import { StudentListEnum } from "../../../types/enums/studentListEnum";
-import {toast} from "react-toastify";
+import {handleUserStatus} from "../../../utils/handlers/handleUserStatus";
 
 interface StudentListProps {
   itemsPerPage: number;
@@ -35,34 +35,7 @@ export function StudentList({
     });
   };
 
-const handleUserStatus = async (event: React.MouseEvent<HTMLButtonElement>, studentEmail: string, address: string) : Promise<void> => {
-    console.log(studentEmail);
-    try {
-        const res = await fetch(`/hr/${address}`, {
-            method: 'PATCH',
-            mode: 'cors',
-            headers: {
-                "Access-Control-Allow-Origin": "true",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: studentEmail,
-            }),
-        });
-        const data = await res.json();
-        if (data.ok) {
-            toast.success(data.message);
-            setIsChanged((previousState) => !previousState);
-            // const newStudents = students.filter((student) => student.email !== studentEmail);
-            // setStudents(newStudents);
-        } else {
-            toast.error(data.message);
-        }
-    } catch (e) {
-        console.error(e);
-        toast.error('Coś poszło nie tak, spróbuj później!');
-    }
-}
+
   return (
     <ul className="studentList">
       {students
@@ -77,7 +50,7 @@ const handleUserStatus = async (event: React.MouseEvent<HTMLButtonElement>, stud
                   </span>
                   <div className="studentList__panel">
                     <button
-                      onClick={(event) => handleUserStatus(event, e.email, 'add-student')}
+                      onClick={(event) => handleUserStatus(event, e.email, 'add-student', setIsChanged)}
                     >Zarezerwuj rozmowę</button>
                     {e.expandStudentInfo ? (
                       <FontAwesomeIcon
@@ -122,10 +95,10 @@ const handleUserStatus = async (event: React.MouseEvent<HTMLButtonElement>, stud
                       setStudentCv(e)
                     }}>Pokaż CV</button>
                     <button
-                        onClick={(event) => handleUserStatus(event, e.email, 'remove-student')}
+                        onClick={(event) => handleUserStatus(event, e.email, 'remove-student', setIsChanged)}
                     >Brak zainteresowania</button>
                     <button
-                        onClick={(event) => handleUserStatus(event, e.email, 'hire-student')}
+                        onClick={(event) => handleUserStatus(event, e.email, 'hire-student', setIsChanged)}
                     >Zatrudniony</button>
                     {e.expandStudentInfo ? (
                       <FontAwesomeIcon

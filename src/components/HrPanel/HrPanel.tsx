@@ -68,10 +68,9 @@ export function HrPanel() {
   const [filterState, setFilterState] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [studentCv, setStudentCv] = useState<UserFE | null>(null);
-  const [filterFlag, setFilterFlag] = useState<boolean>(false);
 
   return studentCv ? (
-    <Cv student={studentCv} setStudentCv={setStudentCv} setFilterFlag={setFilterFlag} />
+    <Cv student={studentCv} setStudentCv={setStudentCv} setIsChanged={setIsChanged} />
   ) : (
     <>
       <div className="hrPanel">
