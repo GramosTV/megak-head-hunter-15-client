@@ -53,80 +53,84 @@ export function Filter({
     });
   };
 
-  useEffect(() => {
-    // setFilterSettings(defaultFilterSettings);
-    // setMinSalary(0);
-    // setMaxSalary(0);
-    // setExperienceInMonths(0);
-    // setLocalStudents(students);
-  }, [studentListType]);
+  // useEffect(() => {
+  //   // setFilterSettings(defaultFilterSettings);
+  //   // setMinSalary(0);
+  //   // setMaxSalary(0);
+  //   // setExperienceInMonths(0);
+  //   // setLocalStudents(students);
+  // }, [studentListType]);
+  
   const filterStudents = async () => {
     if (searchValue) {
-      setLocalStudents(() => {
-        const search = fuzzysort.go(searchValue.split(" ")[0], students, {
-          key: "firstName",
-        });
-        const result = students.filter((o1) => {
-          return search.some((o2) => o2.target === o1.firstName);
-        });
-        const search2 = fuzzysort.go(searchValue.split(" ")[1], students, {
-          key: "lastName",
-        });
-        const result2 = students.filter((o1) => {
-          return search2.some((o2) => o2.target === o1.lastName);
-        });
+      setFilterSettings(previousState => {
+        return {...previousState, firstName: searchValue.split(' ')[0] || null, lastName: searchValue.split(' ')[1] || null}
+      })
+      // setLocalStudents(() => {
+      //   const search = fuzzysort.go(searchValue.split(" ")[0], students, {
+      //     key: "firstName",
+      //   });
+      //   const result = students.filter((o1) => {
+      //     return search.some((o2) => o2.target === o1.firstName);
+      //   });
+      //   const search2 = fuzzysort.go(searchValue.split(" ")[1], students, {
+      //     key: "lastName",
+      //   });
+      //   const result2 = students.filter((o1) => {
+      //     return search2.some((o2) => o2.target === o1.lastName);
+      //   });
 
-        const usersMap = new Map();
-        result.forEach((user) => usersMap.set(user.email, user));
-        result2.forEach((user) => {
-          const exists = usersMap.has(user.email);
-          if (!exists) {
-            usersMap.set(user.email, user);
-          }
-        });
+      //   const usersMap = new Map();
+      //   result.forEach((user) => usersMap.set(user.email, user));
+      //   result2.forEach((user) => {
+      //     const exists = usersMap.has(user.email);
+      //     if (!exists) {
+      //       usersMap.set(user.email, user);
+      //     }
+      //   });
 
-        const arr: UserFE[] = [];
-        usersMap.forEach((user) => arr.push(user));
+      //   const arr: UserFE[] = [];
+      //   usersMap.forEach((user) => arr.push(user));
 
-        const search3 = fuzzysort.go(searchValue.split(" ")[1], students, {
-          key: "firstName",
-        });
-        const result3 = students.filter((o1) => {
-          return search3.some((o2) => o2.target === o1.firstName);
-        });
-        const search4 = fuzzysort.go(searchValue.split(" ")[0], students, {
-          key: "lastName",
-        });
-        const result4 = students.filter((o1) => {
-          return search4.some((o2) => o2.target === o1.lastName);
-        });
+      //   const search3 = fuzzysort.go(searchValue.split(" ")[1], students, {
+      //     key: "firstName",
+      //   });
+      //   const result3 = students.filter((o1) => {
+      //     return search3.some((o2) => o2.target === o1.firstName);
+      //   });
+      //   const search4 = fuzzysort.go(searchValue.split(" ")[0], students, {
+      //     key: "lastName",
+      //   });
+      //   const result4 = students.filter((o1) => {
+      //     return search4.some((o2) => o2.target === o1.lastName);
+      //   });
 
-        const usersMap2 = new Map();
-        result3.forEach((user) => usersMap2.set(user.email, user));
-        result4.forEach((user) => {
-          const exists = usersMap2.has(user.email);
-          if (!exists) {
-            usersMap2.set(user.email, user);
-          }
-        });
+      //   const usersMap2 = new Map();
+      //   result3.forEach((user) => usersMap2.set(user.email, user));
+      //   result4.forEach((user) => {
+      //     const exists = usersMap2.has(user.email);
+      //     if (!exists) {
+      //       usersMap2.set(user.email, user);
+      //     }
+      //   });
 
-        const arr2: UserFE[] = [];
-        usersMap2.forEach((user) => arr2.push(user));
+      //   const arr2: UserFE[] = [];
+      //   usersMap2.forEach((user) => arr2.push(user));
 
-        const usersMap3 = new Map();
-        arr.forEach((user) => usersMap3.set(user.email, user));
-        arr2.forEach((user) => {
-          const exists = usersMap3.has(user.email);
-          if (!exists) {
-            usersMap3.set(user.email, user);
-          }
-        });
+      //   const usersMap3 = new Map();
+      //   arr.forEach((user) => usersMap3.set(user.email, user));
+      //   arr2.forEach((user) => {
+      //     const exists = usersMap3.has(user.email);
+      //     if (!exists) {
+      //       usersMap3.set(user.email, user);
+      //     }
+      //   });
 
-        const arr3: UserFE[] = [];
-        usersMap3.forEach((user) => arr3.push(user));
+      //   const arr3: UserFE[] = [];
+      //   usersMap3.forEach((user) => arr3.push(user));
 
-        return arr3;
-      });
+      //   return arr3;
+      // });
     } else {
       setLocalStudents(students);
     }

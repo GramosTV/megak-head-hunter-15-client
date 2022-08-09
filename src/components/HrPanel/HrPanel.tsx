@@ -12,6 +12,8 @@ import { FilterSettings } from "types";
 // any because waiting for student types
 export function HrPanel() {
   const defaultFilterSettings = {
+    firstName: null,
+    lastName: null,
     courseCompletion: null,
     courseEngagement: null,
     projectDegree: null,
