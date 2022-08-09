@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { FilterSettings } from "src/types/interfaces/FilterSettings";
 import { UserFE } from "src/types/interfaces/UserFE";
-import { BoolValues, ExpectedTypeWork } from "types";
+import { BoolValues, ExpectedContractType, ExpectedTypeWork } from "types";
 
 interface FilterProps {
   filterSettings: FilterSettings;
@@ -170,12 +170,7 @@ export function Filter({
         <div className="filter__scores">
           <span>Oczekiwany typ kontraktu</span>
           <div>
-            {generateBtns("expectedContractType", 0, [
-              "Umowa o pracę",
-              "B2B",
-              "Zlecenie",
-              "Umowa o dzieło",
-            ])}
+            {generateBtns("expectedContractType", 0, Object.values(ExpectedContractType))}
           </div>
         </div>
 
