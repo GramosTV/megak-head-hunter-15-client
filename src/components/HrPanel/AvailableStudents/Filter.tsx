@@ -9,9 +9,9 @@ import React, {
   useState,
 } from "react";
 import { StudentListEnum } from "src/types/enums/studentListEnum";
-import { FilterSettings } from "types";
+import { BoolValues, FilterSettings } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
-import { ExpectedTypeWork, Score, Status } from "types";
+import { Score, Status } from "types";
 
 interface FilterProps {
   filterSettings: FilterSettings;
@@ -131,7 +131,7 @@ export function Filter({
       setLocalStudents(students);
     }
     const filteredStudents = await (await fetch(
-      `http://localhost:3000/student/filtered/${studentListType ? Status.RESERVED  : Status.AVAILABLE}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
+      `http://localhost:3000/student/filtered/10/1/${studentListType ? Status.RESERVED  : Status.AVAILABLE}/${filterSettings.firstName}/${filterSettings.lastName}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
       )).json()
     setLocalStudents(filteredStudents);
     // setLocalStudents((previousState) => {
@@ -371,7 +371,7 @@ export function Filter({
           <div>
             <label
               className="container"
-              onClick={() => handleFilterChange("canTakeApprenticeship", true)}
+              onClick={() => handleFilterChange("canTakeApprenticeship", BoolValues.TRUE)}
             >
               Tak
               <input
@@ -384,14 +384,14 @@ export function Filter({
             <br />
             <label
               className="container"
-              onClick={() => handleFilterChange("canTakeApprenticeship", false)}
+              onClick={() => handleFilterChange("canTakeApprenticeship", BoolValues.FALSE)}
             >
               Nie
               <input
                 type="radio"
                 name="radio"
                 checked={
-                  filterSettings.canTakeApprenticeship === false ? true : false
+                  filterSettings.canTakeApprenticeship === BoolValues.FALSE ? true : false
                 }
               />
               <span className="checkmark" />
