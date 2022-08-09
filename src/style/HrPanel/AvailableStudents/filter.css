@@ -26,7 +26,21 @@
   max-height: 95vh;
   background: #0a0a0a;
   padding: 20px;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+.filter__container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+.filter__container::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+.filter__container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #D62929;
 }
 .filter__container div {
   text-align: left;
