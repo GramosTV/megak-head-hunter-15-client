@@ -9,6 +9,7 @@ import { Cv } from "./AvailableStudents/Cv";
 import { User, GetPaginatedListOfUser, Status} from 'types'
 import { UserFE } from "src/types/interfaces/UserFE";
 import { FilterSettings } from "types";
+import {toast} from "react-toastify";
 // any because waiting for student types
 export function HrPanel() {
   const defaultFilterSettings = {
@@ -45,15 +46,18 @@ export function HrPanel() {
         const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`;
         // console.log(url);
         const res = await fetch(url);
-        if(res.ok) {
+        if (res.ok) {
           const data = await res.json() as GetPaginatedListOfUser;
           setPagesCount(data.pagesCount);
           setStudents(
               data.users
                 .map((user: User) => ({ ...user, expandStudentInfo: false}))
           );
+        } else {
+          toast.error('Niepoprawne dane wyszukiwania!');
         }
       } catch (e) {
+        toast.error('Coś poszło nie tak, spróbuj później!');
         console.error(e);
       }
     })();

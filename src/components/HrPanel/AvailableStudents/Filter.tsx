@@ -182,6 +182,7 @@ export function Filter({
               id="from"
               type="number"
               placeholder="np. 1000zł"
+              min={0}
               value={minNetSalary}
               onChange={handleMinNetSalaryChange}
             />
@@ -190,6 +191,7 @@ export function Filter({
               id="to"
               type="number"
               placeholder="np. 10000zł"
+              min={0}
               value={maxNetSalary}
               onChange={handleMaxNetSalaryChange}
             />
@@ -236,6 +238,7 @@ export function Filter({
               type="number"
               placeholder="0 miesięcy"
               value={experienceInMonths}
+              min={0}
               onChange={handleExperienceInMonthsChange}
             />
           </div>
