@@ -1,6 +1,7 @@
 import React, {useContext, useState} from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {AuthContext} from "../../Providers/AuthProvider";
+import {useNavigate, useParams} from "react-router-dom";
 
 type FormInputs = {
   password: string;
@@ -8,17 +9,24 @@ type FormInputs = {
 };
 
 export const ActivateAccountForm = () => {
-  const {signIn} = useContext(AuthContext);
+  const {activateAccount} = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
-  const [missmatchPassword, setMissmatchPassword] = useState<boolean>(false);
+  const [mismatchPassword, setMismatchPassword] = useState<boolean>(false);
+  const {userId, activationToken} = useParams<string>();
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormInputs> = async ({password, confirmPassword}) => {
     try {
       if(password !== confirmPassword) {
-        setMissmatchPassword(true);
+        setMismatchPassword(true);
         return;
       }
-      console.log(password);
+      if(!userId || !activationToken) {
+        navigate('/');
+      } else {
+        await activateAccount(userId, activationToken, password);
+        navigate('/');
+      }
     } catch (e) {
       console.log(e);
     }
@@ -43,7 +51,7 @@ export const ActivateAccountForm = () => {
             {errors.confirmPassword?.type === "required" && "To pole jest wymagane"}
             {errors.confirmPassword?.type === "maxLength" && "Hasło może się składać z maksymalnie 255 znaków"}
             {errors.confirmPassword?.type === "minLength" && "Hasło musi się składać z co najmniej 6 znaków"}
-            {missmatchPassword && 'Hasła powinny być jednakowe!'}
+            {mismatchPassword && 'Hasła powinny być jednakowe!'}
             <div className="lastLine">
               <div></div>
               <button className="loginButton"
