@@ -11,7 +11,7 @@ import React, {
 import { StudentListEnum } from "src/types/enums/studentListEnum";
 import { FilterSettings } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
-import { ExpectedTypeWork, Score } from "types";
+import { ExpectedTypeWork, Score, Status } from "types";
 
 interface FilterProps {
   filterSettings: FilterSettings;
@@ -131,7 +131,7 @@ export function Filter({
       setLocalStudents(students);
     }
     const filteredStudents = await (await fetch(
-      `http://localhost:3000/student/filtered/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
+      `http://localhost:3000/student/filtered/${studentListType ? Status.RESERVED  : Status.AVAILABLE}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
       )).json()
     setLocalStudents(filteredStudents);
     // setLocalStudents((previousState) => {
