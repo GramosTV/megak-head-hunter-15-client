@@ -1,227 +1,43 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fuzzysort from "fuzzysort";
 import React, {
   ChangeEvent,
   Dispatch,
   SetStateAction,
-  useEffect,
   useState,
 } from "react";
-import { StudentListEnum } from "src/types/enums/studentListEnum";
 import { FilterSettings } from "src/types/interfaces/FilterSettings";
 import { UserFE } from "src/types/interfaces/UserFE";
-import { ExpectedTypeWork, Score } from "types";
+import { BoolValues, ExpectedTypeWork } from "types";
 
 interface FilterProps {
   filterSettings: FilterSettings;
   setFilterSettings: Dispatch<SetStateAction<FilterSettings>>;
   defaultFilterSettings: FilterSettings;
-  filterFlag: boolean;
   students: UserFE[];
   setLocalStudents: Dispatch<SetStateAction<UserFE[]>>;
   filterState: boolean;
   setFilterState: Dispatch<SetStateAction<boolean>>;
-  page: number;
-  searchValue: string;
-  studentListType: StudentListEnum;
+  setIsChanged: Dispatch<SetStateAction<boolean>>;
 }
 
 export function Filter({
   filterSettings,
   setFilterSettings,
   defaultFilterSettings,
-  filterFlag,
   students,
   setLocalStudents,
   filterState,
   setFilterState,
-  page,
-  searchValue,
-  studentListType,
+  setIsChanged,
 }: FilterProps) {
-  useEffect(() => {
-    filterStudents();
-  }, [page, searchValue, filterFlag]);
 
   const handleFilterChange = (
     keyName: string,
-    value: Score | number | boolean | string | null
+    value: BoolValues | number | boolean | string | null
   ) => {
     setFilterSettings((previousState) => {
       return { ...previousState, [keyName]: value };
-    });
-  };
-
-  useEffect(() => {
-    // setFilterSettings(defaultFilterSettings);
-    // setMinSalary(0);
-    // setMaxSalary(0);
-    // setExperienceInMonths(0);
-    // setLocalStudents(students);
-  }, [studentListType]);
-  const filterStudents = () => {
-    if (searchValue) {
-      setLocalStudents(() => {
-        const search = fuzzysort.go(searchValue.split(" ")[0], students, {
-          key: "firstName",
-        });
-        const result = students.filter((o1) => {
-          return search.some((o2) => o2.target === o1.firstName);
-        });
-        const search2 = fuzzysort.go(searchValue.split(" ")[1], students, {
-          key: "lastName",
-        });
-        const result2 = students.filter((o1) => {
-          return search2.some((o2) => o2.target === o1.lastName);
-        });
-
-        const usersMap = new Map();
-        result.forEach((user) => usersMap.set(user.email, user));
-        result2.forEach((user) => {
-          const exists = usersMap.has(user.email);
-          if (!exists) {
-            usersMap.set(user.email, user);
-          }
-        });
-
-        const arr: UserFE[] = [];
-        usersMap.forEach((user) => arr.push(user));
-
-        const search3 = fuzzysort.go(searchValue.split(" ")[1], students, {
-          key: "firstName",
-        });
-        const result3 = students.filter((o1) => {
-          return search3.some((o2) => o2.target === o1.firstName);
-        });
-        const search4 = fuzzysort.go(searchValue.split(" ")[0], students, {
-          key: "lastName",
-        });
-        const result4 = students.filter((o1) => {
-          return search4.some((o2) => o2.target === o1.lastName);
-        });
-
-        const usersMap2 = new Map();
-        result3.forEach((user) => usersMap2.set(user.email, user));
-        result4.forEach((user) => {
-          const exists = usersMap2.has(user.email);
-          if (!exists) {
-            usersMap2.set(user.email, user);
-          }
-        });
-
-        const arr2: UserFE[] = [];
-        usersMap2.forEach((user) => arr2.push(user));
-
-        const usersMap3 = new Map();
-        arr.forEach((user) => usersMap3.set(user.email, user));
-        arr2.forEach((user) => {
-          const exists = usersMap3.has(user.email);
-          if (!exists) {
-            usersMap3.set(user.email, user);
-          }
-        });
-
-        const arr3: UserFE[] = [];
-        usersMap3.forEach((user) => arr3.push(user));
-
-        return arr3;
-      });
-    } else {
-      setLocalStudents(students);
-    }
-    setLocalStudents((previousState) => {
-      return previousState.filter((student) => {
-        if (
-          !(filterSettings.courseCompletion === null) &&
-          student.courseCompletion !== filterSettings.courseCompletion
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.courseEngagement === null) &&
-          student.courseEngagement !== filterSettings.courseEngagement
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.projectDegree === null) &&
-          student.projectDegree !== filterSettings.projectDegree
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.teamProjectDegree === null) &&
-          student.teamProjectDegree !== filterSettings.teamProjectDegree
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.expectedTypeWork === null) &&
-          (() => {
-            switch (student.expectedTypeWork) {
-              case 0:
-                return "Biuro";
-              case 1:
-                return "Gotowy do przeprowadzki";
-              case 2:
-                return "Zdalna";
-              case 3:
-                return "Biuro i zdalna";
-              case 4:
-                return "Dowolne";
-              default:
-                return "Sam nie wiem";
-            }
-          })() !== filterSettings.expectedTypeWork
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.expectedContractType === null) &&
-          (() => {
-            switch (student.expectedContractType) {
-              case 0:
-                return "Umowa o pracę";
-              case 1:
-                return "B2B";
-              case 2:
-                return "Zlecenie";
-              case 3:
-                return "Umowa o dzieło";
-              default:
-                return "Sam nie wiem";
-            }
-          })() !== filterSettings.expectedContractType
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.minNetSalary === null) &&
-          student.expectedSalary <= Number(filterSettings.minNetSalary)
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.maxNetSalary === null) &&
-          student.expectedSalary >= Number(filterSettings.maxNetSalary)
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.canTakeApprenticeship === null) &&
-          student.canTakeApprenticeship !== filterSettings.canTakeApprenticeship
-        ) {
-          return false;
-        }
-        if (
-          !(filterSettings.monthsOfCommercialExp === null) &&
-          student.monthsOfCommercialExp !== filterSettings.monthsOfCommercialExp
-        ) {
-          return false;
-        }
-        return true;
-      });
     });
   };
 
@@ -305,6 +121,7 @@ export function Filter({
     setExperienceInMonths(Number(e.target.value));
     handleFilterChange("monthsOfCommercialExp", Number(e.target.value));
   };
+
   return (
     <div className={filterState ? "filter" : "filter disabled"}>
       <div className="filter__container">
@@ -346,13 +163,7 @@ export function Filter({
         <div className="filter__scores">
           <span>Preferowane miejsce pracy</span>
           <div>
-            {generateBtns("expectedTypeWork", 0, [
-              "Biuro",
-              "Gotowy do przeprowadzki",
-              "Zdalna",
-              "Biuro i zdalna",
-              "Dowolone",
-            ])}
+            {generateBtns("expectedTypeWork", 0, Object.values(ExpectedTypeWork))}
           </div>
         </div>
 
@@ -395,28 +206,26 @@ export function Filter({
           <div>
             <label
               className="container"
-              onClick={() => handleFilterChange("canTakeApprenticeship", true)}
             >
               Tak
               <input
                 type="radio"
                 name="radio"
-                checked={filterSettings.canTakeApprenticeship ? true : false}
+                onChange={() => handleFilterChange("canTakeApprenticeship", BoolValues.TRUE)}
+                checked={filterSettings.canTakeApprenticeship === BoolValues.TRUE}
               />
               <span className="checkmark" />
             </label>
             <br />
             <label
               className="container"
-              onClick={() => handleFilterChange("canTakeApprenticeship", false)}
             >
               Nie
               <input
                 type="radio"
                 name="radio"
-                checked={
-                  filterSettings.canTakeApprenticeship === false ? true : false
-                }
+                onChange={() => handleFilterChange("canTakeApprenticeship", BoolValues.FALSE)}
+                checked={filterSettings.canTakeApprenticeship === BoolValues.FALSE}
               />
               <span className="checkmark" />
             </label>
@@ -447,7 +256,7 @@ export function Filter({
           <button
             onClick={() => {
               setFilterState((previousState) => !previousState);
-              filterStudents();
+              setIsChanged((previousState) => !previousState);
             }}
           >
             Pokaż wyniki
