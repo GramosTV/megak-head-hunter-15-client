@@ -10,6 +10,7 @@ import { User, GetPaginatedListOfUser, Status} from 'types'
 import { UserFE } from "src/types/interfaces/UserFE";
 import { FilterSettings } from "types";
 import {toast} from "react-toastify";
+import {Spinner} from "../common/Spinner";
 // any because waiting for student types
 export function HrPanel() {
   const defaultFilterSettings = {
@@ -25,6 +26,7 @@ export function HrPanel() {
     monthsOfCommercialExp: null,
   };
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [students, setStudents] = useState<UserFE[]>([]);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
@@ -43,8 +45,8 @@ export function HrPanel() {
   useEffect(() => {
     (async () => {
       try {
+        setIsLoading(prevState => !prevState);
         const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`;
-        // console.log(url);
         const res = await fetch(url);
         if (res.ok) {
           const data = await res.json() as GetPaginatedListOfUser;
@@ -56,6 +58,7 @@ export function HrPanel() {
         } else {
           toast.error('Niepoprawne dane wyszukiwania!');
         }
+        setIsLoading(prevState => !prevState);
       } catch (e) {
         toast.error('Coś poszło nie tak, spróbuj później!');
         console.error(e);
@@ -72,6 +75,10 @@ export function HrPanel() {
   const [filterState, setFilterState] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [studentCv, setStudentCv] = useState<UserFE | null>(null);
+
+  if (isLoading) {
+    return <Spinner/>
+  }
 
   return studentCv ? (
     <Cv student={studentCv} setStudentCv={setStudentCv} setIsChanged={setIsChanged} />
