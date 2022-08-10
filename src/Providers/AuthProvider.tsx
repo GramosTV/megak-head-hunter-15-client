@@ -7,6 +7,7 @@ export const AuthContext = React.createContext<AuthContextObj>({
   user: null,
   signIn: () => {},
   signOut: () => {},
+  activateAccount: () => {},
 });
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
@@ -63,6 +64,30 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
     }
   }
 
+  const activateAccount = async (userId: string, activationToken: string, password: string) => {
+    try {
+      const res = await fetch(`/auth/activate/${userId}/${activationToken}`, {
+        method: 'PATCH',
+        mode: 'cors',
+        headers: {
+          "Access-Control-Allow-Origin":"true",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          newPassword: password,
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (e) {
+      toast.error('Coś poszło nie tak, spróbuj później!');
+    }
+  }
+
   const signOut = async () => {
     setUser(null);
     try {
@@ -86,7 +111,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   }
 
   return (
-    <AuthContext.Provider value={{user, signIn, signOut}}>
+    <AuthContext.Provider value={{user, signIn, signOut, activateAccount}}>
       {children}
     </AuthContext.Provider>
   )
