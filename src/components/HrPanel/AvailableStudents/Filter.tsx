@@ -9,7 +9,7 @@ import React, {
   useState,
 } from "react";
 import { StudentListEnum } from "src/types/enums/studentListEnum";
-import { BoolValues, FilterSettings } from "types";
+import { BoolValues, FilterSettings, GetPaginatedListOfUser, User } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
 import { Score, Status } from "types";
 
@@ -19,12 +19,15 @@ interface FilterProps {
   defaultFilterSettings: FilterSettings;
   filterFlag: boolean;
   students: UserFE[];
-  setLocalStudents: Dispatch<SetStateAction<UserFE[]>>;
+  setStudents: Dispatch<SetStateAction<UserFE[]>>;
   filterState: boolean;
   setFilterState: Dispatch<SetStateAction<boolean>>;
   page: number;
   searchValue: string;
   studentListType: StudentListEnum;
+  setRefetch: Dispatch<SetStateAction<boolean>>;
+  itemsPerPage: number;
+  setPagesCount: Dispatch<SetStateAction<number>>;
 }
 
 export function Filter({
@@ -33,12 +36,15 @@ export function Filter({
   defaultFilterSettings,
   filterFlag,
   students,
-  setLocalStudents,
+  setStudents,
   filterState,
   setFilterState,
   page,
   searchValue,
   studentListType,
+  setRefetch,
+  itemsPerPage,
+  setPagesCount,
 }: FilterProps) {
   useEffect(() => {
     filterStudents();
@@ -62,6 +68,21 @@ export function Filter({
   // }, [studentListType]);
   
   const filterStudents = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:3000/student/filtered/10/1/${studentListType ? Status.RESERVED  : Status.AVAILABLE}/${filterSettings.firstName}/${filterSettings.lastName}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
+          )
+        if(res.ok) {
+          const data = await res.json() as GetPaginatedListOfUser;
+          setPagesCount(data.pagesCount);
+          setStudents(
+              data.users
+                .map((user: User) => ({ ...user, expandStudentInfo: false} as UserFE))
+          );
+        }
+      } catch (e) {
+        console.error(e);
+      }
     if (searchValue) {
       setFilterSettings(previousState => {
         return {...previousState, firstName: searchValue.split(' ')[0] || null, lastName: searchValue.split(' ')[1] || null}
@@ -132,12 +153,13 @@ export function Filter({
       //   return arr3;
       // });
     } else {
-      setLocalStudents(students);
+      setFilterSettings(previousState => { return {...previousState, firstName: null, lastName: null} })
     }
     const filteredStudents = await (await fetch(
-      `http://localhost:3000/student/filtered/10/1/${studentListType ? Status.RESERVED  : Status.AVAILABLE}/${filterSettings.firstName}/${filterSettings.lastName}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
+      `http://localhost:3000/student/filtered/10/1/${studentListType ? Status.RESERVED  : Status.AVAILABLE}/${searchValue.split(' ')[0] || null}/${searchValue.split(' ')[1] || null}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`
       )).json()
-    setLocalStudents(filteredStudents);
+    setStudents(filteredStudents.users
+      .map((user: User) => ({ ...user, expandStudentInfo: false} as UserFE)));
     // setLocalStudents((previousState) => {
     //   return previousState.filter((student) => {
     //     if (
@@ -296,7 +318,7 @@ export function Filter({
               setMinSalary(0);
               setMaxSalary(0);
               setExperienceInMonths(0);
-              setLocalStudents(students);
+              setRefetch(prev => !prev);
             }}
           >
             Wyczyść wszystkie
