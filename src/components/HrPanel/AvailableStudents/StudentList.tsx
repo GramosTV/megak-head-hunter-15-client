@@ -46,7 +46,7 @@ export function StudentList({
               (
                 <div className="studentList__studentContainer">
                   <span>
-                      {`${e.firstName} ${e.lastName[0] ? e.lastName[0].toUpperCase() + '.' : ''}`}
+                      {`${e.firstName} ${e.lastName ? e.lastName[0].toUpperCase() + '.' : ''}`}
                   </span>
                   <div className="studentList__panel">
                     <button
