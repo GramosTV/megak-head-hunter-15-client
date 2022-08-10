@@ -56,32 +56,6 @@ export function Filter({
     filterStudents()
   }, [filterState, searchValue]);
   const filterStudents = async () => {
-    try {
-      const res = await fetch(
-        `http://localhost:3000/student/filtered/10/1/${
-          studentListType ? Status.RESERVED : Status.AVAILABLE
-        }/${filterSettings.firstName}/${filterSettings.lastName}/${
-          filterSettings.courseCompletion
-        }/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${
-          filterSettings.teamProjectDegree
-        }/${filterSettings.expectedTypeWork}/${
-          filterSettings.expectedContractType
-        }/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${
-          filterSettings.canTakeApprenticeship
-        }/${filterSettings.monthsOfCommercialExp}`
-      );
-      if (res.ok) {
-        const data = (await res.json()) as GetPaginatedListOfUser;
-        setPagesCount(data.pagesCount);
-        setStudents(
-          data.users.map(
-            (user: User) => ({ ...user, expandStudentInfo: false } as UserFE)
-          )
-        );
-      }
-    } catch (e) {
-      console.error(e);
-    }
     if (searchValue) {
       setFilterSettings((previousState) => {
         return {
