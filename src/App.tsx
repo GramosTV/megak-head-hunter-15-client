@@ -47,6 +47,7 @@ export const App = () => {
       <Routes>
         <Route path="activate/:userId/:activationToken" element={<ActivateAccountForm />} />
       </Routes>
+      </ProtectedRoute>
       <ProtectedRoute isAllowed={!user}>
         <Routes>
           <Route path="*" element={<LoginForm />} />
