@@ -51,7 +51,8 @@ export function HrPanel() {
     (async () => {
       try {
         setIsLoading(prevState => !prevState);
-        const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${filterSettings.firstName}/${filterSettings.lastName}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`;
+        const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${searchValue.split(' ')[0] || null}/${searchValue.split(' ')[1] || null}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`;
+        console.log(url)
         const res = await fetch(url);
         if (res.ok) {
           const data = await res.json() as GetPaginatedListOfUser;
@@ -76,14 +77,13 @@ export function HrPanel() {
         page,
         studentListType,
         isChanged,
-        searchValue
       ]
   );
  
 
-  if (isLoading) {
-    return <Spinner/>
-  }
+  // if (isLoading) {
+  //   return <Spinner/>
+  // }
 
   return studentCv ? (
     <Cv student={studentCv} setStudentCv={setStudentCv} setIsChanged={setIsChanged} />
@@ -110,6 +110,8 @@ export function HrPanel() {
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           studentListType={studentListType}
+          setIsChanged={setIsChanged}
+          setFilterSettings={setFilterSettings}
         />
         <StudentList
           itemsPerPage={itemsPerPage}
