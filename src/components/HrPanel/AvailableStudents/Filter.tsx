@@ -6,7 +6,7 @@ import React, {
   SetStateAction,
   useState,
 } from "react";
-import { FilterSettings } from "src/types/interfaces/FilterSettings";
+import { FilterSettings } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
 import { BoolValues, ExpectedContractType, ExpectedTypeWork } from "types";
 

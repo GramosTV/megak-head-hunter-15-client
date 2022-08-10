@@ -14,6 +14,8 @@ import {Spinner} from "../common/Spinner";
 // any because waiting for student types
 export function HrPanel() {
   const defaultFilterSettings = {
+    firstName: null,
+    lastName: null,
     courseCompletion: null,
     courseEngagement: null,
     projectDegree: null,
@@ -41,12 +43,15 @@ export function HrPanel() {
       StudentListEnum.available
   );
   const [isChanged, setIsChanged] = useState<boolean>(false);
+  const [filterState, setFilterState] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [studentCv, setStudentCv] = useState<UserFE | null>(null);
 
   useEffect(() => {
     (async () => {
       try {
         setIsLoading(prevState => !prevState);
-        const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`;
+        const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${filterSettings.firstName}/${filterSettings.lastName}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`;
         const res = await fetch(url);
         if (res.ok) {
           const data = await res.json() as GetPaginatedListOfUser;
@@ -71,11 +76,10 @@ export function HrPanel() {
         page,
         studentListType,
         isChanged,
+        searchValue
       ]
   );
-  const [filterState, setFilterState] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [studentCv, setStudentCv] = useState<UserFE | null>(null);
+ 
 
   if (isLoading) {
     return <Spinner/>
@@ -102,7 +106,6 @@ export function HrPanel() {
           setStudentStatus={setStudentStatus}
         />
         <AvailableStudents
-          students={students}
           setFilterState={setFilterState}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
