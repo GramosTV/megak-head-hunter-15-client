@@ -30,7 +30,7 @@ export function HrPanel() {
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
   const [pagesCount, setPagesCount] = useState<number>(1);
-  const [localStudents, setLocalStudents] = useState<UserFE[]>(students);
+  const [localStudents, setLocalStudents] = useState<UserFE[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -43,6 +43,10 @@ export function HrPanel() {
               data.users
                 .map((user: User) => ({ ...user, expandStudentInfo: false} as UserFE))
           );
+          setLocalStudents(
+            data.users
+              .map((user: User) => ({ ...user, expandStudentInfo: false} as UserFE))
+        );
         }
       } catch (e) {
         console.error(e);

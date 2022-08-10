@@ -42,7 +42,7 @@ export const App = () => {
         pauseOnHover
         theme='dark'
       />
-      <ProtectedRoute isAllowed={!user}>
+      {/* <ProtectedRoute isAllowed={!user}>
         <Routes>
           <Route path="*" element={<LoginForm />} />
         </Routes>
@@ -56,7 +56,8 @@ export const App = () => {
         <Routes>
           <Route path="*" element={<AdminPanel />} />
         </Routes>
-      </ProtectedRoute>
+      </ProtectedRoute> */}
+      <HrPanel />
     </div>
   );
 };

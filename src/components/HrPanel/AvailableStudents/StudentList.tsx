@@ -43,7 +43,7 @@ export function StudentList({
                 <div className="studentList__studentContainer">
                   <span>{`${
                     e.firstName
-                  } ${e.lastName[0].toUpperCase()}.`}</span>
+                  } ${e.lastName ? e.lastName[0].toUpperCase() : null}.`}</span>
                   <div className="studentList__panel">
                     <button>Zarezerwuj rozmowę</button>
                     {e.expandStudentInfo ? (
