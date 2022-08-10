@@ -1,11 +1,9 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fuzzysort from "fuzzysort";
 import React, {
   ChangeEvent,
   Dispatch,
   SetStateAction,
-  useEffect,
   useState,
 } from "react";
 import { StudentListEnum } from "src/types/enums/studentListEnum";
@@ -13,11 +11,11 @@ import { BoolValues, FilterSettings, GetPaginatedListOfUser, User } from "types"
 import { UserFE } from "src/types/interfaces/UserFE";
 import { Score, Status } from "types";
 
+
 interface FilterProps {
   filterSettings: FilterSettings;
   setFilterSettings: Dispatch<SetStateAction<FilterSettings>>;
   defaultFilterSettings: FilterSettings;
-  filterFlag: boolean;
   students: UserFE[];
   setStudents: Dispatch<SetStateAction<UserFE[]>>;
   filterState: boolean;
@@ -28,13 +26,13 @@ interface FilterProps {
   setRefetch: Dispatch<SetStateAction<boolean>>;
   itemsPerPage: number;
   setPagesCount: Dispatch<SetStateAction<number>>;
+  setIsChanged: Dispatch<SetStateAction<boolean>>;
 }
 
 export function Filter({
   filterSettings,
   setFilterSettings,
   defaultFilterSettings,
-  filterFlag,
   students,
   setStudents,
   filterState,
@@ -45,14 +43,12 @@ export function Filter({
   setRefetch,
   itemsPerPage,
   setPagesCount,
+  setIsChanged,
 }: FilterProps) {
-  useEffect(() => {
-    filterStudents();
-  }, [page, searchValue, filterFlag]);
 
   const handleFilterChange = (
     keyName: string,
-    value: Score | number | boolean | string | null
+    value: BoolValues | number | boolean | string | null
   ) => {
     setFilterSettings((previousState) => {
       return { ...previousState, [keyName]: value };
@@ -226,7 +222,6 @@ export function Filter({
     //   });
     // });
   };
-
   const generateBtns = (keyName: string, amount: number, custom?: string[]) => {
     const btnArr = [];
     if (custom && custom?.length >= 1) {
@@ -307,6 +302,7 @@ export function Filter({
     setExperienceInMonths(Number(e.target.value));
     handleFilterChange("monthsOfCommercialExp", Number(e.target.value));
   };
+
   return (
     <div className={filterState ? "filter" : "filter disabled"}>
       <div className="filter__container">
@@ -348,25 +344,14 @@ export function Filter({
         <div className="filter__scores">
           <span>Preferowane miejsce pracy</span>
           <div>
-            {generateBtns("expectedTypeWork", 0, [
-              "Biuro",
-              "Gotowy do przeprowadzki",
-              "Zdalna",
-              "Biuro i zdalna",
-              "Dowolone",
-            ])}
+            {generateBtns("expectedTypeWork", 0, Object.values(ExpectedTypeWork))}
           </div>
         </div>
 
         <div className="filter__scores">
           <span>Oczekiwany typ kontraktu</span>
           <div>
-            {generateBtns("expectedContractType", 0, [
-              "Umowa o pracę",
-              "B2B",
-              "Zlecenie",
-              "Umowa o dzieło",
-            ])}
+            {generateBtns("expectedContractType", 0, Object.values(ExpectedContractType))}
           </div>
         </div>
 
@@ -378,6 +363,7 @@ export function Filter({
               id="from"
               type="number"
               placeholder="np. 1000zł"
+              min={0}
               value={minNetSalary}
               onChange={handleMinNetSalaryChange}
             />
@@ -386,6 +372,7 @@ export function Filter({
               id="to"
               type="number"
               placeholder="np. 10000zł"
+              min={0}
               value={maxNetSalary}
               onChange={handleMaxNetSalaryChange}
             />
@@ -403,7 +390,8 @@ export function Filter({
               <input
                 type="radio"
                 name="radio"
-                checked={filterSettings.canTakeApprenticeship ? true : false}
+                onChange={() => handleFilterChange("canTakeApprenticeship", BoolValues.TRUE)}
+                checked={filterSettings.canTakeApprenticeship === BoolValues.TRUE}
               />
               <span className="checkmark" />
             </label>
@@ -416,9 +404,8 @@ export function Filter({
               <input
                 type="radio"
                 name="radio"
-                checked={
-                  filterSettings.canTakeApprenticeship === BoolValues.FALSE ? true : false
-                }
+                onChange={() => handleFilterChange("canTakeApprenticeship", BoolValues.FALSE)}
+                checked={filterSettings.canTakeApprenticeship === BoolValues.FALSE}
               />
               <span className="checkmark" />
             </label>
@@ -434,6 +421,7 @@ export function Filter({
               type="number"
               placeholder="0 miesięcy"
               value={experienceInMonths}
+              min={0}
               onChange={handleExperienceInMonthsChange}
             />
           </div>
@@ -449,7 +437,7 @@ export function Filter({
           <button
             onClick={() => {
               setFilterState((previousState) => !previousState);
-              filterStudents();
+              setIsChanged((previousState) => !previousState);
             }}
           >
             Pokaż wyniki

@@ -1,9 +1,9 @@
-import { Score } from 'types';
+import {BoolValues} from 'types';
 export interface RawUser {
     email: string;
-    courseCompletion: Score;
-    courseEngagement: Score;
-    projectDegree: Score;
-    teamProjectDegree: Score;
+    courseCompletion: BoolValues | null;
+    courseEngagement: BoolValues | null;
+    projectDegree: BoolValues | null;
+    teamProjectDegree: BoolValues | null;
     bonusProjectUrls: string[];
 }

@@ -19,11 +19,12 @@ import "./style/AdminPanel/Sections/addStudents.css";
 import 'react-toastify/dist/ReactToastify.css';
 import "./style/HrPanel/AvailableStudents/cv.css";
 import "./style/header.css";
+import "./style/common/Spinner.css";
 import { AdminPanel } from "./components/AdminPanel/AdminPanel";
 import { errorNotif } from "./utils/notifications/errorNotif";
 import { ToastContainer } from "react-toastify";
 import { MainHeader } from "./components/MainHeader";
-
+import {ActivateAccountForm} from './components/ActivateAccountForm/ActivateAccountForm';
 
 export const App = () => {
   const { user } = useContext(AuthContext);
@@ -42,7 +43,11 @@ export const App = () => {
         pauseOnHover
         theme='dark'
       />
-      {/* <ProtectedRoute isAllowed={!user}>
+      <ProtectedRoute isAllowed={!user}>
+      <Routes>
+        <Route path="activate/:userId/:activationToken" element={<ActivateAccountForm />} />
+      </Routes>
+      <ProtectedRoute isAllowed={!user}>
         <Routes>
           <Route path="*" element={<LoginForm />} />
         </Routes>
@@ -56,8 +61,7 @@ export const App = () => {
         <Routes>
           <Route path="*" element={<AdminPanel />} />
         </Routes>
-      </ProtectedRoute> */}
-      <HrPanel />
+      </ProtectedRoute>
     </div>
   );
 };

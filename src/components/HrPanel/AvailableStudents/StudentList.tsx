@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Dispatch, MouseEvent, SetStateAction } from "react";
 import { UserFE } from "src/types/interfaces/UserFE";
 import { StudentListEnum } from "../../../types/enums/studentListEnum";
+import {handleUserStatus} from "../../../utils/handlers/handleUserStatus";
 
 interface StudentListProps {
   itemsPerPage: number;
@@ -10,7 +11,8 @@ interface StudentListProps {
   students: UserFE[];
   setStudents: Dispatch<SetStateAction<UserFE[]>>;
   studentListType: StudentListEnum;
-  setStudentCv: Dispatch<UserFE>
+  setStudentCv: Dispatch<UserFE>;
+  setIsChanged: Dispatch<SetStateAction<boolean>>;
 }
 export function StudentList({
   itemsPerPage,
@@ -18,7 +20,8 @@ export function StudentList({
   students,
   setStudents,
   studentListType,
-  setStudentCv
+  setStudentCv,
+  setIsChanged,
 }: StudentListProps) {
   const handleExpandStudentInfo = (element: MouseEvent<SVGSVGElement>) => {
     const id = element.currentTarget.id;
@@ -31,6 +34,7 @@ export function StudentList({
       });
     });
   };
+
 
   return (
     <ul className="studentList">
@@ -45,7 +49,9 @@ export function StudentList({
                     e.firstName
                   } ${e.lastName ? e.lastName[0].toUpperCase() : null}.`}</span>
                   <div className="studentList__panel">
-                    <button>Zarezerwuj rozmowę</button>
+                    <button
+                      onClick={(event) => handleUserStatus(event, e.email, 'add-student', setIsChanged)}
+                    >Zarezerwuj rozmowę</button>
                     {e.expandStudentInfo ? (
                       <FontAwesomeIcon
                         id={e.email}
@@ -88,8 +94,12 @@ export function StudentList({
                     <button onClick={() => {
                       setStudentCv(e)
                     }}>Pokaż CV</button>
-                    <button>Brak zainteresowania</button>
-                    <button>Zatrudniony</button>
+                    <button
+                        onClick={(event) => handleUserStatus(event, e.email, 'remove-student', setIsChanged)}
+                    >Brak zainteresowania</button>
+                    <button
+                        onClick={(event) => handleUserStatus(event, e.email, 'hire-student', setIsChanged)}
+                    >Zatrudniony</button>
                     {e.expandStudentInfo ? (
                       <FontAwesomeIcon
                         id={e.email}
@@ -135,7 +145,22 @@ export function StudentList({
                   <div>
                     <p>Preferowane miejsce pracy</p>
                     <span>
-                      <b>{e.expectedTypeWork}</b>
+                      {/*<b>{(() => {*/}
+                      {/*  switch(e.expectedTypeWork) {*/}
+                      {/*    case 0:*/}
+                      {/*    return 'Biuro'*/}
+                      {/*    case 1:*/}
+                      {/*    return 'Gotowy do przeprowadzki'*/}
+                      {/*    case 2:*/}
+                      {/*    return 'Zdalna'*/}
+                      {/*    case 3:*/}
+                      {/*    return 'Biuro i zdalna'*/}
+                      {/*    case 4:*/}
+                      {/*    return 'Dowolne'*/}
+                      {/*    default:*/}
+                      {/*    return 'Sam nie wiem'*/}
+                      {/*  }*/}
+                      {/*  })()}</b>*/}
                     </span>
                   </div>
                   <div>

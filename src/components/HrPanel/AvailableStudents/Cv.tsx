@@ -9,14 +9,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Dispatch, SetStateAction } from "react";
 import { UserFE } from "src/types/interfaces/UserFE";
+import {handleUserStatus} from "../../../utils/handlers/handleUserStatus";
 
 interface CvProps {
   student: UserFE;
   setStudentCv: Dispatch<SetStateAction<UserFE | null>>;
-  setFilterFlag: Dispatch<SetStateAction<boolean>>;
+  setIsChanged: Dispatch<SetStateAction<boolean>>;
 }
 
-export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
+export function Cv({ student, setStudentCv, setIsChanged }: CvProps) {
   const generateStars = (score: number) => {
     const arr = [];
     for (let i = 0; i < 5; i++) {
@@ -41,7 +42,6 @@ export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
         className="cv__goBack"
         onClick={() => {
           setStudentCv(null);
-          setFilterFlag(previousState => !previousState)
         }}
       >
         <FontAwesomeIcon icon={faAngleLeft} /> Wróć
@@ -72,8 +72,18 @@ export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
           <span>O mnie</span>
           <p>{student.bio}</p>
         </div>
-        <button>Brak zainteresowania</button>
-        <button>Zatrudniony</button>
+        <button
+            onClick={(event) => {
+              handleUserStatus(event, student.email, 'remove-student', setIsChanged)
+                  .then(() => setStudentCv(null));
+            }}
+        >Brak zainteresowania</button>
+        <button
+            onClick={(event) => {
+              handleUserStatus(event, student.email, 'hire-student', setIsChanged)
+                  .then(() => setStudentCv(null));
+            }}
+        >Zatrudniony</button>
       </div>
       <div className="cv__info">
         <h2 className="cv__sectionTitle">Oceny</h2>
@@ -149,7 +159,7 @@ export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
             <p>Komercyjne doświadczenie w programowaniu</p>
             <span>
               <b>
-                {student.monthsOfCommercialExp + " "}
+                {student.monthsOfCommercialExp ?? 0 + " "}
                 {student.monthsOfCommercialExp === 1 ? "miesiąc" : "miesięcy"}
               </b>
             </span>
@@ -170,15 +180,15 @@ export function Cv({ student, setStudentCv, setFilterFlag }: CvProps) {
 
         <h2 className="cv__sectionTitle">Portfolio</h2>
         <section className="cv__links">
-          {generateLinks(student.portfolioUrls)}
+          {generateLinks(student.portfolioUrls ?? [])}
         </section>
         <h2 className="cv__sectionTitle">Projekt w zespole Scrumowym</h2>
         <section className="cv__links">
-          {generateLinks(student.bonusProjectUrls)}
+          {generateLinks(student.bonusProjectUrls ?? [])}
         </section>
         <h2 className="cv__sectionTitle">Projekt na zaliczenie</h2>
         <section className="cv__links">
-          {generateLinks(student.courseWork)}
+          {generateLinks(student.courseWork ?? [])}
         </section>
       </div>
     </div>
