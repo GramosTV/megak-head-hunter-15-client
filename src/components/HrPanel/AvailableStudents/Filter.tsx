@@ -9,7 +9,7 @@ import React, {
 import { StudentListEnum } from "src/types/enums/studentListEnum";
 import { BoolValues, FilterSettings, GetPaginatedListOfUser, User } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
-import { Score, Status } from "types";
+import { Score, Status, ExpectedContractType, ExpectedTypeWork } from "types";
 
 
 interface FilterProps {
