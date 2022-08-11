@@ -74,7 +74,7 @@ export function StudentList({
                       Rezerwacja do
                       <br />
                       <strong>
-                        {new Date().toLocaleDateString()} r.
+                        {`${e.hrToStudent[0]?.reservedTo}`} r.
                       </strong>
                     </div>
                     <div className="studentList__userData">
