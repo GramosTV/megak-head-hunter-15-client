@@ -1,21 +1,24 @@
 import { faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, Dispatch, SetStateAction, useEffect } from "react";
+import { FilterSettings } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
 import { StudentListEnum } from '../../../types/enums/studentListEnum';
 interface AvailableStudentsProps {
-  students: UserFE[];
   setFilterState: Dispatch<SetStateAction<boolean>>;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
   studentListType: StudentListEnum;
+  setIsChanged: Dispatch<SetStateAction<boolean>>;
+  setFilterSettings: Dispatch<SetStateAction<FilterSettings>>;
 }
 export function AvailableStudents({
-  students,
   setFilterState,
   searchValue,
   setSearchValue,
-  studentListType
+  studentListType,
+  setIsChanged,
+  setFilterSettings,
   
 }: AvailableStudentsProps) {
   useEffect(() => {
@@ -24,6 +27,8 @@ export function AvailableStudents({
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const searchVal = e.currentTarget.value;
     setSearchValue(searchVal);
+    setFilterSettings(prev => { return {...prev, firstName: searchValue.split(' ')[0] || null, lastName: searchValue.split(' ')[1] || null } } )
+    setIsChanged(prev => !prev)
   };
   return (
     <div className="availableStudents">
