@@ -22,7 +22,7 @@ export function Select({studentListType, setStudentListType, setStudentStatus}: 
     <div className={`hrPanel__option ${studentListType ? "active" : ""}`}
        onClick={() => {
          setStudentListType(StudentListEnum.readyToTalk);
-        //  setStudentStatus(Status.RESERVED);
+         setStudentStatus(Status.AVAILABLE);
        }}
     >
     Do rozmowy
