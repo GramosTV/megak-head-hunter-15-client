@@ -1,0 +1,36 @@
+.studentPanel__profileForm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    label {
+        margin-top: 8px;
+    }
+    input, select, textarea {
+        background-color: #222224;
+        border: none;
+        padding: 4px;
+        width: 250px;
+        &[type=number] {
+            width: 100px;
+        }
+    }
+    select {
+        width: 200px;
+    }
+    textarea {
+        width: 300px;
+        min-height: 100px;
+    }
+    button {
+        border: none;
+        color: #f7f7f7;
+        background-color: #e02735;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 6px 10px;
+        width: 100px;
+        margin: 0 auto;
+        margin-top: 15px;
+      }
+}

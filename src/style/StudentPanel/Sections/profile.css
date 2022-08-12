@@ -1,0 +1,36 @@
+.studentPanel__profileForm {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.studentPanel__profileForm label {
+  margin-top: 8px;
+}
+.studentPanel__profileForm input, .studentPanel__profileForm select, .studentPanel__profileForm textarea {
+  background-color: #222224;
+  border: none;
+  padding: 4px;
+  width: 250px;
+}
+.studentPanel__profileForm input[type=number], .studentPanel__profileForm select[type=number], .studentPanel__profileForm textarea[type=number] {
+  width: 100px;
+}
+.studentPanel__profileForm select {
+  width: 200px;
+}
+.studentPanel__profileForm textarea {
+  width: 300px;
+  min-height: 100px;
+}
+.studentPanel__profileForm button {
+  border: none;
+  color: #f7f7f7;
+  background-color: #e02735;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 10px;
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 15px;
+}/*# sourceMappingURL=profile.css.map */
