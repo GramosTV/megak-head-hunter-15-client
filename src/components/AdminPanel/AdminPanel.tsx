@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AdminSectionEnum } from "../../types/enums/adminSectionEnum";
+import { AdminSectionEnum } from "../../types/enums/AdminSectionEnum";
 import { AddHrForm } from "./Sections/AddHrForm";
 import { AddStudents } from "./Sections/AddStudents";
 import { Select } from "./Select";

@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Status } from "types";
-import {StudentListEnum} from '../../types/enums/studentListEnum'
+import {StudentListEnum} from '../../types/enums/StudentListEnum'
 
 interface SelectProps {
   studentListType: StudentListEnum;
@@ -22,7 +22,7 @@ export function Select({studentListType, setStudentListType, setStudentStatus}: 
     <div className={`hrPanel__option ${studentListType ? "active" : ""}`}
        onClick={() => {
          setStudentListType(StudentListEnum.readyToTalk);
-         setStudentStatus(Status.RESERVED);
+        //  setStudentStatus(Status.RESERVED);
        }}
     >
     Do rozmowy

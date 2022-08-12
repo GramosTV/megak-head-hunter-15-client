@@ -4,14 +4,14 @@ import { Filter } from "./AvailableStudents/Filter";
 import { ItemsControl } from "./AvailableStudents/ItemsControl";
 import { StudentList } from "./AvailableStudents/StudentList";
 import { Select } from "./Select";
-import { StudentListEnum } from "../../types/enums/studentListEnum";
+import { StudentListEnum } from "../../types/enums/StudentListEnum";
 import { Cv } from "./AvailableStudents/Cv";
 import { User, GetPaginatedListOfUser, Status} from 'types'
 import { UserFE } from "src/types/interfaces/UserFE";
 import { FilterSettings } from "types";
 import {toast} from "react-toastify";
 import {Spinner} from "../common/Spinner";
-// any because waiting for student types
+
 export function HrPanel() {
   const defaultFilterSettings = {
     firstName: null,
