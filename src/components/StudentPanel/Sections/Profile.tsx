@@ -58,7 +58,7 @@ export function Profile({ studentProfile }: ProfileProps) {
     courses,
   }) => {
     try {
-      const res = await fetch("/student/profile", {
+      const res = await fetch("/student/update", {
         method: "PATCH",
         mode: "cors",
         headers: {
