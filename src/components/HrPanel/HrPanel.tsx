@@ -81,9 +81,6 @@ export function HrPanel() {
   );
  
 
-  // if (isLoading) {
-  //   return <Spinner/>
-  // }
 
   return studentCv ? (
     <Cv student={studentCv} setStudentCv={setStudentCv} setIsChanged={setIsChanged} />
@@ -113,7 +110,7 @@ export function HrPanel() {
           setIsChanged={setIsChanged}
           setFilterSettings={setFilterSettings}
         />
-        <StudentList
+        {isLoading ? <Spinner /> : <StudentList
           itemsPerPage={itemsPerPage}
           page={page}
           students={students}
@@ -121,7 +118,8 @@ export function HrPanel() {
           studentListType={studentListType}
           setStudentCv={setStudentCv}
           setIsChanged={setIsChanged}
-        />
+        />}
+        
       </div>
       <ItemsControl
         itemsPerPage={itemsPerPage}
