@@ -26,6 +26,7 @@ export function HrPanel() {
     maxNetSalary: null,
     canTakeApprenticeship: null,
     monthsOfCommercialExp: null,
+    email: null,
   };
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -46,12 +47,13 @@ export function HrPanel() {
   const [filterState, setFilterState] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [studentCv, setStudentCv] = useState<UserFE | null>(null);
+  const [hrEmail, setHrEmail] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
       try {
         setIsLoading(prevState => !prevState);
-        const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${searchValue.split(' ')[0] || null}/${searchValue.split(' ')[1] || null}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}`;
+        const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${searchValue.split(' ')[0] || null}/${searchValue.split(' ')[1] || null}/${filterSettings.courseCompletion}/${filterSettings.courseEngagement}/${filterSettings.projectDegree}/${filterSettings.teamProjectDegree}/${filterSettings.expectedTypeWork}/${filterSettings.expectedContractType}/${filterSettings.minNetSalary}/${filterSettings.maxNetSalary}/${filterSettings.canTakeApprenticeship}/${filterSettings.monthsOfCommercialExp}/${hrEmail}`;
         console.log(url)
         const res = await fetch(url);
         if (res.ok) {
@@ -101,6 +103,7 @@ export function HrPanel() {
           studentListType={studentListType}
           setStudentListType={setStudentListType}
           setStudentStatus={setStudentStatus}
+          setHrEmail={setHrEmail}
         />
         <AvailableStudents
           setFilterState={setFilterState}

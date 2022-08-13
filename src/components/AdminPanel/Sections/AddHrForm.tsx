@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import {toast} from "react-toastify";
 
 type FormInputs = {
   email: string;
@@ -33,9 +34,9 @@ export function AddHrForm() {
       });
       const data = await res.json();
       if (data.ok) {
-        console.log(data);
+        toast.success(data.message);
       } else {
-        console.log(data);
+        toast.error(data.message);
       }
     } catch (e) {
       console.log(e);
