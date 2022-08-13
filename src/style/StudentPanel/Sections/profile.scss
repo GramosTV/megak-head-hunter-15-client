@@ -1,36 +1,85 @@
-.studentPanel__profileForm {
+.studentPanel__form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 25px;
+  width: 100%;
+  section {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  div {
+    display: flex;
     flex-direction: column;
-    label {
-        margin-top: 8px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 25px;
+  }
+  img {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+  }
+  label {
+    margin-top: 8px;
+    text-align: left;
+    font-size: 14px;
+  }
+  input,
+  select,
+  textarea {
+    background-color: #222224;
+    border: none;
+    padding: 4px;
+    width: 250px;
+    &[type="number"] {
+      width: 100px;
     }
-    input, select, textarea {
-        background-color: #222224;
-        border: none;
-        padding: 4px;
-        width: 250px;
-        &[type=number] {
-            width: 100px;
-        }
-    }
-    select {
-        width: 200px;
-    }
-    textarea {
-        width: 300px;
-        min-height: 100px;
-    }
-    button {
-        border: none;
-        color: #f7f7f7;
-        background-color: #e02735;
-        cursor: pointer;
-        font-size: 14px;
-        padding: 6px 10px;
-        width: 100px;
-        margin: 0 auto;
-        margin-top: 15px;
-      }
+  }
+  select {
+    width: 200px;
+  }
+  textarea {
+    width: 300px;
+    min-height: 100px;
+  }
+  button {
+    border: none;
+    color: #f7f7f7;
+    background-color: #e02735;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 6px 10px;
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+  .disabled {
+    background-color: #292a2b !important;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+.mainBtn {
+  border: none;
+  color: #f7f7f7;
+  background-color: #e02735;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 10px;
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.centered {
+  height: calc(90vh - 92px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
