@@ -16,6 +16,7 @@ import { Spinner } from "../common/Spinner";
 import { StudentPanelEnum } from "../../types/enums/StudentPanelEnum";
 import { Profile } from "./Sections/Profile";
 import { ChangePassword } from "./Sections/ChangePassword";
+import { Hired } from "./Sections/Hired";
 
 export function StudentPanel() {
   const [panelSection, setPanelSection] = useState<StudentPanelEnum>(
@@ -26,7 +27,7 @@ export function StudentPanel() {
     tel: 0,
     firstName: "",
     lastName: "",
-    githubUsername: "",
+    githubUsername: "Ami777",
     portfolioUrls: ["ok"],
     projectUrls: ["ok, ok"],
     bio: "",
@@ -49,6 +50,9 @@ export function StudentPanel() {
       ) : null}
       {panelSection === StudentPanelEnum.changePassword ? (
         <ChangePassword />
+      ) : null}
+      {panelSection === StudentPanelEnum.hired ? (
+        <Hired />
       ) : null}
     </div>
   );
