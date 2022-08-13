@@ -1,6 +1,7 @@
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { successNotif } from '../utils/notifications/successNotif';
 import { errorNotif } from '../utils/notifications/errorNotif';
 
 type FormInputs = {
@@ -33,11 +34,14 @@ export function ChangePassword() {
       const data = await res.json();
       if (data.ok) {
         console.log(data);
+        successNotif("Hasło zostało pomyślnie zmienione");
       } else {
         console.log(data);
+        errorNotif('Coś poszło nie tak, spróbuj ponownie.')
       }
     } catch (e) {
       console.log(e);
+      errorNotif('Coś poszło nie tak, spróbuj ponownie.')
     }
   }
 

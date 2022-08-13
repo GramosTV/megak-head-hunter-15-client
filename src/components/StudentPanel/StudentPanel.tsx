@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import { Spinner } from "../common/Spinner";
 import { StudentPanelEnum } from "../../types/enums/StudentPanelEnum";
 import { Profile } from "./Sections/Profile";
-import { ChangePassword } from "./Sections/ChangePassword";
+import { ChangePassword } from "../ChangePassword";
 import { Hired } from "./Sections/Hired";
 
 export function StudentPanel() {

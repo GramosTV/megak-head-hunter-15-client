@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { errorNotif } from "../../../utils/notifications/errorNotif";
+import { successNotif } from "../../../utils/notifications/successNotif";
 import { ExpectedContractType, ExpectedTypeWork, UserProfile } from "types";
 
 interface ProfileProps {
@@ -88,11 +90,14 @@ export function Profile({ studentProfile }: ProfileProps) {
       const data = await res.json();
       if (data.ok) {
         console.log(data);
+        successNotif("Profil pomyślnie zaktualizowany!");
       } else {
         console.log(data);
+        errorNotif('Coś poszło nie tak, spróbuj ponownie.')
       }
     } catch (e) {
       console.log(e);
+      errorNotif('Coś poszło nie tak, spróbuj ponownie.')
     }
   };
   return (
