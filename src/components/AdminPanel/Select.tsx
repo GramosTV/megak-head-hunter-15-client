@@ -16,10 +16,17 @@ export function Select({ adminSection, setAdminSection }: SelectProps) {
         Dodaj HR
       </div>
       <div
-        className={`adminPanel__option ${adminSection ? "active" : ""}`}
+        className={`adminPanel__option ${adminSection === AdminSectionEnum.importStudents ? "active" : ""}`}
         onClick={() => setAdminSection(AdminSectionEnum.importStudents)}
       >
         Dodaj kursantów
+      </div>
+
+      <div
+        className={`adminPanel__option ${adminSection === AdminSectionEnum.changePassword ? "active" : ""}`}
+        onClick={() => setAdminSection(AdminSectionEnum.changePassword)}
+      >
+        Zmiana hasła
       </div>
     </div>
   );
