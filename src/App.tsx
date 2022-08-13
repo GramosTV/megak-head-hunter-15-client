@@ -8,6 +8,8 @@ import "./App.css";
 import "animate.css";
 import "./style/global.css";
 import "./style/HrPanel/hrPanel.css";
+import "./style/StudentPanel/studentPanel.css";
+import "./style/StudentPanel/Sections/profile.css";
 import "./style/HrPanel/AvailableStudents/availableStudents.css";
 import "./style/HrPanel/AvailableStudents/itemsControl.css";
 import "./style/HrPanel/AvailableStudents/studentList.css";
@@ -25,6 +27,7 @@ import { errorNotif } from "./utils/notifications/errorNotif";
 import { ToastContainer } from "react-toastify";
 import { MainHeader } from "./components/MainHeader";
 import {ActivateAccountForm} from './components/ActivateAccountForm/ActivateAccountForm';
+import { StudentPanel } from "./components/StudentPanel/StudentPanel";
 
 export const App = () => {
   const { user } = useContext(AuthContext);
@@ -49,6 +52,11 @@ export const App = () => {
       <ProtectedRoute isAllowed={!user}>
         <Routes>
           <Route path="*" element={<LoginForm />} />
+        </Routes>
+      </ProtectedRoute>
+      <ProtectedRoute isAllowed={!!user && user.role === 'student'}>
+        <Routes>
+          <Route path="*" element={<StudentPanel />} />
         </Routes>
       </ProtectedRoute>
       <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
