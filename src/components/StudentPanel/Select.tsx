@@ -17,12 +17,20 @@ export function Select({ panelSection, setPanelSection }: SelectProps) {
     >
     Profil
     </div>
-    <div className={`studentPanel__option ${panelSection ? "active" : ""}`}
+    <div className={`studentPanel__option ${panelSection === StudentPanelEnum.changePassword ? "active" : ""}`}
        onClick={() => {
          setPanelSection(StudentPanelEnum.changePassword);
        }}
     >
     Zmiana hasła
+    </div>
+
+    <div className={`studentPanel__option ${panelSection === StudentPanelEnum.hired ? "active" : ""}`}
+       onClick={() => {
+         setPanelSection(StudentPanelEnum.hired);
+       }}
+    >
+    Zatrudniony?
     </div>
   </div>
   );

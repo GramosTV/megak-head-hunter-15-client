@@ -1,4 +1,5 @@
 export enum StudentPanelEnum {
     profile,
-    changePassword
+    changePassword,
+    hired
 }
