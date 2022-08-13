@@ -1,7 +1,7 @@
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { errorNotif } from '../../../utils/notifications/errorNotif';
+import { errorNotif } from '../utils/notifications/errorNotif';
 
 type FormInputs = {
   password: string
@@ -19,7 +19,7 @@ export function ChangePassword() {
   const onSubmit: SubmitHandler<FormInputs> = async ({password, repeatPassword}) => {
     if (password !== repeatPassword) errorNotif("Passwords don't match")
     try {
-      const res = await fetch('/student/changePassword', {
+      const res = await fetch('/student/password', {
         method: 'PATCH',
         mode: 'cors',
         headers: {
@@ -28,7 +28,6 @@ export function ChangePassword() {
         },
         body: JSON.stringify({
           password,
-          repeatPassword
         }),
       });
       const data = await res.json();
