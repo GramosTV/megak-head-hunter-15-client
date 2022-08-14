@@ -29,7 +29,7 @@ export function StudentPanel() {
     lastName: "",
     githubUsername: "Ami777",
     portfolioUrls: ["ok"],
-    projectUrls: ["ok, ok"],
+    bonusProjectUrls: ["ok, ok"],
     bio: "",
     expectedTypeWork: ExpectedTypeWork.All,
     targetWorkCity: "",
@@ -41,6 +41,23 @@ export function StudentPanel() {
     workExperience: "",
     courses: "",
   });
+
+  useEffect(() => {
+      (async () => {
+        try {
+          const res = await fetch('/student/profile');
+          if (res.ok) {
+            const data = (await res.json()) as UserProfile;
+            setStudentProfile(data);
+          } else {
+            toast.error("Coś poszło nie tak, spróbuj później!");
+          }
+        } catch (e) {
+          toast.error("Coś poszło nie tak, spróbuj później!");
+          console.error(e);
+        }
+      })();
+  }, []);
 
   return (
     <div className="studentPanel">
