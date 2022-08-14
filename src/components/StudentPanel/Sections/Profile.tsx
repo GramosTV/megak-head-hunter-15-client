@@ -14,7 +14,7 @@ type FormInputs = {
   lastName: string;
   githubUsername: string;
   portfolioUrls: string;
-  projectUrls: string;
+  bonusProjectUrls: string;
   bio: string;
   expectedTypeWork: ExpectedTypeWork;
   targetWorkCity: string;
@@ -37,7 +37,7 @@ export function Profile({ studentProfile }: ProfileProps) {
     defaultValues: {
       ...(studentProfile as any),
       portfolioUrls: studentProfile?.portfolioUrls?.join(", ") || null,
-      projectUrls: studentProfile?.projectUrls?.join(", ") || null,
+      bonusProjectUrls: studentProfile?.bonusProjectUrls?.join(", ") || null,
     },
   });
   const onSubmit: SubmitHandler<FormInputs> = async ({
@@ -47,7 +47,7 @@ export function Profile({ studentProfile }: ProfileProps) {
     lastName,
     githubUsername,
     portfolioUrls,
-    projectUrls,
+    bonusProjectUrls,
     bio,
     expectedTypeWork,
     targetWorkCity,
@@ -74,7 +74,7 @@ export function Profile({ studentProfile }: ProfileProps) {
           lastName,
           githubUsername,
           portfolioUrls: portfolioUrls.split(",").map((el) => el.trim()),
-          projectUrls: projectUrls.split(",").map((el) => el.trim()),
+          bonusProjectUrls: bonusProjectUrls.split(",").map((el) => el.trim()),
           bio,
           expectedTypeWork,
           targetWorkCity,
@@ -135,7 +135,7 @@ export function Profile({ studentProfile }: ProfileProps) {
               type="number"
               {...register("tel", {
                 required: true,
-                max: 15,
+                max: 999999999999999,
                 min: 0,
               })}
               placeholder="Numer telefonu"
@@ -300,13 +300,13 @@ export function Profile({ studentProfile }: ProfileProps) {
             {errors.portfolioUrls?.type === "maxLength" && "Za długie"}
             <label>Linki do projektów (po przecinku)</label>
             <input
-              {...register("projectUrls", { required: true, maxLength: 999 })}
+              {...register("bonusProjectUrls", { required: true, maxLength: 999 })}
               placeholder="Linki do projektów (po przecinku)"
               className={edit ? "" : "disabled"}
               disabled={!edit}
             />
-            {errors.projectUrls?.type === "required" && "To pole jest wymagane"}
-            {errors.projectUrls?.type === "maxLength" && "Za długie"}
+            {errors.bonusProjectUrls?.type === "required" && "To pole jest wymagane"}
+            {errors.bonusProjectUrls?.type === "maxLength" && "Za długie"}
           </div>
         </section>
 
