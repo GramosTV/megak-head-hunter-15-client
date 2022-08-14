@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, Dispatch, SetStateAction, useEffect } from "react";
 import { FilterSettings } from "types";
 import { UserFE } from "src/types/interfaces/UserFE";
-import { StudentListEnum } from '../../../types/enums/studentListEnum';
+import { StudentListEnum } from '../../../types/enums/StudentListEnum';
 interface AvailableStudentsProps {
   setFilterState: Dispatch<SetStateAction<boolean>>;
   searchValue: string;

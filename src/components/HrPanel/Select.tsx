@@ -24,7 +24,7 @@ export function Select({studentListType, setStudentListType, setStudentStatus, s
     >
     Dostępni Kursanci
     </div>
-    <div className={`hrPanel__option ${studentListType ? "active" : ""}`}
+    <div className={`hrPanel__option ${studentListType === StudentListEnum.readyToTalk ? "active" : ""}`}
        onClick={() => {
          setStudentListType(StudentListEnum.readyToTalk);
          setStudentStatus(Status.AVAILABLE);
@@ -32,6 +32,14 @@ export function Select({studentListType, setStudentListType, setStudentStatus, s
        }}
     >
     Do rozmowy
+    </div>
+
+    <div className={`hrPanel__option ${studentListType === StudentListEnum.changePassword ? "active" : ""}`}
+       onClick={() => {
+         setStudentListType(StudentListEnum.changePassword);
+       }}
+    >
+    Zmiana hasła
     </div>
   </div>
   );

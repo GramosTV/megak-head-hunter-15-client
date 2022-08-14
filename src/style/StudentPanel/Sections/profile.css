@@ -1,0 +1,87 @@
+.studentPanel__form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 25px;
+  width: 100%;
+}
+.studentPanel__form section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.studentPanel__form div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 25px;
+}
+.studentPanel__form img {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}
+.studentPanel__form label {
+  margin-top: 8px;
+  text-align: left;
+  font-size: 14px;
+}
+.studentPanel__form input,
+.studentPanel__form select,
+.studentPanel__form textarea {
+  background-color: #222224;
+  border: none;
+  padding: 4px;
+  width: 250px;
+}
+.studentPanel__form input[type=number],
+.studentPanel__form select[type=number],
+.studentPanel__form textarea[type=number] {
+  width: 100px;
+}
+.studentPanel__form select {
+  width: 200px;
+}
+.studentPanel__form textarea {
+  width: 300px;
+  min-height: 100px;
+}
+.studentPanel__form button {
+  border: none;
+  color: #f7f7f7;
+  background-color: #e02735;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 10px;
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+.studentPanel__form .disabled {
+  background-color: #292a2b !important;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.mainBtn {
+  border: none;
+  color: #f7f7f7;
+  background-color: #e02735;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 10px;
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.centered {
+  height: calc(90vh - 92px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}/*# sourceMappingURL=profile.css.map */

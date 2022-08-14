@@ -1,7 +1,7 @@
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Dispatch, SetStateAction, useEffect } from "react";
-import { StudentListEnum } from "src/types/enums/studentListEnum";
+import { StudentListEnum } from "src/types/enums/StudentListEnum";
 
 interface ItemsPerPageProps {
   itemsPerPage: number;

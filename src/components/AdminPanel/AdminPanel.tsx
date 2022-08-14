@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { AdminSectionEnum } from "../../types/enums/adminSectionEnum";
+import { AdminSectionEnum } from "../../types/enums/AdminSectionEnum";
+import { ChangePassword } from "../ChangePassword";
 import { AddHrForm } from "./Sections/AddHrForm";
 import { AddStudents } from "./Sections/AddStudents";
 import { Select } from "./Select";
@@ -13,6 +14,7 @@ export function AdminPanel() {
       <Select adminSection={adminSection} setAdminSection={setAdminSection} />
       {adminSection === AdminSectionEnum.addHr ? <AddHrForm /> : null}
       {adminSection === AdminSectionEnum.importStudents ? <AddStudents /> : null}
+      {adminSection === AdminSectionEnum.changePassword ? <ChangePassword /> : null}
     </div>
   );
 }

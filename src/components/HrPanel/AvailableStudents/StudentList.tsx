@@ -2,7 +2,7 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Dispatch, MouseEvent, SetStateAction } from "react";
 import { UserFE } from "src/types/interfaces/UserFE";
-import { StudentListEnum } from "../../../types/enums/studentListEnum";
+import { StudentListEnum } from "../../../types/enums/StudentListEnum";
 import {handleUserStatus} from "../../../utils/handlers/handleUserStatus";
 
 interface StudentListProps {
