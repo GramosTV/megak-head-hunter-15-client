@@ -27,6 +27,7 @@ export function HrPanel() {
     maxNetSalary: null,
     canTakeApprenticeship: null,
     monthsOfCommercialExp: null,
+    email: null,
   };
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -46,6 +47,8 @@ export function HrPanel() {
   const [filterState, setFilterState] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [studentCv, setStudentCv] = useState<UserFE | null>(null);
+  const [hrEmail, setHrEmail] = useState<string | null>(null);
+
 
   useEffect(
     () => {
@@ -90,6 +93,7 @@ export function HrPanel() {
     [itemsPerPage, page, studentListType, isChanged]
   );
 
+
   // if (isLoading) {
   //   return <Spinner/>
   // }
@@ -128,6 +132,7 @@ export function HrPanel() {
           studentListType={studentListType}
           setStudentListType={setStudentListType}
           setStudentStatus={setStudentStatus}
+          setHrEmail={setHrEmail}
         />
         <AvailableStudents
           setFilterState={setFilterState}
@@ -137,7 +142,7 @@ export function HrPanel() {
           setIsChanged={setIsChanged}
           setFilterSettings={setFilterSettings}
         />
-        <StudentList
+        {isLoading ? <Spinner /> : <StudentList
           itemsPerPage={itemsPerPage}
           page={page}
           students={students}
@@ -145,7 +150,8 @@ export function HrPanel() {
           studentListType={studentListType}
           setStudentCv={setStudentCv}
           setIsChanged={setIsChanged}
-        />
+        />}
+        
       </div>
       <ItemsControl
         itemsPerPage={itemsPerPage}

@@ -21,7 +21,7 @@ import "./style/AdminPanel/Sections/addStudents.css";
 import 'react-toastify/dist/ReactToastify.css';
 import "./style/HrPanel/AvailableStudents/cv.css";
 import "./style/header.css";
-import "./style/common/Spinner.css";
+import "./style/common/spinner.css";
 import { AdminPanel } from "./components/AdminPanel/AdminPanel";
 import { errorNotif } from "./utils/notifications/errorNotif";
 import { ToastContainer } from "react-toastify";
