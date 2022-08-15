@@ -95,7 +95,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 
 ### HR Panel
 
-#### View students list
+#### Viewing students list
 
 ![viewing_students_list](https://user-images.githubusercontent.com/92755273/184684320-5f0ba9fb-832b-4fff-bf89-24dce1670ee8.gif)
 
@@ -124,6 +124,12 @@ Maybe you can mention me or this repo in the acknowledgements too
 #### Importing students from .csv file
 
 ![add_students](https://user-images.githubusercontent.com/92755273/184687630-3360f0d2-a2d1-4297-9b02-5cacd57d8418.gif)
+
+### User Panel
+
+#### Changing user's profile data and setting hired status by the user
+
+![user_panel](https://user-images.githubusercontent.com/92755273/184690397-fdf331f4-dfee-4dde-9e9a-1335efbf556f.gif)
 
 
 <!-- Getting Started -->
