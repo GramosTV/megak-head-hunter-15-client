@@ -54,19 +54,21 @@ export const App = () => {
           <Route path="*" element={<LoginForm />} />
         </Routes>
       </ProtectedRoute>
-      <ProtectedRoute isAllowed={!!user && user.role === 'student'}>
-        <Routes>
-          <Route path="*" element={<StudentPanel />} />
-        </Routes>
-      </ProtectedRoute>
       <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
         <Routes>
+          <MainHeader />
           <Route path="*" element={<HrPanel />} />
         </Routes>
       </ProtectedRoute>
       <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
         <Routes>
+        <MainHeader />
           <Route path="*" element={<AdminPanel />} />
+        </Routes>
+      </ProtectedRoute>
+      <ProtectedRoute isAllowed={!!user && user.role === 'student'}>
+        <Routes>
+        <MainHeader />
         </Routes>
       </ProtectedRoute>
     </div>
