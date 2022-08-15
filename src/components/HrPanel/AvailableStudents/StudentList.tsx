@@ -145,22 +145,7 @@ export function StudentList({
                   <div>
                     <p>Preferowane miejsce pracy</p>
                     <span>
-                      {/*<b>{(() => {*/}
-                      {/*  switch(e.expectedTypeWork) {*/}
-                      {/*    case 0:*/}
-                      {/*    return 'Biuro'*/}
-                      {/*    case 1:*/}
-                      {/*    return 'Gotowy do przeprowadzki'*/}
-                      {/*    case 2:*/}
-                      {/*    return 'Zdalna'*/}
-                      {/*    case 3:*/}
-                      {/*    return 'Biuro i zdalna'*/}
-                      {/*    case 4:*/}
-                      {/*    return 'Dowolne'*/}
-                      {/*    default:*/}
-                      {/*    return 'Sam nie wiem'*/}
-                      {/*  }*/}
-                      {/*  })()}</b>*/}
+                      {e.expectedTypeWork}
                     </span>
                   </div>
                   <div>
@@ -195,8 +180,8 @@ export function StudentList({
                       <b>
                         {e.monthsOfCommercialExp ?? 0 + " "}
                         {e.monthsOfCommercialExp === 1
-                          ? "miesiąc"
-                          : "miesięcy"}
+                          ? " miesiąc"
+                          : " miesięcy"}
                       </b>
                     </span>
                   </div>
