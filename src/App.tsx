@@ -23,11 +23,9 @@ import "./style/HrPanel/AvailableStudents/cv.css";
 import "./style/header.css";
 import "./style/common/spinner.css";
 import { AdminPanel } from "./components/AdminPanel/AdminPanel";
-import { errorNotif } from "./utils/notifications/errorNotif";
 import { ToastContainer } from "react-toastify";
 import { MainHeader } from "./components/MainHeader";
 import {ActivateAccountForm} from './components/ActivateAccountForm/ActivateAccountForm';
-import { StudentPanel } from "./components/StudentPanel/StudentPanel";
 
 export const App = () => {
   const { user } = useContext(AuthContext);
