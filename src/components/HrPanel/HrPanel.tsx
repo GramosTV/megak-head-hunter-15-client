@@ -67,7 +67,7 @@ export function HrPanel() {
             filterSettings.minNetSalary
           }/${filterSettings.maxNetSalary}/${
             filterSettings.canTakeApprenticeship
-          }/${filterSettings.monthsOfCommercialExp}`;
+          }/${filterSettings.monthsOfCommercialExp}/${hrEmail}`;
           console.log(url);
           const res = await fetch(url);
           if (res.ok) {
