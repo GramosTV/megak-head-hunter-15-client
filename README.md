@@ -91,7 +91,30 @@ Maybe you can mention me or this repo in the acknowledgements too
 
 <!-- Features -->
 
-<!-- ### :dart: Features (for both Client and Server) -->
+## :dart: Features
+
+### HR Panel
+
+## View students list
+
+![viewing_students_list](https://user-images.githubusercontent.com/92755273/184684320-5f0ba9fb-832b-4fff-bf89-24dce1670ee8.gif)
+
+## Searching students
+
+![searching_students](https://user-images.githubusercontent.com/92755273/184684409-706db96e-376a-417f-ba0e-bd829bca9d7c.gif)
+
+## Filtering displayed students by provided criteria
+
+![searching_students_by_provided_criteria](https://user-images.githubusercontent.com/92755273/184684528-69b53629-45c4-46dd-8445-0aa988e02c5f.gif)
+
+## Adding students to HR list
+
+![adding_students_to_hr_list](https://user-images.githubusercontent.com/92755273/184684595-d51865eb-47ed-4e6c-8fce-7c3ac95cc84b.gif)
+
+## Viewing student's CV and removing students from the list
+
+![viewing_cv_removing_students_from_hr_list](https://user-images.githubusercontent.com/92755273/184684689-5918ad3b-0ff4-495f-8e96-9dd9f5eadf10.gif)
+
 
 <!-- Getting Started -->
 
