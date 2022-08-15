@@ -104,6 +104,7 @@ export function HrPanel() {
           studentListType={studentListType}
           setStudentListType={setStudentListType}
           setStudentStatus={setStudentStatus}
+          setHrEmail={setHrEmail}
         />
         <ChangePassword />
       </>

@@ -1,6 +1,6 @@
 import React, {Dispatch, SetStateAction, useContext} from "react";
 import { Status } from "types";
-import {StudentListEnum} from '../../types/enums/studentListEnum'
+import {StudentListEnum} from '../../types/enums/StudentListEnum'
 import {AuthContext} from "../../Providers/AuthProvider";
 
 interface SelectProps {
