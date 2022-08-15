@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { errorNotif } from "../../../utils/notifications/errorNotif";
 import { successNotif } from "../../../utils/notifications/successNotif";
@@ -32,6 +32,7 @@ export function Profile({ studentProfile }: ProfileProps) {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<FormInputs>({
     defaultValues: {
@@ -40,6 +41,10 @@ export function Profile({ studentProfile }: ProfileProps) {
       bonusProjectUrls: studentProfile?.bonusProjectUrls?.join(", ") || null,
     },
   });
+  useEffect(() => {
+    reset(studentProfile as any);
+    console.log(studentProfile)
+  }, [studentProfile.email]);
   const onSubmit: SubmitHandler<FormInputs> = async ({
     email,
     tel,

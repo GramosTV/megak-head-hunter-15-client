@@ -18,13 +18,13 @@ import "./style/LoginForm/loginForm.css";
 import "./style/AdminPanel/adminPanel.css";
 import "./style/AdminPanel/Sections/addHrForm.css";
 import "./style/AdminPanel/Sections/addStudents.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import "./style/HrPanel/AvailableStudents/cv.css";
 import "./style/header.css";
 import "./style/common/spinner.css";
 import { AdminPanel } from "./components/AdminPanel/AdminPanel";
 import { ToastContainer } from "react-toastify";
-import {ActivateAccountForm} from './components/ActivateAccountForm/ActivateAccountForm';
+import { ActivateAccountForm } from "./components/ActivateAccountForm/ActivateAccountForm";
 import { StudentPanel } from "./components/StudentPanel/StudentPanel";
 import { MainHeader } from "./components/MainHeader";
 
@@ -43,29 +43,56 @@ export const App = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme='dark'
+        theme="dark"
       />
       <Routes>
-        <Route path="activate/:userId/:activationToken" element={<ActivateAccountForm />} />
+        <Route
+          path="activate/:userId/:activationToken"
+          element={<ActivateAccountForm />}
+        />
       </Routes>
       <ProtectedRoute isAllowed={!user}>
         <Routes>
           <Route path="*" element={<LoginForm />} />
         </Routes>
       </ProtectedRoute>
-      <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
+      <ProtectedRoute isAllowed={!!user && user.role === "hr"}>
         <Routes>
-          <Route path="*" element={<><MainHeader /><HrPanel /></>} />
+          <Route
+            path="*"
+            element={
+              <>
+                <MainHeader />
+                <HrPanel />
+              </>
+            }
+          />
         </Routes>
       </ProtectedRoute>
-      <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
+      <ProtectedRoute isAllowed={!!user && user.role === "admin"}>
         <Routes>
-          <Route path="*" element={<><MainHeader /><AdminPanel /></>} />
+          <Route
+            path="*"
+            element={
+              <>
+                <MainHeader />
+                <AdminPanel />
+              </>
+            }
+          />
         </Routes>
       </ProtectedRoute>
-      <ProtectedRoute isAllowed={!!user && user.role === 'student'}>
+      <ProtectedRoute isAllowed={!!user && user.role === "student"}>
         <Routes>
-        <Route path="*" element={<><MainHeader /><StudentPanel /></>} />
+          <Route
+            path="*"
+            element={
+              <>
+                <MainHeader />
+                <StudentPanel />
+              </>
+            }
+          />
         </Routes>
       </ProtectedRoute>
     </div>

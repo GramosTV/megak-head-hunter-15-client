@@ -56,7 +56,7 @@ export function Cv({ student, setStudentCv, setIsChanged }: CvProps) {
         </span>
         <a href={`https://github.com/${student.githubUsername}`}>
           <FontAwesomeIcon icon={faGithub} />
-          {`https://github.com/${student.githubUsername}`.split("/").pop()}
+          {student.githubUsername}
         </a>
         <div className="cv__contact">
           <span>
@@ -160,7 +160,7 @@ export function Cv({ student, setStudentCv, setIsChanged }: CvProps) {
             <span>
               <b>
                 {student.monthsOfCommercialExp ?? 0 + " "}
-                {student.monthsOfCommercialExp === 1 ? "miesiąc" : "miesięcy"}
+                {student.monthsOfCommercialExp === 1 ? " miesiąc" : " miesięcy"}
               </b>
             </span>
           </div>

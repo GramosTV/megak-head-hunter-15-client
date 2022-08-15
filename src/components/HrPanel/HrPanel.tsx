@@ -49,7 +49,6 @@ export function HrPanel() {
   const [studentCv, setStudentCv] = useState<UserFE | null>(null);
   const [hrEmail, setHrEmail] = useState<string | null>(null);
 
-
   useEffect(
     () => {
       (async () => {
@@ -93,13 +92,12 @@ export function HrPanel() {
     [itemsPerPage, page, studentListType, isChanged]
   );
 
-
   // if (isLoading) {
   //   return <Spinner/>
   // }
   if (studentListType === StudentListEnum.changePassword) {
     return (
-      <>
+      <div className="hrPanel">
         <Select
           studentListType={studentListType}
           setStudentListType={setStudentListType}
@@ -107,7 +105,7 @@ export function HrPanel() {
           setHrEmail={setHrEmail}
         />
         <ChangePassword />
-      </>
+      </div>
     );
   }
   return studentCv ? (
@@ -143,16 +141,19 @@ export function HrPanel() {
           setIsChanged={setIsChanged}
           setFilterSettings={setFilterSettings}
         />
-        {isLoading ? <Spinner /> : <StudentList
-          itemsPerPage={itemsPerPage}
-          page={page}
-          students={students}
-          setStudents={setStudents}
-          studentListType={studentListType}
-          setStudentCv={setStudentCv}
-          setIsChanged={setIsChanged}
-        />}
-        
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <StudentList
+            itemsPerPage={itemsPerPage}
+            page={page}
+            students={students}
+            setStudents={setStudents}
+            studentListType={studentListType}
+            setStudentCv={setStudentCv}
+            setIsChanged={setIsChanged}
+          />
+        )}
       </div>
       <ItemsControl
         itemsPerPage={itemsPerPage}

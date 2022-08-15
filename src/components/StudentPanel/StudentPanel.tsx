@@ -27,7 +27,7 @@ export function StudentPanel() {
     tel: 0,
     firstName: "",
     lastName: "",
-    githubUsername: "Ami777",
+    githubUsername: "",
     portfolioUrls: ["ok"],
     bonusProjectUrls: ["ok, ok"],
     bio: "",
