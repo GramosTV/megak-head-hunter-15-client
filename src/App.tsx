@@ -26,6 +26,7 @@ import { AdminPanel } from "./components/AdminPanel/AdminPanel";
 import { ToastContainer } from "react-toastify";
 import { MainHeader } from "./components/MainHeader";
 import {ActivateAccountForm} from './components/ActivateAccountForm/ActivateAccountForm';
+import { StudentPanel } from "./components/StudentPanel/StudentPanel";
 
 export const App = () => {
   const { user } = useContext(AuthContext);
@@ -67,6 +68,7 @@ export const App = () => {
       <ProtectedRoute isAllowed={!!user && user.role === 'student'}>
         <Routes>
         <MainHeader />
+        <StudentPanel />
         </Routes>
       </ProtectedRoute>
     </div>
