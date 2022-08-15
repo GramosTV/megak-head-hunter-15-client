@@ -24,9 +24,9 @@ import "./style/header.css";
 import "./style/common/spinner.css";
 import { AdminPanel } from "./components/AdminPanel/AdminPanel";
 import { ToastContainer } from "react-toastify";
-import { MainHeader } from "./components/MainHeader";
 import {ActivateAccountForm} from './components/ActivateAccountForm/ActivateAccountForm';
 import { StudentPanel } from "./components/StudentPanel/StudentPanel";
+import { MainHeader } from "./components/MainHeader";
 
 export const App = () => {
   const { user } = useContext(AuthContext);
@@ -55,20 +55,17 @@ export const App = () => {
       </ProtectedRoute>
       <ProtectedRoute isAllowed={!!user && user.role === 'hr'}>
         <Routes>
-          <MainHeader />
-          <Route path="*" element={<HrPanel />} />
+          <Route path="*" element={<><MainHeader /><HrPanel /></>} />
         </Routes>
       </ProtectedRoute>
       <ProtectedRoute isAllowed={!!user && user.role === 'admin'}>
         <Routes>
-        <MainHeader />
-          <Route path="*" element={<AdminPanel />} />
+          <Route path="*" element={<><MainHeader /><AdminPanel /></>} />
         </Routes>
       </ProtectedRoute>
       <ProtectedRoute isAllowed={!!user && user.role === 'student'}>
         <Routes>
-        <MainHeader />
-        <StudentPanel />
+        <Route path="*" element={<><MainHeader /><StudentPanel /></>} />
         </Routes>
       </ProtectedRoute>
     </div>
