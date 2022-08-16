@@ -65,6 +65,19 @@ export function Profile({ studentProfile }: ProfileProps) {
     courses,
   }) => {
     try {
+      let portfolio = []
+      let bonusProject = []
+      if(typeof portfolioUrls === 'string') {
+        portfolio = portfolioUrls.split(",").map((el) => el.trim())
+      } else {
+        portfolio = portfolioUrls
+      }
+      if(typeof bonusProjectUrls === 'string') {
+        bonusProject = bonusProjectUrls.split(",").map((el) => el.trim())
+      } else {
+        bonusProject = bonusProjectUrls
+      }
+      console.log(portfolio)
       const res = await fetch("/student/update", {
         method: "PATCH",
         mode: "cors",
@@ -78,8 +91,8 @@ export function Profile({ studentProfile }: ProfileProps) {
           firstName,
           lastName,
           githubUsername,
-          portfolioUrls: portfolioUrls.split(",").map((el) => el.trim()),
-          bonusProjectUrls: bonusProjectUrls.split(",").map((el) => el.trim()),
+          portfolioUrls: portfolio,
+          bonusProjectUrls: bonusProject,
           bio,
           expectedTypeWork,
           targetWorkCity,
@@ -93,6 +106,7 @@ export function Profile({ studentProfile }: ProfileProps) {
         }),
       });
       const data = await res.json();
+      console.log(data);
       if (data.ok) {
         console.log(data);
         successNotif("Profil pomyślnie zaktualizowany!");
