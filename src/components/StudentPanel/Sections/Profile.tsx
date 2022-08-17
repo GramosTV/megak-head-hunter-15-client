@@ -243,7 +243,7 @@ export function Profile({ studentProfile }: ProfileProps) {
             {errors.expectedSalary?.type === "required" &&
               "To pole jest wymagane"}
             {errors.expectedSalary?.type === "max" &&
-              "Liczba nie może przekraczać 999"}
+              "Liczba nie może przekraczać 99999"}
             {errors.expectedSalary?.type === "min" &&
               "Liczba nie może być mniejsza od 0"}
             <label>Ilość miesięcy doświadczenia zawodowego</label>
@@ -261,7 +261,7 @@ export function Profile({ studentProfile }: ProfileProps) {
             {errors.monthsOfCommercialExp?.type === "required" &&
               "To pole jest wymagane"}
             {errors.monthsOfCommercialExp?.type === "max" &&
-              "Liczba nie może przekraczać 999"}
+              "Liczba nie może przekraczać 99"}
             {errors.monthsOfCommercialExp?.type === "min" &&
               "Liczba nie może być mniejsza od 0"}
           </div>

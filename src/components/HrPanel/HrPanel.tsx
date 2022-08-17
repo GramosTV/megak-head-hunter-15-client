@@ -97,9 +97,6 @@ export function HrPanel() {
     [itemsPerPage, page, studentListType, isChanged]
   );
 
-  // if (isLoading) {
-  //   return <Spinner/>
-  // }
   if (studentListType === StudentListEnum.changePassword) {
     return (
       <div className="hrPanel">
