@@ -134,6 +134,7 @@ export function Filter({
               setMaxSalary(0);
               setExperienceInMonths(0);
               setLocalStudents(students);
+              setIsChanged((previousState) => !previousState);
             }}
           >
             Wyczyść wszystkie

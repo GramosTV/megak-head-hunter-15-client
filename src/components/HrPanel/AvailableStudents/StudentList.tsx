@@ -144,9 +144,9 @@ export function StudentList({
                   </div>
                   <div>
                     <p>Preferowane miejsce pracy</p>
-                    <span>
+                    <b>
                       {e.expectedTypeWork}
-                    </span>
+                    </b>
                   </div>
                   <div>
                     <p>Docelowe miasto, gdzie chce pracować kandydat</p>
