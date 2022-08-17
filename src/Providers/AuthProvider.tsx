@@ -89,7 +89,6 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   }
 
   const signOut = async () => {
-    setUser(null);
     try {
       const res = await fetch('/auth/logout', {
         credentials: 'include',
@@ -102,6 +101,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
       const data = await res.json();
       if (data.ok) {
         toast.success(data.message);
+        setUser(null);
       } else {
         toast.error('Coś poszło nie tak, spróbuj później!');
       }

@@ -1,9 +1,12 @@
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
+import {AuthContext} from "../Providers/AuthProvider";
+
 
 export function MainHeader() {
   const [userMenuDropdownActive, setUserMenuDropdownActive] = useState<boolean>(false);
+  const {user, signOut} = useContext(AuthContext);
   const handleUserMenuDropdown = () => {
     setUserMenuDropdownActive(!userMenuDropdownActive)
   }
@@ -18,11 +21,14 @@ export function MainHeader() {
         <div className="mainHeader__userMenuContainer">
           <div className="mainHeader__userMenu">
             <img
-              src="assets/images/example_user.png"
+              src={user?.ghUsername
+                  ? `https://github.com/${user?.ghUsername}.png`
+                  : '/assets/images/example_user.png'
+              }
               alt="Przykładowy użytkownik"
               className="mainHeader__userImage"
             />
-            <span className="mainHeader__userName">Jan Kowalski</span>
+            <span className="mainHeader__userName">{`${user?.firstName} ${user?.lastName}`}</span>
             <FontAwesomeIcon
               icon={faCaretDown}
               className="mainHeader__arrowDown"
@@ -30,10 +36,12 @@ export function MainHeader() {
             />
             <div className={`mainHeader__userMenuDropdown ${userMenuDropdownActive ? 'active' : ''}`}>
               <div>
-                <p>Konto</p>
+                Konto
               </div>
-              <div>
-                <p>Wyloguj</p>
+              <div
+                  onClick={() => signOut()}
+              >
+                Wyloguj
               </div>
             </div>
           </div>
