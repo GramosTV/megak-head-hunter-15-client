@@ -15,6 +15,7 @@ import { ChangePassword } from "../ChangePassword";
 
 export function HrPanel() {
   const defaultFilterSettings = {
+    email: null,
     firstName: null,
     lastName: null,
     courseCompletion: null,
@@ -27,7 +28,6 @@ export function HrPanel() {
     maxNetSalary: null,
     canTakeApprenticeship: null,
     monthsOfCommercialExp: null,
-    email: null,
   };
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -54,21 +54,26 @@ export function HrPanel() {
       (async () => {
         try {
           setIsLoading((prevState) => !prevState);
-          const url = `/student/filtered/${itemsPerPage}/${page}/${studentStatus}/${
-            searchValue.split(" ")[0] || null
-          }/${searchValue.split(" ")[1] || null}/${
-            filterSettings.courseCompletion
-          }/${filterSettings.courseEngagement}/${
-            filterSettings.projectDegree
-          }/${filterSettings.teamProjectDegree}/${
-            filterSettings.expectedTypeWork
-          }/${filterSettings.expectedContractType}/${
-            filterSettings.minNetSalary
-          }/${filterSettings.maxNetSalary}/${
-            filterSettings.canTakeApprenticeship
-          }/${filterSettings.monthsOfCommercialExp}/${hrEmail}`;
-          console.log(url);
-          const res = await fetch(url);
+          const generateFilterQuery = (obj: FilterSettings) => {
+            const objLength = Object.keys(obj).length;
+            let url = `/student/filtered/filterSettings?itemsPerPage=${itemsPerPage}&page=${page}&studentStatus=${studentStatus}&hrEmail=${hrEmail}&`;
+            Object.entries(obj).map((el, i) => {
+              url += el[0] + '='
+              switch (el[0]) {
+                case "firstName":
+                  url += searchValue.split(" ")[0] || null;
+                  break;
+                case "lastName":
+                  url += searchValue.split(" ")[1] || null;
+                  break;
+                default:
+                  url += el[1];
+              }
+              if (objLength - 1 !== i) url += "&";
+            });
+            return url
+          };
+          const res = await fetch(generateFilterQuery(filterSettings));
           if (res.ok) {
             const data = (await res.json()) as GetPaginatedListOfUser;
             setPagesCount(data.pagesCount);
