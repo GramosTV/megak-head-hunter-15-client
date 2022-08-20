@@ -77,7 +77,6 @@ export function Profile({ studentProfile }: ProfileProps) {
       } else {
         bonusProject = bonusProjectUrls
       }
-      console.log(portfolio)
       const res = await fetch("/student/update", {
         method: "PATCH",
         mode: "cors",
@@ -108,11 +107,9 @@ export function Profile({ studentProfile }: ProfileProps) {
       const data = await res.json();
       console.log(data);
       if (data.ok) {
-        console.log(data);
         successNotif("Profil pomyślnie zaktualizowany!");
       } else {
-        console.log(data);
-        errorNotif('Coś poszło nie tak, spróbuj ponownie.')
+        errorNotif(data.message);
       }
     } catch (e) {
       console.log(e);
