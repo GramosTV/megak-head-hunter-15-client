@@ -13,14 +13,16 @@ export function ChangePassword() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async ({password, repeatPassword}) => {
-    if (password !== repeatPassword) errorNotif("Passwords don't match")
+    if (password !== repeatPassword) {
+      errorNotif("Hasła są różne.");
+      return;
+    }
     try {
-      const res = await fetch('/student/password', {
+      const data = await fetch('/student/password', {
         method: 'PATCH',
         mode: 'cors',
         headers: {
@@ -31,10 +33,9 @@ export function ChangePassword() {
           password,
         }),
       });
-      const data = await res.json();
       if (data.ok) {
         console.log(data);
-        successNotif("Hasło zostało pomyślnie zmienione");
+        successNotif("Hasło zostało pomyślnie zmienione.");
       } else {
         console.log(data);
         errorNotif('Coś poszło nie tak, spróbuj ponownie.')
