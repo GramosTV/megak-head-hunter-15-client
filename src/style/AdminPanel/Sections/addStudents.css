@@ -136,4 +136,71 @@
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #d62929;
+}
+
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(0.6px);
+          backdrop-filter: blur(0.6px);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+}
+.preview div {
+  background-color: #292a2b;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-x: auto;
+}
+.preview div::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+.preview div::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+.preview div::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #d62929;
+}
+.preview div button {
+  margin: 0 15px;
+}
+.preview div table {
+  margin: 15px 0;
+  font-family: sans-serif;
+  overflow-x: auto;
+}
+.preview div table th,
+.preview div table td {
+  padding: 0.25em 0.5em;
+  text-align: left;
+  font-size: 14px;
+}
+@media (max-width: 992px) {
+  .preview div table th,
+.preview div table td {
+    font-size: 11px;
+  }
+}
+.preview div table td {
+  background-color: #222224;
+}
+.preview div table th {
+  background-color: #e02735;
+}
+@media (max-width: 768px) {
+  .preview div table th {
+    border-bottom: #222224 2px solid;
+  }
 }/*# sourceMappingURL=addStudents.css.map */
