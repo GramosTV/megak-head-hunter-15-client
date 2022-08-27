@@ -56,11 +56,7 @@ export function AddStudents() {
                     myRows.push(row.data as any);
                   },
                   complete: async function (results) {
-                    myRows.splice(-1);
-                    const obj = { students: [] };
-                    myRows.map((e) => {
-                      obj.students.push(e as never);
-                    });
+                    const obj = { students: (myRows.splice(-1) as any) };
                     obj.students.map((e: any) => {
                       e.bonusProjectUrls = [];
                       Object.keys(e).map((key: string, index: number) => {
