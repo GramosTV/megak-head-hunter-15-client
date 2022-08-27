@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AdminSectionEnum } from "../../types/enums/AdminSectionEnum";
 import { ChangePassword } from "../ChangePassword";
 import { AddHrForm } from "./Sections/AddHrForm";
-import { AddStudents } from "./Sections/AddStudents";
+import { AddStudents } from "./Sections/AddStudents/AddStudents";
 import { Select } from "./Select";
 
 export function AdminPanel() {
