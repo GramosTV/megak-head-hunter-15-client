@@ -5,7 +5,9 @@ import { CreateUserDto } from "types";
 import { toast } from "react-toastify";
 import { CsvTable } from "../Elements/CsvTable";
 var JSONPrettyMon = require("react-json-pretty/dist/monikai");
-
+interface PapaResults {
+  data: CreateUserDto;
+}
 export function AddStudents() {
   const [students, setStudents] = useState<CreateUserDto[] | null>(null);
   const handleImport = async (status: boolean) => {
@@ -23,7 +25,7 @@ export function AddStudents() {
     }
     setStudents(null);
     setJsonInputKey(Date.now());
-    setCsvInputKey(Date.now())
+    setCsvInputKey(Date.now());
   };
   const [jsonInputKey, setJsonInputKey] = useState(Date.now());
   const [csvInputKey, setCsvInputKey] = useState(Date.now());
@@ -41,10 +43,10 @@ export function AddStudents() {
             name="file-input"
             id="file-input"
             className="file-input__input"
-            accept=".csv,.xlsx,.xls"
+            accept=".csv"
             key={jsonInputKey}
             onChange={(e) => {
-              const myRows: string[] = [];
+              let myRows: CreateUserDto[] = [];
               const files = e.target.files;
               console.log(files);
               if (files) {
@@ -52,27 +54,19 @@ export function AddStudents() {
                 Papa.parse(files[0], {
                   download: true,
                   header: true,
-                  step: function (row) {
-                    myRows.push(row.data as any);
+                  step: function (row: PapaResults) {
+                    if(row.data.email) myRows.push(row.data);
                   },
                   complete: async function (results) {
-                    const obj = { students: (myRows.splice(-1) as any) };
-                    obj.students.map((e: any) => {
+                    const obj = { students: myRows };
+                    obj.students.forEach((e: any) => {
                       e.bonusProjectUrls = [];
-                      Object.keys(e).map((key: string, index: number) => {
-                        if (
-                          !(key === "email") &&
-                          !key.startsWith("bonusProjectUrls")
-                        ) {
-                          (e[key as keyof CreateUserDto] as any) = Number(
-                            e[key as keyof CreateUserDto] as any
-                          );
-                        } else if (key.startsWith("bonusProjectUrls/")) {
-                          (
-                            e["bonusProjectUrls" as keyof CreateUserDto] as any
-                          ).push(e[key as keyof CreateUserDto] as any);
-                          if (key !== "bonusProjectUrls")
-                            delete e[key as keyof CreateUserDto];
+                      Object.keys(e).forEach((key: string) => {
+                        if (key.startsWith("bonusProjectUrls/")) {
+                          e["bonusProjectUrls"].push(e[key]);
+                          if (key !== "bonusProjectUrls") delete e[key]
+                        } else if (key !== 'email' && key !== 'bonusProjectUrls') {
+                          e[key] = +e[key]
                         }
                       });
                       return e;
