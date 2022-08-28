@@ -14,7 +14,7 @@ import { FilterSettings } from "types";
 import { toast } from "react-toastify";
 import { Spinner } from "../common/Spinner";
 import { StudentPanelEnum } from "../../types/enums/StudentPanelEnum";
-import { Profile } from "./Sections/Profile";
+import { Profile } from "./Sections/Profile/Profile";
 import { ChangePassword } from "../ChangePassword";
 import { Hired } from "./Sections/Hired";
 

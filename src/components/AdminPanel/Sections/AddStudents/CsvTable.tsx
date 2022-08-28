@@ -1,11 +1,12 @@
 import React from "react";
+import shortid from "shortid";
 import { CreateUserDto } from "types";
 interface CsvTableProps {
   students: CreateUserDto[] | null;
   handleImport: (status: boolean) => Promise<void>;
 }
 export function CsvTable({ students, handleImport }: CsvTableProps) {
-  if (students)
+  if(students)
     return (
       <div className="preview">
         <div>
@@ -31,15 +32,15 @@ export function CsvTable({ students, handleImport }: CsvTableProps) {
                     }
                   });
                   return maxObj[0]?.bonusProjectUrls?.map((el, i) => {
-                    return <th>bonusProjectUrls/{i}</th>;
+                    return <th key={shortid.generate()}>bonusProjectUrls/{i}</th>;
                   });
                 })()}
               </tr>
             </thead>
             <tbody>
-              {students.map((student) => {
+              {students.map((student, i) => {
                 return (
-                  <tr>
+                  <tr key={shortid.generate()}>
                     <td title="email">{student.email}</td>
                     <td title="courseCompletion">{student.courseCompletion}</td>
                     <td title="courseEngagement">{student.courseEngagement}</td>
@@ -48,7 +49,7 @@ export function CsvTable({ students, handleImport }: CsvTableProps) {
                       {student.teamProjectDegree}
                     </td>
                     {student.bonusProjectUrls?.map((el) => {
-                      return <td title="bonusProjectUrl">{el}</td>;
+                      return <td key={shortid.generate()} title="bonusProjectUrl">{el}</td>;
                     })}
                   </tr>
                 );
@@ -60,38 +61,5 @@ export function CsvTable({ students, handleImport }: CsvTableProps) {
         </div>
       </div>
     );
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>email</th>
-          <th>courseCompletion</th>
-          <th>courseEngagement</th>
-          <th>projectDegree</th>
-          <th>teamProjectDegree</th>
-          <th>bonusProjectUrls/0</th>
-          <th>bonusProjectUrls/1</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td title="email">emaple@example.com</td>
-          <td title="courseCompletion">3</td>
-          <td title="courseEngagement">2</td>
-          <td title="projectDegree">0</td>
-          <td title="teamProjectDegree">1</td>
-          <td title="bonusProjectUrl">test.com</td>
-          <td title="bonusProjectUrl">test.com</td>
-        </tr>
-        <tr>
-          <td title="email">emaple@example2.com</td>
-          <td title="courseCompletion">5</td>
-          <td title="courseEngagement">4</td>
-          <td title="projectDegree">0</td>
-          <td title="teamProjectDegree">1</td>
-          <td title="bonusProjectUrl">test.com</td>
-        </tr>
-      </tbody>
-    </table>
-  );
+    return null;
 }
