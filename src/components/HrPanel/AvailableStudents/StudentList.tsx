@@ -74,7 +74,7 @@ export function StudentList({
                       Rezerwacja do
                       <br />
                       <strong>
-                        {`${e.hrToStudent[0]?.reservedTo}`} r.
+                        {`${e.hrToStudent[0]?.reservedTo || '?'}`} r.
                       </strong>
                     </div>
                     <div className="studentList__userData">
