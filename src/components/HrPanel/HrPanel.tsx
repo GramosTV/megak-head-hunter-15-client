@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AvailableStudents } from "./AvailableStudents/AvailableStudents";
-import { Filter } from "./AvailableStudents/Filter";
+import { Filter } from "./AvailableStudents/Filter/Filter";
 import { ItemsControl } from "./AvailableStudents/ItemsControl";
 import { StudentList } from "./AvailableStudents/StudentList";
 import { Select } from "./Select";
