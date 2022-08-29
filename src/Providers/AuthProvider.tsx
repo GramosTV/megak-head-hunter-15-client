@@ -13,7 +13,7 @@ export const AuthContext = React.createContext<AuthContextObj>({
 });
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
-  const {sendReq} = useFetch<AuthUser>();
+  const {sendReq} = useFetch();
   const [user, setUser] = useState<AuthUser | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         //   }
         // });
         // const data = await res.json();
-        const data = await sendReq('auth/me');
+        const data = await sendReq('auth/me') as AuthUser;
         if(data.ok) {
           setUser(data);
         }
@@ -42,22 +42,24 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
   const signIn = async ({ login, password}: LoginData) => {
     try {
-      const res = await fetch('/auth/login', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          "Access-Control-Allow-Origin":"true",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: login,
-          password,
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
+      // const res = await fetch('/auth/login', {
+      //   method: 'POST',
+      //   mode: 'cors',
+      //   headers: {
+      //     "Access-Control-Allow-Origin":"true",
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     email: login,
+      //     password,
+      //   }),
+      // });
+      // const data = await res.json();
+      const data = await sendReq('auth/login', 'POST', {
+            email: login,
+            password,
+          }) as {ok: boolean; message?: string}
       if (data.ok) {
-        setUser(data);
         navigate('/');
         toast.success('Zalogowano!');
       } else {
