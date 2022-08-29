@@ -1,16 +1,16 @@
 import React, {useCallback} from 'react';
 import {toast} from "react-toastify";
 
-export type SendReqType<T> = (reqEndpoint: string, method?: string, body?: {} | null) => Promise<T>;
+export type SendReqType = (reqEndpoint: string, method?: string, body?: {} | null) => Promise<unknown>;
 
-export const useFetch = <T,>() => {
-  const sendReq: SendReqType<T> = useCallback(async (reqEndpoint, method='GET', body=null) => {
+export const useFetch = () => {
+  const sendReq: SendReqType = useCallback(async (reqEndpoint, method='GET', body=null) => {
     try {
       const response = await fetch(`/${reqEndpoint}`, {
           method: method,
           credentials: 'include',
           mode: 'cors',
-          headers: method === 'GET' || method !== 'GET' ? {} : {
+          headers: {
             'Access-Control-Allow-Origin':'true',
             'Content-Type': 'application/json',
           },
