@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {AuthContextObj, LoginData} from "../types/interfaces/Auth";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import {useFetch} from "../hooks/useFetch";
+import { AuthUser } from 'types';
 
 export const AuthContext = React.createContext<AuthContextObj>({
   user: null,
@@ -11,22 +13,24 @@ export const AuthContext = React.createContext<AuthContextObj>({
 });
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
-  const [user, setUser] = useState(null);
+  const {sendReq} = useFetch<AuthUser>();
+  const [user, setUser] = useState<AuthUser | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('/auth/me', {
-          credentials: 'include',
-          mode: 'cors',
-          headers: {
-            'Access-Control-Allow-Origin':'true',
-            "Content-Type": "application/json",
-          }
-        });
-        const data = await res.json();
+        // const res = await fetch('/auth/me', {
+        //   credentials: 'include',
+        //   mode: 'cors',
+        //   headers: {
+        //     'Access-Control-Allow-Origin':'true',
+        //     "Content-Type": "application/json",
+        //   }
+        // });
+        // const data = await res.json();
+        const data = await sendReq('auth/me');
         if(data.ok) {
           setUser(data);
         }
@@ -34,7 +38,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         toast.error('Coś poszło nie tak, spróbuj później!');
       }
     })();
-  }, [location]);
+  }, [location, sendReq]);
 
   const signIn = async ({ login, password}: LoginData) => {
     try {
