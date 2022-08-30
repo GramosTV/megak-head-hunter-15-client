@@ -72,18 +72,21 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
   const activateAccount = async (userId: string, activationToken: string, password: string) => {
     try {
-      const res = await fetch(`/auth/activate/${userId}/${activationToken}`, {
-        method: 'PATCH',
-        mode: 'cors',
-        headers: {
-          "Access-Control-Allow-Origin":"true",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          newPassword: password,
-        }),
-      });
-      const data = await res.json();
+      // const res = await fetch(`/auth/activate/${userId}/${activationToken}`, {
+      //   method: 'PATCH',
+      //   mode: 'cors',
+      //   headers: {
+      //     "Access-Control-Allow-Origin":"true",
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     newPassword: password,
+      //   }),
+      // });
+      // const data = await res.json();
+      const data = await sendReq(`auth/activate/${userId}/${activationToken}`, 'PATCH', {
+            newPassword: password,
+          }) as {ok: boolean; message: string}
       if (data.ok) {
         toast.success(data.message);
       } else {
@@ -96,15 +99,16 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
   const signOut = async () => {
     try {
-      const res = await fetch('/auth/logout', {
-        credentials: 'include',
-        mode: 'cors',
-        headers: {
-          "Access-Control-Allow-Origin":"true",
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
+      // const res = await fetch('/auth/logout', {
+      //   credentials: 'include',
+      //   mode: 'cors',
+      //   headers: {
+      //     "Access-Control-Allow-Origin":"true",
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      // const data = await res.json();
+      const data = await sendReq('auth/logout') as {ok: boolean; message: string};
       if (data.ok) {
         toast.success(data.message);
         setUser(null);
