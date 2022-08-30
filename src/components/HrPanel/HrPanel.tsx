@@ -57,22 +57,23 @@ export function HrPanel() {
           const generateFilterQuery = (obj: FilterSettings) => {
             const objLength = Object.keys(obj).length;
             let url = `/student/filtered/filterSettings?itemsPerPage=${itemsPerPage}&page=${page}&studentStatus=${studentStatus}&email=${hrEmail}&`;
-            console.log(hrEmail)
             Object.entries(obj).map((el, i) => {
-              url += el[0] + '='
-              switch (el[0]) {
-                case "firstName":
-                  url += searchValue.split(" ")[0] || null;
-                  break;
-                case "lastName":
-                  url += searchValue.split(" ")[1] || null;
-                  break;
-                default:
-                  url += el[1];
+              if (el[0] !== "email") {
+                url += el[0] + "=";
+                switch (el[0]) {
+                  case "firstName":
+                    url += searchValue.split(" ")[0] || null;
+                    break;
+                  case "lastName":
+                    url += searchValue.split(" ")[1] || null;
+                    break;
+                  default:
+                    url += el[1];
+                }
+                if (objLength - 1 !== i) url += "&";
               }
-              if (objLength - 1 !== i) url += "&";
             });
-            return url
+            return url;
           };
           const res = await fetch(generateFilterQuery(filterSettings));
           if (res.ok) {
