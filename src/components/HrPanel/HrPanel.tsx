@@ -56,7 +56,8 @@ export function HrPanel() {
           setIsLoading((prevState) => !prevState);
           const generateFilterQuery = (obj: FilterSettings) => {
             const objLength = Object.keys(obj).length;
-            let url = `/student/filtered/filterSettings?itemsPerPage=${itemsPerPage}&page=${page}&studentStatus=${studentStatus}&hrEmail=${hrEmail}&`;
+            let url = `/student/filtered/filterSettings?itemsPerPage=${itemsPerPage}&page=${page}&studentStatus=${studentStatus}&email=${hrEmail}&`;
+            console.log(hrEmail)
             Object.entries(obj).map((el, i) => {
               url += el[0] + '='
               switch (el[0]) {
