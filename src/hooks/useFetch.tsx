@@ -21,7 +21,6 @@ export const useFetch = () => {
     } catch (e) {
       toast.error('Coś poszło nie tak, spróbuj później!');
     }
-    // setIsLoading(false);
   }, []);
 
   return {
