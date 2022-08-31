@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { successNotif } from '../utils/notifications/successNotif';
 import { errorNotif } from '../utils/notifications/errorNotif';
+import {useFetch} from "../hooks/useFetch";
 
 type FormInputs = {
   password: string
@@ -15,6 +16,7 @@ export function ChangePassword() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormInputs>();
+  const {sendReq} = useFetch();
 
   const onSubmit: SubmitHandler<FormInputs> = async ({password, repeatPassword}) => {
     if (password !== repeatPassword) {
@@ -22,27 +24,28 @@ export function ChangePassword() {
       return;
     }
     try {
-      const data = await fetch('/student/password', {
-        method: 'PATCH',
-        mode: 'cors',
-        headers: {
-          "Access-Control-Allow-Origin":"true",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          password,
-        }),
-      });
-      if (data.ok) {
-        console.log(data);
-        successNotif("Hasło zostało pomyślnie zmienione.");
+      // const data = await fetch('/student/password', {
+      //   method: 'PATCH',
+      //   mode: 'cors',
+      //   headers: {
+      //     "Access-Control-Allow-Origin":"true",
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     password,
+      //   }),
+      // });
+      const data = await sendReq('student/password', 'PATCH', {
+            password,
+          }) as {ok: boolean; message: string};
+      if(data.ok) {
+        successNotif(data.message);
       } else {
-        console.log(data);
-        errorNotif('Coś poszło nie tak, spróbuj ponownie.')
+        errorNotif(data.message);
       }
     } catch (e) {
       console.log(e);
-      errorNotif('Coś poszło nie tak, spróbuj ponownie.')
+      errorNotif('Coś poszło nie tak, spróbuj ponownie.');
     }
   }
 

@@ -4,6 +4,7 @@ import { errorNotif } from "../../../../utils/notifications/errorNotif";
 import { successNotif } from "../../../../utils/notifications/successNotif";
 import { ExpectedContractType, ExpectedTypeWork, UserProfile } from "types";
 import { ProfileForm } from "./ProfileForm";
+import {useFetch} from "../../../../hooks/useFetch";
 
 interface ProfileProps {
   studentProfile: UserProfile;
@@ -42,6 +43,7 @@ export function Profile({ studentProfile }: ProfileProps) {
       bonusProjectUrls: studentProfile?.bonusProjectUrls?.join(", ") || null,
     },
   });
+  const {sendReq} = useFetch();
   useEffect(() => {
     reset(studentProfile as any);
     console.log(studentProfile)
@@ -78,35 +80,53 @@ export function Profile({ studentProfile }: ProfileProps) {
       } else {
         bonusProject = bonusProjectUrls
       }
-      const res = await fetch("/student/update", {
-        method: "PATCH",
-        mode: "cors",
-        headers: {
-          "Access-Control-Allow-Origin": "true",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          tel,
-          firstName,
-          lastName,
-          githubUsername,
-          portfolioUrls: portfolio,
-          bonusProjectUrls: bonusProject,
-          bio,
-          expectedTypeWork,
-          targetWorkCity,
-          expectedContractType,
-          expectedSalary: Number(expectedSalary),
-          canTakeApprenticeship,
-          monthsOfCommercialExp: Number(monthsOfCommercialExp),
-          education,
-          workExperience,
-          courses,
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
+      // const res = await fetch("/student/update", {
+      //   method: "PATCH",
+      //   mode: "cors",
+      //   headers: {
+      //     "Access-Control-Allow-Origin": "true",
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     email,
+      //     tel,
+      //     firstName,
+      //     lastName,
+      //     githubUsername,
+      //     portfolioUrls: portfolio,
+      //     bonusProjectUrls: bonusProject,
+      //     bio,
+      //     expectedTypeWork,
+      //     targetWorkCity,
+      //     expectedContractType,
+      //     expectedSalary: Number(expectedSalary),
+      //     canTakeApprenticeship,
+      //     monthsOfCommercialExp: Number(monthsOfCommercialExp),
+      //     education,
+      //     workExperience,
+      //     courses,
+      //   }),
+      // });
+      // const data = await res.json();
+      const data = await sendReq('student/update', 'PATCH', {
+            email,
+            tel,
+            firstName,
+            lastName,
+            githubUsername,
+            portfolioUrls: portfolio,
+            bonusProjectUrls: bonusProject,
+            bio,
+            expectedTypeWork,
+            targetWorkCity,
+            expectedContractType,
+            expectedSalary: Number(expectedSalary),
+            canTakeApprenticeship,
+            monthsOfCommercialExp: Number(monthsOfCommercialExp),
+            education,
+            workExperience,
+            courses,
+          }) as {ok: boolean; message: string};
       if (data.ok) {
         successNotif("Profil pomyślnie zaktualizowany!");
       } else {
