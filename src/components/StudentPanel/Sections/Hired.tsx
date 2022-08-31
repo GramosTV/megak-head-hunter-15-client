@@ -17,15 +17,6 @@ export function Hired() {
       }, 5000);
     } else {
       try {
-        // const res = await fetch("/student/hired", {
-        //   method: "PATCH",
-        //   mode: "cors",
-        //   headers: {
-        //     "Access-Control-Allow-Origin": "true",
-        //     "Content-Type": "application/json",
-        //   },
-        // });
-        // const data = await res.json();
         const data = await sendReq('student/hired', 'PATCH') as {ok: boolean};
         if (data.ok) {
           successNotif("Gratulacje!");

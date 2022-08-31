@@ -14,15 +14,6 @@ export function AddStudents() {
   const {sendReq} = useFetch();
   const handleImport = async (status: boolean) => {
     if (status) {
-      // const res = await fetch("http://localhost:3000/admin/addStudents", {
-      //   method: "POST",
-      //   headers: {
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ students: students }),
-      // });
-      // const data = await res.json();
       const data = await sendReq('admin/addStudents', 'POST', {
         students: students
       }) as {ok: boolean; message: string[]};

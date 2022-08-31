@@ -24,17 +24,6 @@ export function ChangePassword() {
       return;
     }
     try {
-      // const data = await fetch('/student/password', {
-      //   method: 'PATCH',
-      //   mode: 'cors',
-      //   headers: {
-      //     "Access-Control-Allow-Origin":"true",
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     password,
-      //   }),
-      // });
       const data = await sendReq('student/password', 'PATCH', {
             password,
           }) as {ok: boolean; message: string};

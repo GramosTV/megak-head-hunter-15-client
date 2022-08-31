@@ -80,34 +80,6 @@ export function Profile({ studentProfile }: ProfileProps) {
       } else {
         bonusProject = bonusProjectUrls
       }
-      // const res = await fetch("/student/update", {
-      //   method: "PATCH",
-      //   mode: "cors",
-      //   headers: {
-      //     "Access-Control-Allow-Origin": "true",
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     email,
-      //     tel,
-      //     firstName,
-      //     lastName,
-      //     githubUsername,
-      //     portfolioUrls: portfolio,
-      //     bonusProjectUrls: bonusProject,
-      //     bio,
-      //     expectedTypeWork,
-      //     targetWorkCity,
-      //     expectedContractType,
-      //     expectedSalary: Number(expectedSalary),
-      //     canTakeApprenticeship,
-      //     monthsOfCommercialExp: Number(monthsOfCommercialExp),
-      //     education,
-      //     workExperience,
-      //     courses,
-      //   }),
-      // });
-      // const data = await res.json();
       const data = await sendReq('student/update', 'PATCH', {
             email,
             tel,
