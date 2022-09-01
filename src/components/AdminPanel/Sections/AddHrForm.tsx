@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {toast} from "react-toastify";
+import {useFetch} from "../../../hooks/useFetch";
 
 type FormInputs = {
   email: string;
@@ -15,24 +16,16 @@ export function AddHrForm() {
     watch,
     formState: { errors },
   } = useForm<FormInputs>();
+  const {sendReq} = useFetch();
 
   const onSubmit: SubmitHandler<FormInputs> = async ({email, fullName, company, maxReservedStudents}) => {
     try {
-      const res = await fetch('/hr', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          "Access-Control-Allow-Origin":"true",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          fullName,
-          company,
-          maxReservedStudents: Number(maxReservedStudents),
-        }),
-      });
-      const data = await res.json();
+      const data = await sendReq('hr', 'POST', {
+            email,
+            fullName,
+            company,
+            maxReservedStudents: Number(maxReservedStudents),
+          }) as { ok: boolean; message:string };
       if (data.ok) {
         toast.success(data.message);
       } else {

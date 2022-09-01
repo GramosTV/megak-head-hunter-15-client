@@ -3,9 +3,11 @@ import { toast } from "react-toastify";
 import { errorNotif } from "../../../utils/notifications/errorNotif";
 import { successNotif } from "../../../utils/notifications/successNotif";
 import { warningNotif } from "../../../utils/notifications/warningNotif";
+import {useFetch} from "../../../hooks/useFetch";
 
 export function Hired() {
   const [areYouSure, setAreYouSure] = useState(false);
+  const {sendReq} = useFetch();
   const handleHired = async () => {
     if (!areYouSure) {
       warningNotif("Czy jesteś pewny, że zostałeś zatrudniony?");
@@ -15,20 +17,10 @@ export function Hired() {
       }, 5000);
     } else {
       try {
-        const res = await fetch("/student/hired", {
-          method: "PATCH",
-          mode: "cors",
-          headers: {
-            "Access-Control-Allow-Origin": "true",
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
+        const data = await sendReq('student/hired', 'PATCH') as {ok: boolean};
         if (data.ok) {
-          console.log(data);
           successNotif("Gratulacje!");
         } else {
-          console.log(data);
           errorNotif('Coś poszło nie tak, spróbuj ponownie.')
         }
       } catch (e) {
